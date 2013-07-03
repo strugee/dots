@@ -1,0 +1,10 @@
+aptitude "";
+aptitude::Delete-Unused-Pattern "";
+aptitude::UI "";
+aptitude::UI::Minibuf-Download-Bar "true";
+aptitude::UI::HelpBar "true";
+aptitude::UI::Menubar-Autohide "false";
+aptitude::UI::Minibuf-Prompts "false";
+aptitude::UI::ViewTabs "true";
+aptitude::UI::InfoAreaTabs "true";
+aptitude::Auto-Upgrade "false";
