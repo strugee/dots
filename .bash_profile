@@ -6,14 +6,10 @@ echo -e "\nYou've succesfully connected to the system.\nIdeally, you would keep 
 export PATH=$PATH:~/bin
 
 # Add .bashrc stuff
-if [ -f ~/.bashrc ]; then
-    . ~/.bashrc
-fi
+[[ -f ~/.bashrc ]] && . ~/.bashrc
 
-export PAGER=less
-export BROWSER=lynx
-export EDITOR=nano
-export VISUAL=emacs
+# this includes env variables
+[[ -f ~/.profile ]] && . ~/.profile
 
 #_byobu_sourced=1 . /usr/bin/byobu-launch -S byobu
 byobu -R -S byobu;exit

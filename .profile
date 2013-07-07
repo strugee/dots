@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
@@ -20,4 +21,16 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-_byobu_sourced=1 . /usr/bin/byobu-launch
+
+# general environment variables
+export PATH=~/bin:$PATH
+export EDITOR=nano
+export VISUAL=emacs
+export PAGER=less
+if [ -n "$DISPLAY" ]; then
+	export BROWSER=firefox
+else
+	export BROWSER=lynx
+fi
+
+#_byobu_sourced=1 . /usr/bin/byobu-launch
