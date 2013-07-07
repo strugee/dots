@@ -1,12 +1,6 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
-# Operating system detection
-source /etc/os-release
-if NAME="Arch Linux" then
-	DISTRO=ARCH
-fi
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -46,17 +40,8 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-base_plugins="git cp rails"
-
-# Generic base plugins
-plugins=($base_plugins)
-
-# Arch Linux plugins
-if DISTRO=ARCH then
-	plugins=($base_plugins archlinux)
-fi
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:~/bin
