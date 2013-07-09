@@ -1,4 +1,4 @@
-#files: 557	version: 5.0.2
+#files: 559	version: 5.0.2
 
 _comps=(
 '-' '_precommand'
@@ -561,13 +561,20 @@ _comps=(
 'opera-next' '_webbrowser'
 'p4' '_perforce'
 'p4d' '_perforce'
+'pacat' '_pulseaudio'
 'pack' '_pack'
 'packf' '_mh'
 'pacman' '_pacman'
 'pacman-key' '_pacman'
 'pacman.static' '_pacman'
+'pacmd' '_pulseaudio'
+'pactl' '_pulseaudio'
+'padsp' '_pulseaudio'
+'paplay' '_pulseaudio'
 '-parameter-' '_parameter'
+'parecord' '_pulseaudio'
 'passwd' '_users'
+'pasuspender' '_pulseaudio'
 'patch' '_patch'
 'pax' '_pax'
 'pcat' '_pack'
@@ -620,6 +627,7 @@ _comps=(
 'poff' '_pon'
 'policytool' '_java'
 'pon' '_pon'
+'ponymix' '_ponymix'
 'popd' '_directory_stack'
 'postsuper' '_postfix'
 'prcs' '_prcs'
@@ -653,6 +661,7 @@ _comps=(
 'pstotgif' '_pspdf'
 'pswrap' '_ps'
 'ptree' '_pids'
+'pulseaudio' '_pulseaudio'
 'pump' '_pump'
 'pushd' '_cd'
 'pwait' '_pids'
@@ -1204,51 +1213,52 @@ autoload -Uz _a2ps _aap _acpi _acpitool _acroread \
             _perforce _perl _perl_basepods _perldoc _perl_modules \
             _pgrep _php _pick_variant _pids _pine \
             _ping _pkgadd _pkg-config _pkgfile _pkginfo \
-            _pkg_instance _pkgrm _pon _ports _postfix \
-            _prcs _precommand _prefix _print _printenv \
-            _printers _prompt _ps _ps1234 _pspdf \
-            _psutils _pump _pydoc _python _qemu \
-            _qiv _quilt _raggle _rake _ranlib \
-            _rar _rcs _read _read_comp _redirect \
-            _regex_arguments _regex_words _remote_files _renice _requested \
-            _retrieve_cache _ri _rlogin _rm _rrdtool \
-            _rsync _rubber _ruby _sablotron _samba \
-            _sccs _sched _schedtool _screen _sed \
-            _sep_parts _service _services _set _set_command \
-            _setfacl _setopt _setup _sh _showmount \
-            _signals _sisu _slrn _socket _sort \
-            _source _spamassassin _sqlite _sqsh _ssh \
-            _sshfs _stat _stgit _store_cache _strace \
-            _strip _stty _su _sub_commands _subscript \
-            _subversion _sudo _suffix_alias_files _surfraw _sysctl \
-            _systemd _tags _tar _tar_archive _tardy \
-            _tcpdump _tcpsys _tcptraceroute _telnet _terminals \
-            _tex _texi _texinfo _tidy _tiff \
-            _tilde _tilde_files _time_zone _tin _tla \
-            _tmux _todo.sh _toilet _topgit _totd \
-            _tpb _tpconfig _tracepath _trap _tree \
-            _ttyctl _tune2fs _twidge _twisted _typeset \
-            _ulimit _uml _unace _uname _unexpand \
-            _unhash _uniq _unison _units _unsetopt \
-            _urls _urxvt _user_admin _user_at_host _user_expand \
-            _users _users_on _uzbl _valgrind _value \
-            _values _vared _vars _vcsh _vim \
-            _vnc _vorbis _vorbiscomment _vserver _vux \
-            _w3m _wait _wakeup_capable_devices _wanted _webbrowser \
-            _wget _whereis _which _whois _wiggle \
-            _wpa_cli _xargs _x_arguments _xauth _x_borderwidth \
-            _xclip _x_color _x_colormapid _x_cursor _x_display \
-            _xdvi _x_extension _xfig _x_font _xft_fonts \
-            _x_geometry _x_keysym _xloadimage _x_locale _xmlsoft \
-            _xmms2 _x_modifier _xmodmap _x_name _xournal \
-            _xpdf _xrandr _x_resource _xscreensaver _x_selection_timeout \
-            _xset _xt_arguments _xterm _x_title _xt_session_id \
-            _x_utils _xv _x_visual _x_window _xwit \
-            _xz _yodl _yp _zargs _zattr \
-            _zcalc_line _zcat _zcompile _zdump _zed \
-            _zfs _zfs_dataset _zfs_keysource_props _zfs_pool _zftp \
-            _zip _zle _zmodload _zmv _zpool \
-            _zpty _zsh-mime-handler _zstyle _ztodo
+            _pkg_instance _pkgrm _pon _ponymix _ports \
+            _postfix _prcs _precommand _prefix _print \
+            _printenv _printers _prompt _ps _ps1234 \
+            _pspdf _psutils _pulseaudio _pump _pydoc \
+            _python _qemu _qiv _quilt _raggle \
+            _rake _ranlib _rar _rcs _read \
+            _read_comp _redirect _regex_arguments _regex_words _remote_files \
+            _renice _requested _retrieve_cache _ri _rlogin \
+            _rm _rrdtool _rsync _rubber _ruby \
+            _sablotron _samba _sccs _sched _schedtool \
+            _screen _sed _sep_parts _service _services \
+            _set _set_command _setfacl _setopt _setup \
+            _sh _showmount _signals _sisu _slrn \
+            _socket _sort _source _spamassassin _sqlite \
+            _sqsh _ssh _sshfs _stat _stgit \
+            _store_cache _strace _strip _stty _su \
+            _sub_commands _subscript _subversion _sudo _suffix_alias_files \
+            _surfraw _sysctl _systemd _tags _tar \
+            _tar_archive _tardy _tcpdump _tcpsys _tcptraceroute \
+            _telnet _terminals _tex _texi _texinfo \
+            _tidy _tiff _tilde _tilde_files _time_zone \
+            _tin _tla _tmux _todo.sh _toilet \
+            _topgit _totd _tpb _tpconfig _tracepath \
+            _trap _tree _ttyctl _tune2fs _twidge \
+            _twisted _typeset _ulimit _uml _unace \
+            _uname _unexpand _unhash _uniq _unison \
+            _units _unsetopt _urls _urxvt _user_admin \
+            _user_at_host _user_expand _users _users_on _uzbl \
+            _valgrind _value _values _vared _vars \
+            _vcsh _vim _vnc _vorbis _vorbiscomment \
+            _vserver _vux _w3m _wait _wakeup_capable_devices \
+            _wanted _webbrowser _wget _whereis _which \
+            _whois _wiggle _wpa_cli _xargs _x_arguments \
+            _xauth _x_borderwidth _xclip _x_color _x_colormapid \
+            _x_cursor _x_display _xdvi _x_extension _xfig \
+            _x_font _xft_fonts _x_geometry _x_keysym _xloadimage \
+            _x_locale _xmlsoft _xmms2 _x_modifier _xmodmap \
+            _x_name _xournal _xpdf _xrandr _x_resource \
+            _xscreensaver _x_selection_timeout _xset _xt_arguments _xterm \
+            _x_title _xt_session_id _x_utils _xv _x_visual \
+            _x_window _xwit _xz _yodl _yp \
+            _zargs _zattr _zcalc_line _zcat _zcompile \
+            _zdump _zed _zfs _zfs_dataset _zfs_keysource_props \
+            _zfs_pool _zftp _zip _zle _zmodload \
+            _zmv _zpool _zpty _zsh-mime-handler _zstyle \
+            _ztodo
 autoload -Uz +X _call_program
 
 typeset -gUa _comp_assocs
