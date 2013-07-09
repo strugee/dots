@@ -1,0 +1,1 @@
+XTerm.vt100.translations: #override\n\   Shift <KeyPress> Select:select-cursor-start() select-cursor-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\   Shift <KeyPress> Insert:insert-selection(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\   ~Ctrl ~Meta <Btn2Up>:insert-selection(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\   <BtnUp>:select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
