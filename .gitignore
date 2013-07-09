@@ -1,0 +1,24 @@
+# ignore everything
+*
+
+# ...except the configs we're interested in
+!.bash_aliases
+!.bash_profile
+!.bash_logout
+!.bashrc
+!.profile
+!.zshrc
+!.zshrc.pre-oh-my-zsh
+!.zcompdump
+!.oh-my-zsh
+!.zsh-update
+!.selected_editor
+!.Xdefaults
+!.aptitude
+!.byobu
+!.screenrc
+!.config
+!COPYING
+
+# important
+!.gitignore
