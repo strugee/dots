@@ -46,7 +46,7 @@ if os.getenv("DE") == "gnome" then
 else
 	terminal = "xterm"
 end
-editor = os.getenv("EDITOR") or "nano"
+editor = os.getenv("VISUAL") or os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -93,6 +93,10 @@ end
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
+--function quit_awesome()
+--	if os.getenv("DE") == "gnome" then os.execute("/usr/bin/gnome-session-quit") else awesome.quit end
+--end
+
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
