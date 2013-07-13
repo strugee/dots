@@ -11,6 +11,16 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 
+-- Override awesome.quit when we're using GNOME
+_awesome_quit = awesome.quit
+awesome.quit = function()
+    if os.getenv("DESKTOP_SESSION") == "awesome-gnome" then
+       os.execute("/usr/bin/gnome-session-quit")
+    else
+	_awesome_quit()
+    end
+end
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -41,7 +51,7 @@ end
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-if os.getenv("DE") == "gnome" then
+if os.getenv("DESKTOP_SESSION") == "awesome-gnome" then
 	terminal = "gnome-terminal"
 else
 	terminal = "xterm"
@@ -93,15 +103,11 @@ end
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
---function quit_awesome()
---	if os.getenv("DE") == "gnome" then os.execute("/usr/bin/gnome-session-quit") else awesome.quit end
---end
-
 myawesomemenu = {
    { "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
-   { "quit", awesome.quit }
+   { "quit", (os.getenv("DESKTOP_SESSION") == "awesome-gnome") and function() os.execute("/usr/bin/gnome-session-quit") end or awesome.quit}
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
