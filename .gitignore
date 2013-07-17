@@ -18,6 +18,7 @@
 !.screenrc
 !.config
 !COPYING
+!.emacs
 
 # important
 !.gitignore
