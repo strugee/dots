@@ -11,5 +11,7 @@ export PATH=$PATH:~/bin
 # this includes env variables
 [[ -f ~/.profile ]] && . ~/.profile
 
-#_byobu_sourced=1 . /usr/bin/byobu-launch -S byobu
-byobu -R -S byobu;exit
+if [[ $(cat /etc/hostname) == "alex-ubuntu-server" ]] then
+	#_byobu_sourced=1 . /usr/bin/byobu-launch -S byobu
+	byobu -R -S byobu;exit
+fi
