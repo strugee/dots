@@ -11,7 +11,8 @@ export PATH=$PATH:~/bin
 # this includes env variables
 [[ -f ~/.profile ]] && . ~/.profile
 
-if [[ $(cat /etc/hostname) == "alex-ubuntu-server" ]] then
+#if [[ $(cat /etc/hostname) == "alex-ubuntu-server" ]]
 	#_byobu_sourced=1 . /usr/bin/byobu-launch -S byobu
-	byobu -R -S byobu;exit
-fi
+	#byobu -R -S byobu;exit
+	echo "screen disabled due to bugs"
+#fi
