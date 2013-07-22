@@ -2,11 +2,11 @@
 ZSH=$HOME/.oh-my-zsh
 
 # Operating system detection
-if [ -a /etc/os-release ]; then source /etc/os-release; fi
+if [[ -a /etc/os-release ]]; then source /etc/os-release; fi
 if NAME="Arch Linux" then
 	DISTRO=ARCH
 fi
-if [ $(uname -s) = Darwin then
+if [ $(uname -s) = Darwin ]; then
 	DISTRO=DARWIN
 fi
 
