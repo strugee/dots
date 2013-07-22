@@ -1,0 +1,6 @@
+source /usr/share/byobu/keybindings/f-keys
+register x "^a"						#     | Goes with the F12 definition
+register x "^A"
+escape "^Aa"
+register x "^A"
+bindkey "^A"
