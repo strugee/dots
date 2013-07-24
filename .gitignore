@@ -19,6 +19,7 @@
 !.config
 !COPYING
 !.emacs
+!.gnupg/gpg.conf
 
 # important
 !.gitignore
