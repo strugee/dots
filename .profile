@@ -8,6 +8,11 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+# used as a mostly static variable declaration file.
+# note that this is why this file is sourced even from things
+#  that normally don't source this, e.g. bash if .bash_profile
+#  exists.
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -30,6 +35,14 @@ if [ -n "$DISPLAY" ]; then
 	export BROWSER=firefox
 else
 	export BROWSER=lynx
+fi
+
+# add the sbins to the path on Debian, because it bugs me that they aren't there by default
+if [ -f /etc/os-release ]; then
+	# could probably be done better, e.g. using a function or bash -c.
+	# as it stands, this pollutes the global scope. I don't really care though, so I probably won't fix it.
+	source /etc/os-release
+	if [ $NAME = "Debian GNU/Linux" ]; then export PATH=/sbin:/usr/sbin:$PATH; fi
 fi
 
 #_byobu_sourced=1 . /usr/bin/byobu-launch
