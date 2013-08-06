@@ -20,6 +20,7 @@
 !COPYING
 !.emacs
 !.gnupg/gpg.conf
+!.reportbugrc
 
 # my bin/ directory is kinda interesting. why not.
 !bin/
