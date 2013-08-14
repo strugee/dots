@@ -63,3 +63,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=$PATH:~/bin
+
+# contains env variables, etc.
+source .profile
