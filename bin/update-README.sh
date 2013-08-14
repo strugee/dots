@@ -1,5 +1,4 @@
 #!/bin/sh
-cd ~
-sudo chattr -i README
-cp README_buffer README
-sudo chattr +i README
+sudo chattr -i /etc/README
+cp /root/README_buffer /etc/README
+sudo chattr +i /etc/README
