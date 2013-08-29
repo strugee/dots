@@ -61,10 +61,23 @@ if DISTRO=ARCH then
 	plugins=($base_plugins archlinux)
 fi
 
+# Mac OS X plugins
+if DISTRO=DARWIN then
+	plugins=($base_plugins osx brew)
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$PATH:~/bin
+
+# done in .profile nowadays
+# export PATH=$PATH:~/bin
+
+# TODO
+# should probably be in .profile, since it's generic to all shells.
+if DISTRO=DARWIN then
+	export PATH=/usr/local/bin:$PATH
+fi
 
 # contains env variables, etc.
 source .profile
