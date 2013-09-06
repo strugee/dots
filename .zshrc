@@ -78,6 +78,3 @@ source $ZSH/oh-my-zsh.sh
 if DISTRO=DARWIN then
 	export PATH=/usr/local/bin:$PATH
 fi
-
-# contains env variables, etc.
-source .profile
