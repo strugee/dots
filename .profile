@@ -45,4 +45,7 @@ if [ -f /etc/os-release ]; then
 	if [ $NAME = "Debian GNU/Linux" ]; then export PATH=/sbin:/usr/sbin:$PATH; fi
 fi
 
+# For Homebrew formulae on OS X
+if [ $(uname) = "Darwin" ]; then export PATH=/usr/local/sbin:/usr/local/bin:$PATH; fi
+
 #_byobu_sourced=1 . /usr/bin/byobu-launch
