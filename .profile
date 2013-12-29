@@ -48,4 +48,11 @@ fi
 # For Homebrew formulae on OS X
 if [ $(uname) = "Darwin" ]; then export PATH=/usr/local/sbin:/usr/local/bin:$PATH; fi
 
+if [ -f /usr/bin/pacmatic ]; then
+	alias pacman=pacmatic
+fi
+
+# Colorized Pacman output
+alias pacman="pacman --color auto"
+
 #_byobu_sourced=1 . /usr/bin/byobu-launch
