@@ -46,7 +46,7 @@ if [ -f /etc/os-release ]; then
 fi
 
 # For Homebrew formulae on OS X
-if [ $(uname -s) == "Darwin" ]; then
+if [ $(uname -s) = "Darwin" ]; then
 	# For distributed.net client
 	PATH=$PATH:/Applications/dnetc518-macosx-x86
 	# For MacPorts
