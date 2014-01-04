@@ -1,2 +1,0 @@
-#!/bin/nonexistant
-echo "hello"
