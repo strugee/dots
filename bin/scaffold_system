@@ -1,0 +1,75 @@
+#!/bin/bash
+
+####################
+# INITIAL SETUP
+####################
+
+# DEFAULT PARAMETERS DECLARATION
+
+set _PACKAGE_INSTALLER="/bin/true"
+
+# UTILITY FUNCTION DECLARATIONS
+
+function throw_warn() {
+	echo -n "WARNING: "
+	echo $1
+}
+
+function throw_info() {
+	if [ $# = 0 ]; then
+		throw_warn "Attempted to call throw_info with no arguments!"
+		return -1
+	fi
+	echo -n "INFO: "
+	echo $1
+}
+
+function throw_fatal() {
+	if [ $# = 0 ]; then
+		throw_warn "Attempted to call throw_fatal with no arguments!"
+		throw_fatal "throw_fatal called, but no reason given. Aborting anyway."
+	fi
+	echo -n "FATAL: "
+	echo $1
+	throw_info "Aborting script due to fatal error."
+	if [ -v 2 ]; then exit $2; fi
+	exit -1
+}
+
+function install() {
+	$PACKAGE_INSTALLER $1
+}
+
+####################
+# PARAMETER SELECTION
+####################
+
+echo -n "Checking for pacman... "
+
+if [ -f /usr/bin/pacman ]; then
+	_PACKAGE_INSTALLER="/usr/bin/pacman -S --noconfirm"
+	echo "done."
+	throw_info "Setting pacman to not confirm operations."
+	throw_info "This should have no repercussions, since this is a new system."
+fi
+
+####################
+# PARAMETER OVERRIDE PARSING
+####################
+
+if [ -v PACKAGE_INSTALLER ]; then throw_info "Inherited PACKAGE_INSTALLER from environment."; fi
+if [ -n PACKAGE_INSTALLER ]; then set PACKAGE_INSTALLER=_PACKAGE_INSTALLER; fi
+
+####################
+# PARAMATER VALIDATION
+####################
+
+if [[ $PACKAGE_INSTALLER = "/bin/true" ]]; then
+	throw_fatal "No suitable package tool found!"
+fi
+
+throw_info 'Chose $PACKAGE_INSTALLER to install packages.'
+
+####################
+# MAIN SCRIPT BODY
+####################
