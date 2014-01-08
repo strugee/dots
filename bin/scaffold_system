@@ -6,7 +6,8 @@
 
 # DEFAULT PARAMETERS DECLARATION
 
-set _PACKAGE_INSTALLER="/bin/true"
+set _PACKAGE_MANAGER="/bin/true"
+set _PACKAGE_INSTALL_ARGS=""
 
 # UTILITY FUNCTION DECLARATIONS
 
@@ -37,7 +38,7 @@ function throw_fatal() {
 }
 
 function install() {
-	$PACKAGE_INSTALLER $1
+	$PACKAGE_MANAGER $PACKAGE_INSTALL_ARGS $1
 }
 
 ####################
@@ -47,7 +48,8 @@ function install() {
 echo -n "Checking for pacman... "
 
 if [ -f /usr/bin/pacman ]; then
-	_PACKAGE_INSTALLER="/usr/bin/pacman -S --noconfirm"
+	_PACKAGE_MANAGER="/usr/bin/pacman"
+	_PACKAGE_INSTALL_ARGS="-S --noconfirm"
 	echo "done."
 	throw_info "Setting pacman to not confirm operations."
 	throw_info "This should have no repercussions, since this is a new system."
@@ -57,8 +59,11 @@ fi
 # PARAMETER OVERRIDE PARSING
 ####################
 
-if [ -v PACKAGE_INSTALLER ]; then throw_info "Inherited PACKAGE_INSTALLER from environment."; fi
-if [ -n PACKAGE_INSTALLER ]; then set PACKAGE_INSTALLER=_PACKAGE_INSTALLER; fi
+if [ -v PACKAGE_MANAGER ]; then throw_info "Inherited PACKAGE_MANAGER from environment."; fi
+if [ -n PACKAGE_MANAGER ]; then set PACKAGE_INSTALLER=_PACKAGE_MANAGER; fi
+
+if [ -v PACKAGE_INSTALL_ARGS ]; then throw_info "Inherited PACKAGE_INSTALL_ARGS from environment."; fi
+if [ -n PACKAGE_INSTALL_ARGS ]; then set PACKAGE_INSTALL_ARGS=_PACKAGE_INSTALL_ARGS; fi
 
 ####################
 # PARAMATER VALIDATION
@@ -73,3 +78,10 @@ throw_info 'Chose $PACKAGE_INSTALLER to install packages.'
 ####################
 # MAIN SCRIPT BODY
 ####################
+
+install gnome
+install firefox
+install awesome
+install git
+install zsh
+
