@@ -37,23 +37,50 @@ function throw_fatal() {
 	exit -1
 }
 
+# PARAMETER SELECTION UTILITY DECLARATIONS
+
+function check_for_package_manager() {
+	
+	# TODO: perform function argument validation here
+	
+	echo -n "Checking for $1... "
+
+	if [ -f $1 ]; then
+		_PACKAGE_MANAGER=$1
+		_PACKAGE_INSTALL=$2
+		echo "done."
+		throw_info "Setting $1 to not confirm operations."
+		throw_info "This should have no repercussions, since this is a new system."
+	else
+		echo "not found."
+	fi
+}
+
+# SCRIPT BODY UTILITY DECLARATIONS
+
 function install() {
 	$PACKAGE_MANAGER $PACKAGE_INSTALL_ARGS $1
+}
+
+function add_repository() {
+	if [ $1 = apt ]; then
+	       	sudo apt-add-repository multiverse
+	else if [ $1 = pacman ]; then
+		throw_fatal "Attempted to add a pacman repository, but this is unimplemented!"
+	fi
+}
+
+function add_key() {
+	echo 
+	wget -q -O - $1 | $PACKAGE_ADD_KEY
 }
 
 ####################
 # PARAMETER SELECTION
 ####################
 
-echo -n "Checking for pacman... "
-
-if [ -f /usr/bin/pacman ]; then
-	_PACKAGE_MANAGER="/usr/bin/pacman"
-	_PACKAGE_INSTALL_ARGS="-S --noconfirm"
-	echo "done."
-	throw_info "Setting pacman to not confirm operations."
-	throw_info "This should have no repercussions, since this is a new system."
-fi
+check_for_package_manager /usr/bin/pacman "-S --noconfirm"
+check_for_package_manager /usr/bin/apt-get "-y"
 
 ####################
 # PARAMETER OVERRIDE PARSING
@@ -79,9 +106,32 @@ throw_info 'Chose $PACKAGE_INSTALLER to install packages.'
 # MAIN SCRIPT BODY
 ####################
 
+# REPOSITORY SETUP
+
+if [ $PACKAGE_MANAGER = /usr/bin/apt-get ]; then
+	echo "Configuring repositories for all APT-based systems"
+	
+	throw_info "Configuring special case repositories for all APT-based systems"
+	throw_info "Configuring the Google repository for APT..."
+	echo "Importing the Google signing key..."
+	wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+	echo "Setting up the configuration file..."
+	sudo touch /etc/apt/sources.list.d/google_list.list
+	throw_warn "I'm about to echo the proper Google Talk repository to /etc/apt/sources.list.d/google_list.list. This is untested!"
+	sudo sh -c "echo \"deb http://dl.google.com/linux/talkplugin/deb/ stable main\" > /etc/apt/sources.list.d/google_list.list"
+fi
+
+if [ $DISTRO = Ubuntu ]; then	
+	echo "Configuring repositories for Ubuntu systems..."
+	add_repository multiverse
+	add_key https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key Insync
+	add_repository "deb http://apt.insynchq.com/ubuntu quantal non-free" Insync
+fi
+
+# PACKAGE INSTALLATION
+
 install gnome
 install firefox
 install awesome
 install git
 install zsh
-
