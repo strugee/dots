@@ -105,6 +105,17 @@ function check_for_package_manager() {
 	fi
 }
 
+function check_for_package_key_manager() {
+	
+	# TODO: perform function argument validation here
+
+	# FIXME
+	
+	echo -n 
+	
+	
+}
+
 # SCRIPT BODY UTILITY DECLARATIONS
 
 function install() {
@@ -132,7 +143,8 @@ function add_key() {
 check_for_package_manager /usr/bin/pacman "-S --noconfirm"
 check_for_package_manager /usr/bin/apt-get "-y"
 
-check_for_package_key_manager /usr/bin/pacman-key
+# TODO pacman-key needs args
+check_for_package_key_manager /usr/bin/pacman-key ""
 check_for_package_key_manager /usr/bin/apt-key "add -"
 
 ####################
