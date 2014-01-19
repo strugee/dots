@@ -1,5 +1,54 @@
 #!/bin/bash
 
+: "
+
+Copyright 2013, 2014 Alex Jordan.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+"
+
+####################
+# README
+####################
+
+# Begin comment region
+: "
+
+This is a script that I use to install standard packages that I like to have on every system.
+
+It is written specifically for me, but it's designed to be extremely easy to extend and modify. How to do so is shown below.
+
+Unlike most of this repository, this script is licensed under the GPL v3 or later, not the WTFPL. See the top of this file for more info.
+
+# Adding support for new package managers
+
+# Adding support for new distros
+
+# Adding new default repository sources
+
+# Changing the set of packages to install
+
+"
+# End comment region
+
+####################
+# LICENSE
+####################
+
+
+
 ####################
 # INITIAL SETUP
 ####################
@@ -71,8 +120,9 @@ function add_repository() {
 }
 
 function add_key() {
-	echo 
+	echo "Adding key for $2"
 	wget -q -O - $1 | $PACKAGE_ADD_KEY
+	echo "Done adding key."
 }
 
 ####################
@@ -81,6 +131,9 @@ function add_key() {
 
 check_for_package_manager /usr/bin/pacman "-S --noconfirm"
 check_for_package_manager /usr/bin/apt-get "-y"
+
+check_for_package_key_manager /usr/bin/pacman-key
+check_for_package_key_manager /usr/bin/apt-key "add -"
 
 ####################
 # PARAMETER OVERRIDE PARSING
