@@ -57,7 +57,10 @@ if [ $(uname -s) = "Darwin" ]; then
 	PATH=$PATH:"/Applications/Android SDK/tools:/Applications/Android SDK/platform-tools"
 	# For Homebrew formulae on OS X
 	PATH=/usr/local/bin:/usr/local/sbin:$PATH
-
+	
+	# For Ruby gems. This should be done better with e.g. rvm, because Ruby upgrades will break the path, but I can't be bothered.
+	export GEMPATH=/usr/local/Cellar/ruby/2.1.0/lib/ruby/gems/2.1.0/gems/
+	
 	##
 	# Your previous /Users/alex/.bash_profile file was backed up as /Users/alex/.bash_profile.macports-saved_2013-03-16_at_00:07:13
 	##
