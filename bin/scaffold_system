@@ -116,6 +116,15 @@ function check_for_package_key_manager() {
 	
 }
 
+function check_for_distro() {
+	# TODO: perform function argument validation here
+	
+	# FIXME
+	
+	echo -n "Checking if you're running $2..."
+	# something
+}
+
 # SCRIPT BODY UTILITY DECLARATIONS
 
 function install() {
@@ -147,6 +156,9 @@ check_for_package_manager /usr/bin/apt-get "-y"
 check_for_package_key_manager /usr/bin/pacman-key ""
 check_for_package_key_manager /usr/bin/apt-key "add -"
 
+check_for_distro Ubuntu Ubuntu Ubuntu
+check_for_distro Arch "Arch Linux" "Arch GNU/Linux"
+
 ####################
 # PARAMETER OVERRIDE PARSING
 ####################
@@ -157,6 +169,13 @@ if [ -n PACKAGE_MANAGER ]; then set PACKAGE_INSTALLER=_PACKAGE_MANAGER; fi
 if [ -v PACKAGE_INSTALL_ARGS ]; then throw_info "Inherited PACKAGE_INSTALL_ARGS from environment."; fi
 if [ -n PACKAGE_INSTALL_ARGS ]; then set PACKAGE_INSTALL_ARGS=_PACKAGE_INSTALL_ARGS; fi
 
+if [ -v DISTRO ]; then throw_info "Inherited DISTRO from environment."; fi
+if [ -n DISTRO ]; then set DISTRO=_DISTRO; fi
+
+# TODO fallback on DISTRO if DISTRO_PRETTY isn't set
+if [ -v DISTRO_PRETTY ]; then throw_info "Inherited DISTRO_PRETTY from environment."; fi
+if [ -n DISTRO_PRETTY ]; then set DISTRO_PRETTY=_DISTRO_PRETTY; fi
+
 ####################
 # PARAMATER VALIDATION
 ####################
@@ -165,7 +184,13 @@ if [[ $PACKAGE_INSTALLER = "/bin/true" ]]; then
 	throw_fatal "No suitable package tool found!"
 fi
 
-throw_info 'Chose $PACKAGE_INSTALLER to install packages.'
+throw_info "Chose $PACKAGE_INSTALLER to install packages."
+
+if [[ $DISTRO = Unknown ]]; then
+	throw_fatal "Cannot recognize distro!"
+fi
+
+throw_info "Chose $DISTRO_PRETTY as the running distro."
 
 ####################
 # MAIN SCRIPT BODY
@@ -190,13 +215,32 @@ if [ $DISTRO = Ubuntu ]; then
 	echo "Configuring repositories for Ubuntu systems..."
 	add_repository multiverse
 	add_key https://d2t3ff60b2tol4.cloudfront.net/services@insynchq.com.gpg.key Insync
+	# hard-coded quantal codename. FIXME
 	add_repository "deb http://apt.insynchq.com/ubuntu quantal non-free" Insync
 fi
 
 # PACKAGE INSTALLATION
+
+if [ $DISTRO = Arch ]; then
+	throw_info "Installing packages for Arch GNU/Linux..."
+	install pkgstats
+	install dnssec-anchors
+       	install base-devel
+	install openssh
+fi
+
+if [ $PACKAGE_MANAGER = /usr/bin/apt-get ]; then
+	echo "Installing packages for APT-based systems..."
+	install openssh-server
+fi
+
+echo "Installing packages..."
 
 install gnome
 install firefox
 install awesome
 install git
 install zsh
+install rsync
+install lynx
+install seahorse
