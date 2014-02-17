@@ -227,6 +227,7 @@ if [ $DISTRO = Arch ]; then
 	install dnssec-anchors
        	install base-devel
 	install openssh
+	install pkgfile
 fi
 
 if [ $PACKAGE_MANAGER = /usr/bin/apt-get ]; then
