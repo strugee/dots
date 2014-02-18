@@ -3,3 +3,5 @@
 	name = Alex Jordan
 [push]
 	default = simple
+[color]
+	ui = auto
