@@ -4,12 +4,12 @@ DIRS= .gnupg .ssh .config
 all: update install
 
 update:
-	git submodule init
-	git submodule update
+	git pull --rebase
+	git submodule update --init
 
 install:
 	cd ..
-	mkdir $(DIRS)
+	mkdir -p $(DIRS)
 	# TODO install BASIC
 
 uninstall:
