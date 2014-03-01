@@ -4,8 +4,11 @@ DIRS= .gnupg .ssh .config
 all: update install
 
 update:
+	# TODO update antigen
+	# this can't be done with regular commands because it requires a zsh instance with antigen sourced
 	git pull --rebase
 	git submodule update --init
+
 
 install:
 	cd ..
