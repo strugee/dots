@@ -88,4 +88,8 @@ if DISTRO=DARWIN then
 	export PATH=/usr/local/bin:$PATH
 fi
 
+# TODO
+if [ -d ~/.local/bin/ ]; then
+	export PATH=$PATH:~/.local/bin/
+fi
 
