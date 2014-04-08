@@ -245,4 +245,5 @@ install rsync
 install lynx
 install seahorse
 install cowsay
-
+install gdb
+install strace
