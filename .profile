@@ -42,9 +42,8 @@ if [ -f /etc/os-release ]; then
 	# could probably be done better, e.g. using a function or bash -c.
 	# as it stands, this pollutes the global scope. I don't really care though, so I probably won't fix it.
 	source /etc/os-release
-	if [ $NAME = "Debian GNU/Linux" ]; then export PATH=/sbin:/usr/sbin:$PATH; fi
+	if [ "$NAME" = "Debian GNU/Linux" ]; then export PATH=/sbin:/usr/sbin:$PATH; fi
 fi
-
 
 if [ $(uname -s) = "Darwin" ]; then
 	# For distributed.net client
