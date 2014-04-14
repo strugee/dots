@@ -17,7 +17,7 @@
 # Or to build the old GNOME 2.32:
 # moduleset = 'gnome2/gnome-2.32'
 
-modules = ['gnome-music']
+modules = ['meta-gnome-core']
 
 # what directory should the source be checked out to?
 checkoutroot = '~/Development'
