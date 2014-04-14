@@ -72,7 +72,7 @@ if [ $(uname -s) = "Darwin" ]; then
 fi
 
 if [ -f /usr/bin/pacmatic ]; then
-	function pacman() { pacmatic "$@"; }
+	alias pacman="pacmatic --color auto"
 fi
 
 if [ -d /opt/android-sdk/platform-tools ]; then
