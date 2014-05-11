@@ -38,3 +38,10 @@ prefix = '/usr/local/gnome'
 
 # Per GNOME Wiki instructions, fix JHBuild to use /usr/bin/python2
 os.environ['PYTHON'] = '/usr/bin/python2'
+
+# Don't respect suggests
+ignore_suggests = True
+
+# Don't build documentation
+skip = ['gnome-user-docs', 'gtk-doc']
+
