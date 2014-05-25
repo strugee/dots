@@ -2,15 +2,17 @@
 ; Alex Jordan
 ; 17 July 2013
 
-; PKGBUILD mode
-(autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
-(setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode)) auto-mode-alist))
+(add-to-list 'load-path  "~/.emacs.d/")
+
+; PACKAGES
+
+(require 'package)
 
 ; Main ELPA repository for Emacs versions where this isn't included by default
 (when (< emacs-major-version 24)
 	(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+
 ; MEPLA
-(require 'package)
 (add-to-list 'package-archives
 	'("melpa" . "http://melpa.milkbox.net/packages/") t)
 
@@ -21,6 +23,27 @@
 
 		(setq requirements (reverse requirements))
 		(print requirements))
+
+(package-initialize)
+
+; Ensure that the proper packages are installed
+(defun ensure-packages (package-list)
+  "Ensures packages in list are installed locally"
+  (unless (file-exists-p package-user-dir)
+    (package-refresh-contents))
+  (dolist (package package-list)
+    (unless (package-installed-p package)
+      (package-install package))))
+
+(ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode))
+
+; MAJOR MODES
+
+; PKGBUILD mode
+(autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
+(setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode)) auto-mode-alist))
+
+; THEMES
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
