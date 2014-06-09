@@ -35,7 +35,7 @@
     (unless (package-installed-p package)
       (package-install package))))
 
-(ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode apt-utils display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki))
+(ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode apt-utils display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext))
 
 ; MAJOR MODES
 
@@ -43,11 +43,27 @@
 (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
 (setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode)) auto-mode-alist))
 
+; TODO:
+; apache-mode
+; less-css-mode
+; markdown-mode
+; mediawiki
+; lua-mode
+
 ; MINOR MODES
+
+; package-list-packages improvements
+(add-hook 'package-menu-mode-hook (lambda () (list-packages-ext-mode 1))
 
 ; TODO:
 ; display-theme-mode
 ; nyan-mode
+; markdown-mode+
+; stupid-indent-mode
+; hardcore-mode
+; ham-mode
+; list-processes+
+; list-packages-ext
 
 ; THEMES
 
@@ -64,3 +80,16 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+; UTILITIES & LIBRARIES
+
+; TODO:
+; sudo-ext
+; 2048-game
+; apt-utils
+; know-your-http-well
+; lorem-ipsum
+; melpa-upstream-visit
+; mediawiki
+; grunt
+; hackernews
