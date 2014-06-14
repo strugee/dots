@@ -53,7 +53,7 @@
 ; MINOR MODES
 
 ; package-list-packages improvements
-(add-hook 'package-menu-mode-hook (lambda () (list-packages-ext-mode 1))
+; (add-hook 'package-menu-mode-hook (lambda () (list-packages-ext-mode 1))
 
 ; TODO:
 ; display-theme-mode
