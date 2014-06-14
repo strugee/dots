@@ -64,6 +64,11 @@
 ; ham-mode
 ; list-processes+
 ; list-packages-ext
+; rainbow-delimiters-mode
+
+; UTILITIES
+
+
 
 ; THEMES
 
