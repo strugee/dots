@@ -9,10 +9,9 @@ TARGET_DIR=~/configtest
 all: update install
 
 update:
-	# TODO update antigen
-	# this can't be done with regular commands because it requires a zsh instance with antigen sourced
 	git pull --rebase
 	git submodule update --init
+	zsh -c "cd ~ && source antigen/antigen.zsh && antigen-selfupdate"
 
 install:
 	@echo "warning: going to make a call to ln using the -f switch"
