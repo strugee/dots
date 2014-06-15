@@ -34,6 +34,15 @@ else
 	export BROWSER=lynx
 fi
 
+# TODO: this may not be safe if there's no controlling TTY, but it should be
+# if GNOME Keyring is available, use it in TTYs as well as graphical environments
+if [ -x /usr/bin/gnome-keyring-daemon ]; then if [ -n SSH_AUTH_SOCK ]; then
+	# the call to this binary is expensive so we cache the result
+	_GNOME_KEYRING_INFO=$(gnome-keyring-daemon -s)
+	export $(echo $_GNOME_KEYRING_INFO | grep SSH_AUTH_SOCK)
+	export $(echo $_GNOME_KEYRING_INFO | grep GPG_AGENT_INFO)
+fi; fi
+
 # add the sbins to the path on Debian, because it bugs me that they aren't there by default
 if [ -f /etc/os-release ]; then
 	# could probably be done better, e.g. using a function or bash -c.
