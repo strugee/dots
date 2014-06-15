@@ -1,4 +1,4 @@
-BASIC = .bash_aliases .bash_logout .bash_profile .bashrc .byobu .emacs .gitconfig .gitignore .gitmodules .oh-my-zsh .profile .reportbugrc .screenrc .selected_editor .zprofile .zsh-update .zsh_favlist .zshrc .zshrc.pre-oh-my-zsh bin
+BASIC = .bash_aliases .bash_logout .bash_profile .bashrc .byobu .emacs .gitconfig .gitignore .gitmodules .oh-my-zsh .profile .reportbugrc .screenrc .selected_editor .zprofile .zsh-update .zsh_favlist .zshrc .zshrc.pre-oh-my-zsh bin .pam_environment
 DIRS= .gnupg .ssh .aptitude .config
 LINK_DIRS= .config/awesome .config/cower .antigen
 AFTER_DIRS=.gnupg/gpg.conf .ssh/config .aptitude/config
