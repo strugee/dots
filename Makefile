@@ -16,7 +16,7 @@ precompile:
 update:
 	git pull --rebase
 	git submodule update --init
-	zsh -c "cd ~ && source antigen/antigen.zsh && antigen-selfupdate" # TODO: this may not be safe as Make will not connect a TTY
+	zsh -c "cd ~ && source antigen/antigen.zsh && antigen-selfupdate"
 
 install:
 	@echo "warning: going to make a call to ln using the -f switch"
