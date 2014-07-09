@@ -35,7 +35,7 @@
     (unless (package-installed-p package)
       (package-install package))))
 
-(ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode apt-utils display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext eide))
+(ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode apt-utils display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext eide powershell powershell-mode annoying-arrows-mode))
 
 ; MAJOR MODES
 
@@ -49,6 +49,7 @@
 ; markdown-mode
 ; mediawiki
 ; lua-mode
+; powershell-mode
 
 ; MINOR MODES
 
@@ -65,12 +66,14 @@
 ; list-processes+
 ; list-packages-ext
 ; rainbow-delimiters-mode
+; annoying-arrows-mode
 
 ; UTILITIES
 
 ; TODO:
 
 ; eide
+; powershell
 
 ; THEMES
 
