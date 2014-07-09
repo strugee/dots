@@ -68,10 +68,18 @@
 ; rainbow-delimiters-mode
 ; annoying-arrows-mode
 
-; UTILITIES
+; UTILITIES & LIBRARIES
 
 ; TODO:
-
+; sudo-ext
+; 2048-game
+; apt-utils
+; know-your-http-well
+; lorem-ipsum
+; melpa-upstream-visit
+; mediawiki
+; grunt
+; hackernews
 ; eide
 ; powershell
 
@@ -90,16 +98,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-; UTILITIES & LIBRARIES
-
-; TODO:
-; sudo-ext
-; 2048-game
-; apt-utils
-; know-your-http-well
-; lorem-ipsum
-; melpa-upstream-visit
-; mediawiki
-; grunt
-; hackernews
