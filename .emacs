@@ -4,6 +4,17 @@
 
 (add-to-list 'load-path  "~/.emacs.d/")
 
+; COMPATIBILITY NOTES
+
+; Emacs 24
+
+; Compatible out-of-the-box.
+
+; Emacs 23
+
+; Requires manual installation of package.el in the appropriate load-path directory.
+; May cause problems with deftheme in the future. Works currently.
+
 ; PACKAGES
 
 (require 'package)
