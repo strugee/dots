@@ -8,9 +8,6 @@
  * To make a manual change to preferences, you can visit the URL about:config
  */
 
-/* RANDOM UNORGANIZED CRAP */
-
-
 /* GENERAL BROWSER SETTINGS */
 
 user_pref("browser.startup.homepage", "about:home");
@@ -36,6 +33,13 @@ user_pref("browser.showedAustralisWhatsNew", true);
 user_pref("browser.preferences.advanced.selectedTabIndex", 0);
 user_pref("browser.rights.3.shown", true);
 
+/* SECURITY & PRIVACY */
+
+user_pref("pref.advanced.javascript.disable_button.advanced", false);
+user_pref("privacy.clearOnShutdown.history", false);
+user_pref("privacy.donottrackheader.enabled", true);
+user_pref("security.OCSP.enabled", 0);
+
 /* DEVELOPER TOOLS */
 
 user_pref("devtools.hud.height", 230);
@@ -44,6 +48,11 @@ user_pref("devtools.toolsidebar-width.inspector", 0);
 user_pref("devtools.webconsole.enabled", true);
 user_pref("devtools.webconsole.filter.", true);
 user_pref("devtools.webconsole.filter.networkinfo", true);
+
+/* FIREFOX SYNC */
+
+user_pref("services.sync.declinedEngines", "");
+user_pref("services.sync.engine.greasemonkey", true);
 
 /* EXTENSIONS & PLUGINS */
 
@@ -55,18 +64,6 @@ user_pref("nightly.templates.title", "${DefaultTitle} (Build ${AppBuildID} -  ${
 user_pref("plugin.disable_full_page_plugin_for_types", "application/pdf");
 user_pref("plugin.state.dnssecvalidatorplugin", 2);
 user_pref("plugin.state.flash", 1);
-
-/* SECURITY & PRIVACY */
-
-user_pref("pref.advanced.javascript.disable_button.advanced", false);
-user_pref("privacy.clearOnShutdown.history", false);
-user_pref("privacy.donottrackheader.enabled", true);
-user_pref("security.OCSP.enabled", 0);
-
-/* FIREFOX SYNC */
-
-user_pref("services.sync.declinedEngines", "");
-user_pref("services.sync.engine.greasemonkey", true);
 
 /* LANGUAGE */
 
