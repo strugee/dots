@@ -21,8 +21,12 @@ update:
 precheck:
 	true # TODO remove files if they are exactly the same
 	true # TODO the ! section here fails for some reason
-	for i in $(TARGET_DIR)/$(BASIC) $(TARGET_DIR)/$(LINK_DIRS); do echo $$i; if [ -L $$i ] || ! [ -e $$i ]; then true; else echo $$i failed!; fi; done
+	for i in $(TARGET_DIR)/$(BASIC) $(TARGET_DIR)/$(LINK_DIRS); do echo $$i; if [ -L $$i ] || ! [ -e $$i ]; then true; else echo "$$i failed!"; fi; done
 	true # TODO process DIRS and AFTER_DIRS
+
+libinstall:
+	git clone 'git://github.com/robbyrussell/oh-my-zsh' $(TARGET_DIR)/.oh-my-zsh
+	git clone 'git://github.com/zsh-users/antigen.git' $(TARGET_DIR)/antigen
 
 install:
 	true # TODO instead of warning about -f, use precheck
