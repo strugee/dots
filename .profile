@@ -58,8 +58,9 @@ if [ $(uname -s) = "Darwin" ]; then
 	PATH=$PATH:/opt/local/bin:/opt/local/sbin
 	# For Fink
 	test -r /sw/bin/init.sh && . /sw/bin/init.sh
+	# TODO: this totally borks shell startup
 	# For Android
-	PATH=$PATH:"/Applications/Android SDK/tools:/Applications/Android SDK/platform-tools"
+	# PATH=$PATH:/Applications/Android\ SDK/tools:/Applications/Android\ SDK/platform-tools
 	# For Homebrew formulae on OS X
 	PATH=/usr/local/bin:/usr/local/sbin:$PATH
 	
