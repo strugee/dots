@@ -1,5 +1,5 @@
 #
-# example cower config file
+# cower config file
 #
 # All options here can be overriden with flags on the command line. All options
 # are case sensitive. This file will be read per user, and should be located at
@@ -9,7 +9,7 @@
 # Use color in the output. This takes an optional arg of auto/never/always,
 # identical to the command line arg --color. If no arg is specified, this is
 # assumed to mean auto.
-#Color =
+Color = auto
 
 # Connection timeout to be passed to curl. Setting this to 0 will disable
 # timeouts.
@@ -30,7 +30,7 @@
 
 # Absolute path to download and extract to. Parameter and tilde expansions are
 # honored here.
-TargetDir = ~/pkgs
+TargetDir = ~/AUR
 
 # Max number of threads cower will use. This is synonymous with the max number
 # of concurrent connections that will be opened to the AUR.
