@@ -48,6 +48,17 @@
 
 (ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode apt-utils display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext eide powershell powershell-mode annoying-arrows-mode json-mode jade-mode editorconfig))
 
+; EMACS BUILT-IN CUSTOMIZATIONS
+
+;; Save all tempfiles in $TMPDIR/emacs$UID/
+(defconst emacs-tmp-dir (format "%s/%s%s/" temporary-file-directory "emacs" (user-uid)))
+(setq backup-directory-alist
+	`((".*" . ,emacs-tmp-dir)))
+(setq auto-save-file-name-transforms
+	`((".*" ,emacs-tmp-dir t)))
+(setq auto-save-list-file-prefix
+	emacs-tmp-dir)
+
 ; MAJOR MODES
 
 ; PKGBUILD mode
