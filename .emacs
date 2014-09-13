@@ -14,6 +14,7 @@
 
 ; Requires manual installation of package.el in the appropriate load-path directory.
 ; May cause problems with deftheme in the future. Works currently.
+; On Debian, emacs-23 throws error "package emacs-24 is not available". Needs further debugging.
 
 ; PACKAGES
 
