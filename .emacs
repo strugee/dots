@@ -109,6 +109,7 @@
 ; eide
 ; powershell
 ; editorconfig
+; magit-*
 
 ; THEMES
 
