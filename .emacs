@@ -16,6 +16,8 @@
 ; May cause problems with deftheme in the future. Works currently.
 ; On Debian, emacs-23 throws error "package emacs-24 is not available". Needs further debugging.
 
+; May cause problems due to magit-filenotify requiring Emacs 24.4's filenotify. Untested.
+
 ; PACKAGES
 
 (require 'package)
@@ -47,7 +49,7 @@
     (unless (package-installed-p package)
       (package-install package))))
 
-(ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode apt-utils display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext eide powershell powershell-mode annoying-arrows-mode json-mode jade-mode editorconfig))
+
 
 ; EMACS BUILT-IN CUSTOMIZATIONS
 
