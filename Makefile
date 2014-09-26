@@ -29,6 +29,7 @@ libinstall:
 	git clone 'git://github.com/zsh-users/antigen.git' $(TARGET_DIR)/antigen
 
 install: libinstall
+	mkdir -p $(TARGET_DIR)
 	true # TODO instead of warning about -f, use precheck
 	@echo "warning: going to make a call to ln using the -f switch"
 	cd $(TARGET_DIR); mkdir -p $(DIRS)
