@@ -18,18 +18,20 @@ update:
 	git submodule update --init
 	zsh -c "cd $(TARGET_DIR) && source antigen/antigen.zsh && antigen-selfupdate"
 
+dircheck:
+	mkdir -p $(TARGET_DIR)
+
 precheck:
 	true # TODO remove files if they are exactly the same
 	true # TODO the ! section here fails for some reason
 	for i in $(TARGET_DIR)/$(BASIC) $(TARGET_DIR)/$(LINK_DIRS); do echo $$i; if [ -L $$i ] || ! [ -e $$i ]; then true; else echo "$$i failed!"; fi; done
 	true # TODO process DIRS and AFTER_DIRS
 
-libinstall:
+libinstall: dircheck
 	git clone 'git://github.com/robbyrussell/oh-my-zsh' $(TARGET_DIR)/.oh-my-zsh
 	git clone 'git://github.com/zsh-users/antigen.git' $(TARGET_DIR)/antigen
 
-install: libinstall
-	mkdir -p $(TARGET_DIR)
+install: dircheck libinstall
 	true # TODO instead of warning about -f, use precheck
 	@echo "warning: going to make a call to ln using the -f switch"
 	cd $(TARGET_DIR); mkdir -p $(DIRS)
