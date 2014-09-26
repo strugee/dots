@@ -6,7 +6,7 @@ LINK_DIRS= .config/awesome .config/cower .antigen
 AFTER_DIRS=.gnupg/gpg.conf .ssh/config .aptitude/config
 # TODO: set this to pwd
 CONFIG_DIR=~/configs
-TARGET_DIR=~/configtest
+TARGET_DIR=~
 
 all: update install precompile
 
