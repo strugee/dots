@@ -16,7 +16,7 @@ precompile:
 update:
 	git pull --rebase
 	git submodule update --init
-	zsh -c "cd ~ && source antigen/antigen.zsh && antigen-selfupdate"
+	zsh -c "cd $(TARGET_DIR) && source antigen/antigen.zsh && antigen-selfupdate"
 
 precheck:
 	true # TODO remove files if they are exactly the same
