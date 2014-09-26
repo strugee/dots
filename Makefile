@@ -13,7 +13,7 @@ all: update install precompile
 precompile:
 	zsh -c "cd ~ && zcompile $(ZSH_BASIC) $(ZSH_AUX_SCRIPTS)"
 
-update:
+update: install
 	git pull --rebase
 	git submodule update --init
 	zsh -c "cd $(TARGET_DIR) && source antigen/antigen.zsh && antigen-selfupdate"
