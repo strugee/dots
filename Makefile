@@ -11,7 +11,7 @@ TARGET_DIR=~/configtest
 all: update install precompile
 
 precompile:
-	zsh -c "cd ~ && zcompile $(ZSH_BASIC) $(ZSH_AUX_SCRIPTS)"
+	zsh -c "cd $(TARGET_DIR) && zcompile $(ZSH_BASIC) $(ZSH_AUX_SCRIPTS)"
 
 update: install
 	git pull --rebase
