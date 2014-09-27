@@ -28,8 +28,8 @@ precheck:
 	true # TODO process DIRS and AFTER_DIRS
 
 libinstall: dircheck
-	git clone 'git://github.com/robbyrussell/oh-my-zsh' $(TARGET_DIR)/.oh-my-zsh
-	git clone 'git://github.com/zsh-users/antigen.git' $(TARGET_DIR)/antigen
+	if ! [ -d $(TARGET_DIR)/.oh-my-zsh/.git ]; then git clone 'git://github.com/robbyrussell/oh-my-zsh' $(TARGET_DIR)/.oh-my-zsh; fi
+	if ! [ -d $(TARGET_DIR)/antigen/.git ]; then git clone 'git://github.com/zsh-users/antigen.git' $(TARGET_DIR)/antigen; fi
 
 install: dircheck libinstall
 	true # TODO instead of warning about -f, use precheck
