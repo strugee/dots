@@ -42,3 +42,4 @@ install: dircheck libinstall
 
 uninstall:
 	cd $(TARGET_DIR); rm $(BASIC) $(LINK_DIRS) $(AFTER_DIRS) && rmdir $(DIRS)
+	rm -rf $(TARGET_DIR)/antigen $(TARGET_DIRS)/.antigen $(TARGET_DIRS)/.oh-my-zsh
