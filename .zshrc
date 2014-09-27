@@ -77,7 +77,7 @@ antigen bundles <<EOF
 	zsh-users/zsh-syntax-highlighting
 EOF
 
-antigen apply
+#antigen apply
 
 # done in .profile nowadays
 # export PATH=$PATH:~/bin
