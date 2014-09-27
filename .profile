@@ -27,7 +27,7 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 # general environment variables
-export PATH=~/bin:$PATH
+export PATH="~/bin:$PATH"
 if [ -n "$DISPLAY" ]; then
 	export BROWSER=firefox
 else
@@ -53,16 +53,16 @@ fi
 
 if [ $(uname -s) = "Darwin" ]; then
 	# For distributed.net client
-	PATH=$PATH:/Applications/dnetc518-macosx-x86
+	PATH="$PATH:/Applications/dnetc518-macosx-x86"
 	# For MacPorts
-	PATH=$PATH:/opt/local/bin:/opt/local/sbin
+	PATH="$PATH:/opt/local/bin:/opt/local/sbin"
 	# For Fink
 	test -r /sw/bin/init.sh && . /sw/bin/init.sh
 	# TODO: this totally borks shell startup
 	# For Android
-	# PATH=$PATH:/Applications/Android\ SDK/tools:/Applications/Android\ SDK/platform-tools
+	PATH="$PATH:/Applications/Android\ SDK/tools:/Applications/Android\ SDK/platform-tools"
 	# For Homebrew formulae on OS X
-	PATH=/usr/local/bin:/usr/local/sbin:$PATH
+	PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 	
 	# For Ruby gems. This should be done better with e.g. rvm, because Ruby upgrades will break the path, but I can't be bothered.
 	export GEMPATH=/usr/local/Cellar/ruby/2.1.0/lib/ruby/gems/2.1.0/gems/
@@ -72,7 +72,7 @@ if [ $(uname -s) = "Darwin" ]; then
 	##
 	
 	# MacPorts Installer addition on 2013-03-16_at_00:07:13: adding an appropriate PATH variable for use with MacPorts.
-	PATH=/opt/local/bin:/opt/local/sbin:$PATH
+	PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 	# Finished adapting your PATH environment variable for use with MacPorts.
 
 	export PATH
@@ -83,7 +83,7 @@ if [ -f /usr/bin/pacmatic ]; then
 fi
 
 if [ -d /opt/android-sdk/platform-tools ]; then
-	export PATH=$PATH:/opt/android-sdk/platform-tools
+	export PATH="$PATH:/opt/android-sdk/platform-tools"
 fi
 
 # Colorized Pacman output
