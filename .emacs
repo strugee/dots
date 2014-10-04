@@ -79,7 +79,7 @@
 ;
 ;;;;;;;;;;
 
-(require 'erc-auto)
+(require 'erc)
 
 ; SSL/TLS support
 (require 'tls)
