@@ -71,13 +71,13 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 
 # Use Antigen
-#source ~/antigen/antigen.zsh
+source ~/antigen/antigen.zsh
 
-#antigen bundles <<EOF
-#	zsh-users/zsh-syntax-highlighting
-#xxEOF
+antigen bundles <<EOF
+	zsh-users/zsh-syntax-highlighting
+EOF
 
-#antigen apply
+antigen apply
 
 # done in .profile nowadays
 # export PATH=$PATH:~/bin
