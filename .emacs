@@ -122,7 +122,7 @@
 
 ; TODO:
 ; sudo-ext
-; 2048-game
+(autoload '2048-game "2048-game" "play 2048 in Emacs" t)
 ; apt-utils
 ; know-your-http-well
 ; lorem-ipsum
