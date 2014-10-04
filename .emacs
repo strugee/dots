@@ -4,7 +4,11 @@
 
 (add-to-list 'load-path  "~/.emacs.d/")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
 ; COMPATIBILITY NOTES
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; Emacs 24
 
@@ -18,7 +22,11 @@
 
 ; magit-filenotify may cause problems, due to needing Emacs 24.4's filenotify. Needs testing.
 
+;;;;;;;;;;;;;;;
+;
 ; PACKAGES
+;
+;;;;;;;;;;;;;;;
 
 (require 'package)
 
@@ -51,7 +59,11 @@
 
 (ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode apt-utils display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext eide powershell powershell-mode annoying-arrows-mode json-mode jade-mode editorconfig magit magit-filenotify magit-gh-pulls magit-tramp org-magit gist git-commit-mode git-link git-messenger gitattributes-mode gitconfig gitconfig-mode github-browse-file github-clone gitignore-mode))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
 ; EMACS BUILT-IN CUSTOMIZATIONS
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Save all tempfiles in $TMPDIR/emacs$UID/
 (defconst emacs-tmp-dir (format "%s/%s%s/" temporary-file-directory "emacs" (user-uid)))
@@ -62,7 +74,11 @@
 (setq auto-save-list-file-prefix
 	emacs-tmp-dir)
 
+;;;;;;;;;;;;;;;;;;
+;
 ; MAJOR MODES
+;
+;;;;;;;;;;;;;;;;;;
 
 ; PKGBUILD mode
 (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
@@ -77,7 +93,11 @@
 ; powershell-mode
 ; json-mode
 
+;;;;;;;;;;;;;;;;;;
+;
 ; MINOR MODES
+;
+;;;;;;;;;;;;;;;;;;
 
 ; package-list-packages improvements
 ; (add-hook 'package-menu-mode-hook (lambda () (list-packages-ext-mode 1))
@@ -94,7 +114,11 @@
 ; rainbow-delimiters-mode
 ; annoying-arrows-mode
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
 ; UTILITIES & LIBRARIES
+;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; TODO:
 ; sudo-ext
@@ -111,7 +135,11 @@
 ; editorconfig
 ; magit-*
 
+;;;;;;;;;;;;;
+;
 ; THEMES
+;
+;;;;;;;;;;;;;
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
