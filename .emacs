@@ -14,6 +14,10 @@
 
 ; Compatible out-of-the-box.
 
+; Note that Cygwin ships Emacs 24.3.93-1.
+; This particular binary ships with a bug in the package system Lisp, causing severe damage and completely preventing the loading of this file.
+; The solution is to use Emacs 24.3.1.
+
 ; Emacs 23
 
 ; Requires manual installation of package.el in the appropriate load-path directory.
