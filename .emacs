@@ -2,7 +2,8 @@
 ; Alex Jordan
 ; 17 July 2013
 
-(add-to-list 'load-path  "~/.emacs.d/")
+; This has to be here instead of in Emacs Builtins so that we can load package.el on Emacs 23 systems, in order to properly bootstrap the package manager.
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
