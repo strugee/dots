@@ -3,11 +3,14 @@ ZSH=$HOME/.oh-my-zsh
 
 # Operating system detection
 if [[ -a /etc/os-release ]]; then source /etc/os-release; fi
-if NAME="Arch Linux"; then
+if [[ NAME == "Arch Linux" ]]; then
 	DISTRO=ARCH
 fi
-if [ $(uname -s) = Darwin ]; then
+if [[ $(uname -s) == Darwin ]]; then
 	DISTRO=DARWIN
+fi
+if [[ $(uname -o) == Cygwin ]]; then
+	DISTRO=CYGWIN
 fi
 
 # Set name of the theme to load.
@@ -57,12 +60,12 @@ base_plugins=(git cp rails hg colorize command-not-found battery colored-man)
 plugins=($base_plugins)
 
 # Arch Linux plugins
-if DISTRO=ARCH then
+if [[ DISTRO == ARCH ]]; then
 	plugins=($base_plugins archlinux)
 fi
 
 # Mac OS X plugins
-if DISTRO=DARWIN then
+if [[ DISTRO == DARWIN ]]; then
 	plugins=($base_plugins osx brew)
 fi
 
@@ -84,7 +87,7 @@ antigen apply
 
 # TODO
 # should probably be in .profile, since it's generic to all shells.
-if DISTRO=DARWIN then
+if [[ DISTRO == "DARWIN" ]]; then
 	export PATH=/usr/local/bin:$PATH
 fi
 
