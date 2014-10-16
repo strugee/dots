@@ -58,8 +58,12 @@ user_pref("services.sync.engine.greasemonkey", true);
 
 user_pref("extensions.greasemonkey.stats.id", "lsROr6WvIuTDVYo178M7NhxQ");
 user_pref("extensions.greasemonkey.stats.prompted", true);
+
 user_pref("extensions.testpilot.popup.showOnNewResults", true);
+
 user_pref("nightly.templates.title", "${DefaultTitle} (Build ${AppBuildID} -  ${Compiler}) (${Profile} profile) (${OS} ${Processor})");
+
+user_pref("shumway.ignoreCTP", true);
 
 user_pref("plugin.disable_full_page_plugin_for_types", "application/pdf");
 user_pref("plugin.state.dnssecvalidatorplugin", 2);
