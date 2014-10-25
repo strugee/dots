@@ -54,7 +54,7 @@ fi
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-base_plugins=(git cp rails hg colorize command-not-found battery colored-man)
+base_plugins="git cp rails hg colorize command-not-found battery colored-man"
 
 # Generic base plugins
 plugins=($base_plugins)
@@ -77,9 +77,9 @@ if [[ DISTRO != "CYGWIN" ]]; then
 	# Use Antigen
 	source ~/antigen/antigen.zsh
 	
-	antigen bundles <<EOF
-		zsh-users/zsh-syntax-highlighting
-	EOF
+antigen bundles <<EOF
+	zsh-users/zsh-syntax-highlighting
+EOF
 	
 	antigen apply
 fi
