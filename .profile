@@ -36,12 +36,12 @@ fi
 
 # TODO: this may not be safe if there's no controlling TTY, but it should be
 # if GNOME Keyring is available, use it in TTYs as well as graphical environments
-if [ -x /usr/bin/gnome-keyring-daemon ] && [ -n SSH_AUTH_SOCK ] && [ -n GPG_AGENT_INFO ] && [ -n DISPLAY ]; then
-	# note: we don't set this if $DISPLAY is set because then we override GNOME Shell's auth dialogs with our own
-	# the call to this binary is expensive so we cache the result
-	_GNOME_KEYRING_INFO=$(gnome-keyring-daemon -s)
-	export $(echo $_GNOME_KEYRING_INFO | grep SSH_AUTH_SOCK)
-	export $(echo $_GNOME_KEYRING_INFO | grep GPG_AGENT_INFO)
+#if [ -x /usr/bin/gnome-keyring-daemon ] && [ -n SSH_AUTH_SOCK ] && [ -n GPG_AGENT_INFO ] && [ -n DISPLAY ]; then
+#	# note: we don't set this if $DISPLAY is set because then we override GNOME Shell's auth dialogs with our own
+#	# the call to this binary is expensive so we cache the result
+#	_GNOME_KEYRING_INFO=$(gnome-keyring-daemon -s)
+#	export $(echo $_GNOME_KEYRING_INFO | grep SSH_AUTH_SOCK)
+#	export $(echo $_GNOME_KEYRING_INFO | grep GPG_AGENT_INFO)
 fi
 
 # add the sbins to the path on Debian, because it bugs me that they aren't there by default
