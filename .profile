@@ -42,7 +42,7 @@ fi
 #	_GNOME_KEYRING_INFO=$(gnome-keyring-daemon -s)
 #	export $(echo $_GNOME_KEYRING_INFO | grep SSH_AUTH_SOCK)
 #	export $(echo $_GNOME_KEYRING_INFO | grep GPG_AGENT_INFO)
-fi
+#fi
 
 # add the sbins to the path on Debian, because it bugs me that they aren't there by default
 if [ -f /etc/os-release ]; then
