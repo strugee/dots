@@ -164,9 +164,9 @@
 ; TODO:
 ; sudo-ext
 (autoload '2048-game "2048-game" "play 2048 in Emacs" t)
-; apt-utils
-; know-your-http-well
-; lorem-ipsum
+(autoload 'apt-utils "apt-utils" "Emacs interface to APT (Debian package management)" t)
+(autoload 'know-your-http-well "know-your-http-well" "Look up the meaning of HTTP headers, methods, relations, status codes" t)
+(autoload 'lorem-ipsum "lorem-ipsum" "Insert dummy pseudo Latin text." t)
 ; melpa-upstream-visit
 ; mediawiki
 ; grunt
