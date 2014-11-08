@@ -2,7 +2,7 @@ BASIC = .bash_aliases .bash_logout .bash_profile .bashrc .byobu .emacs .gitconfi
 ZSH_BASIC = .zshrc .zprofile
 ZSH_AUX_SCRIPTS = .oh-my-zsh/lib/*.zsh .oh-my-zsh/themes/*.zsh-theme .oh-my-zsh/plugins/*/*.zsh .oh-my-zsh/oh-my-zsh.sh
 DIRS= .gnupg .ssh .aptitude .config
-LINK_DIRS= .config/awesome .config/cower .antigen
+LINK_DIRS= .config/awesome .config/cower
 AFTER_DIRS=.gnupg/gpg.conf .ssh/config .aptitude/config
 # TODO: set this to pwd
 CONFIG_DIR=~/configs
