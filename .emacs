@@ -179,7 +179,7 @@
 ; magit-*
 (autoload 'xkcd "xkcd" "Major mode for viewing xkcd (http://xkcd.com/) comics." t)
 ; TODO: do something with this
-(require telepathy-autoloads)
+;(require telepathy-autoloads)
 
 ;;;;;;;;;;;;;
 ;
