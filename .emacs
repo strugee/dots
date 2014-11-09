@@ -62,7 +62,7 @@
     (unless (package-installed-p package)
       (package-install package))))
 
-(ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode apt-utils display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext eide powershell powershell-mode annoying-arrows-mode json-mode jade-mode editorconfig magit magit-filenotify magit-gh-pulls magit-tramp org-magit gist git-commit-mode git-link git-messenger gitattributes-mode gitconfig gitconfig-mode github-browse-file github-clone gitignore-mode nyan-prompt bug-reference-github))
+(ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode apt-utils display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext eide powershell powershell-mode annoying-arrows-mode json-mode jade-mode editorconfig magit magit-filenotify magit-gh-pulls magit-tramp org-magit gist git-commit-mode git-link git-messenger gitattributes-mode gitconfig gitconfig-mode github-browse-file github-clone gitignore-mode nyan-prompt bug-reference-github xkcd telepathy))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
@@ -83,6 +83,8 @@
 ; ERC
 ;
 ;;;;;;;;;;
+
+; See also CUSTOM
 
 (require 'erc)
 
@@ -175,6 +177,9 @@
 ; powershell
 ; editorconfig
 ; magit-*
+(autoload 'xkcd "xkcd" "Major mode for viewing xkcd (http://xkcd.com/) comics." t)
+; TODO: do something with this
+(require telepathy-autoloads)
 
 ;;;;;;;;;;;;;
 ;
