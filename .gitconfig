@@ -7,3 +7,5 @@
 	ui = auto
 [branch]
 	autosetuprebase = always
+[core]
+	autocrlf = true
