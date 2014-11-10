@@ -114,7 +114,7 @@
 ;
 ;;;;;;;;;;;;;
 
-(add-hook 'eshell-load-hook 'nyan-prompt-enabled)
+;(add-hook 'eshell-load-hook 'nyan-prompt-enabled)
 
 ;;;;;;;;;;;;;;;;;;
 ;
