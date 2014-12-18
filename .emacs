@@ -53,16 +53,58 @@
 
 (package-initialize)
 
-; Ensure that the proper packages are installed
-(defun ensure-packages (package-list)
-  "Ensures packages in list are installed locally"
-  (unless (file-exists-p package-user-dir)
-    (package-refresh-contents))
-  (dolist (package package-list)
-    (unless (package-installed-p package)
-      (package-install package))))
+(unless (package-installed-p 'package+)
+	(package-install 'package+))
 
-(ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode apt-utils display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext eide powershell powershell-mode annoying-arrows-mode json-mode jade-mode editorconfig magit magit-filenotify magit-gh-pulls magit-tramp org-magit gist git-commit-mode git-link git-messenger gitattributes-mode gitconfig gitconfig-mode github-browse-file github-clone gitignore-mode nyan-prompt bug-reference-github xkcd telepathy))
+(package-manifest 'solarized-theme
+'sudo-ext
+'markdown-mode
+'markdown-mode+
+'stupid-indent-mode
+'pkgbuild-mode
+'nyan-mode
+'2048-game
+'apache-mode
+'apt-utils
+'display-theme
+'less-css-mode
+'know-your-http-well
+'lua-mode
+'lorem-ipsum
+'list-processes+
+'melpa-upstream-visit
+'mediawiki
+'grunt
+'hardcore-mode
+'hackernews
+'ham-mode
+'list-packages-ext
+'eide
+'powershell
+'powershell-mode
+'annoying-arrows-mode
+'json-mode
+'jade-mode
+'editorconfig
+'magit
+'magit-filenotify
+'magit-gh-pulls
+'magit-tramp
+'org-magit
+'gist
+'git-commit-mode
+'git-link
+'git-messenger
+'gitattributes-mode
+'gitconfig
+'gitconfig-mode
+'github-browse-file
+'github-clone
+'gitignore-mode
+'nyan-prompt
+'bug-reference-github
+'xkcd
+'telepathy)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
