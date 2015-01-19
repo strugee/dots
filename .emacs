@@ -126,6 +126,13 @@
 (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
 (setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode)) auto-mode-alist))
 
+; Python mode
+(add-hook 'python-mode-hook
+	  (lambda ()
+	    (setq indent-tabs-mode t)
+	    (setq python-indent 8)
+	    (setq tab-width 8)))
+
 ; TODO:
 ; apache-mode
 ; less-css-mode
