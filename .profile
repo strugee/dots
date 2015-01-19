@@ -44,6 +44,9 @@ fi
 #	export $(echo $_GNOME_KEYRING_INFO | grep GPG_AGENT_INFO)
 #fi
 
+# Fix Bundler behavior on Arch
+export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+
 # add the sbins to the path on Debian, because it bugs me that they aren't there by default
 if [ -f /etc/os-release ]; then
 	# could probably be done better, e.g. using a function or bash -c.
