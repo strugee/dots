@@ -1,23 +1,20 @@
 # reportbug preferences file
 # character encoding: UTF-8
 # Version of reportbug this preferences file was written by
-reportbug_version "6.4.4"
+reportbug_version "6.6.3"
 # default operating mode: one of: novice, standard, advanced, expert
-mode standard
+mode advanced
 # default user interface
 ui text
 # offline setting - comment out to be online
 #offline
 # name and email setting (if non-default)
-realname "Alex Jordan"
-email "alexander3223098@gmail.com"
+# realname "Alex Jordan"
+email "alex@strugee.net"
 # If nothing else works, remove the # at the beginning
 # of the following three lines:
 #no-cc
-#header "X-Debbugs-CC: alexander3223098@gmail.com"
+#header "X-Debbugs-CC: alex@strugee.net"
 #smtphost reportbug.debian.org
 # You can add other settings after this line.  See
 # /etc/reportbug.conf for a full listing of options.
-
-# let's see what this does
-paranoid
