@@ -4,6 +4,7 @@ ZSH_AUX_SCRIPTS = .oh-my-zsh/lib/*.zsh .oh-my-zsh/themes/*.zsh-theme .oh-my-zsh/
 DIRS= .gnupg .ssh .aptitude .config
 LINK_DIRS= .config/awesome .config/cower .config/terminator
 AFTER_DIRS=.gnupg/gpg.conf .ssh/config .aptitude/config
+TOUCH_FILES=~/.fetchmail.log
 # TODO: set this to pwd
 CONFIG_DIR=~/configs
 TARGET_DIR=~
@@ -39,6 +40,7 @@ install: dircheck libinstall
 	ln -sfrt $(TARGET_DIR) $(ZSH_BASIC)
 	ln -sfrt $(TARGET_DIR) $(AFTER_DIRS) # TODO this is very buggy for some reason
 	ln -sfrt $(TARGET_DIR) $(LINK_DIRS)
+	touch TOUCH_FILES
 
 uninstall:
 	cd $(TARGET_DIR); rm $(BASIC) $(LINK_DIRS) $(AFTER_DIRS) && rmdir $(DIRS)
