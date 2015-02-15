@@ -152,12 +152,16 @@
 ; (add-hook 'package-menu-mode-hook (lambda () (list-packages-ext-mode 1))
 (add-hook 'find-file-hook 'bug-reference-github-set-url-format)
 
+;(setq too-hardcore-backspace t)
+;(setq too-hardcore-return t)
+;(require 'hardcore-mode)
+;(global-hardcore-mode)
+
 ; TODO:
 ; display-theme-mode
 ; nyan-mode
 ; markdown-mode+
 ; stupid-indent-mode
-; hardcore-mode
 ; ham-mode
 ; list-processes+
 ; list-packages-ext
