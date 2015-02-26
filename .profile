@@ -45,7 +45,9 @@ fi
 #fi
 
 # Fix Bundler behavior on Arch
-export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+if type ruby &> /dev/null; then
+	export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+fi
 
 # add the sbins to the path on Debian, because it bugs me that they aren't there by default
 if [ -f /etc/os-release ]; then
