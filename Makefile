@@ -1,4 +1,5 @@
-BASIC = .bash_aliases .bash_logout .bash_profile .bashrc .byobu .emacs .gitconfig .gitignore .gitmodules .profile .reportbugrc .screenrc .selected_editor .zsh_favlist .zshrc.pre-oh-my-zsh bin .pam_environment .netscape .hgrc .pgpkey
+BASIC = .bash_aliases .bash_logout .bash_profile .bashrc .byobu .emacs .gitconfig .gitignore .gitmodules .profile .reportbugrc .screenrc .selected_editor .zsh_favlist .zshrc.pre-oh-my-zsh bin .pam_environment .netscape .hgrc
+HARDLINKS = .pgpkey
 ZSH_BASIC = .zshrc .zprofile
 ZSH_AUX_SCRIPTS = .oh-my-zsh/lib/*.zsh .oh-my-zsh/themes/*.zsh-theme .oh-my-zsh/plugins/*/*.zsh .oh-my-zsh/oh-my-zsh.sh
 DIRS= .gnupg .ssh .aptitude .config
@@ -40,6 +41,7 @@ install: dircheck libinstall
 	ln -sfrt $(TARGET_DIR) $(ZSH_BASIC)
 	ln -sfrt $(TARGET_DIR) $(AFTER_DIRS) # TODO this is very buggy for some reason
 	ln -sfrt $(TARGET_DIR) $(LINK_DIRS)
+	# TODO: handle HARDLINKS
 	touch TOUCH_FILES
 
 uninstall:
