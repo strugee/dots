@@ -20,6 +20,10 @@ TOUCH_FILES=".fetchmail.log"
 CONFIG_DIR=$(pwd)
 TARGET_DIR=~/configstest
 
+logdbgr() {
+	echo "[\033[35mdbgr\033[0m] $1"
+}
+
 loginfo() {
 	echo "[\033[36minfo\033[0m] $1"
 }
@@ -32,22 +36,29 @@ loginfo "Detected configuration directory as $CONFIG_DIR."
 loginfo "Using target directory $TARGET_DIR."
 
 # Error checking on target directory
+logdbgr "Checking if target directory exists."
 if ! [ -e $TARGET_DIR ]; then
 	logwarn "Target directory does not exist."
 	loginfo "Creating target directory $TARGET_DIR."
 	mkdir -p $TARGET_DIR
 	# TODO handle errors
-elif ! [ -d $TARGET_DIR ]; then
+fi
+logdbgr "Checking if target directory is a directory."
+if ! [ -d $TARGET_DIR ]; then
 	echo "[\033[31mfail\033[0m] Fatal error: $TARGET_DIR is not a directory."
 	exit 1
 fi
 
 # Detect zsh
+logdbgr "Checking for zsh."
 if command -v zsh 2>&1 >/dev/null; then
 	loginfo "Detected $(type zsh | sed 's/is/as/')."
 else
 	logwarn "Failed to detect zsh. Precompilation will not occur."
 fi
+
+logdbgr "Finished preparing."
+logdbgr "Executing main script body."
 
 loginfo "Installing symlinks..."
 for i in $BASIC; do
@@ -92,7 +103,9 @@ loginfo "Done touching files."
 loginfo "Cloning resources from git..."
 # TODO: handle errors
 # TODO: print logs for each clone operation
+logdbgr "Cloning oh-my-zsh."
 git clone 'git://github.com/robbyrussell/oh-my-zsh' $TARGET_DIR/.oh-my-zsh
+logdbgr "Cloning Antigen."
 git clone 'git://github.com/zsh-users/antigen.git' $TARGET_DIR/antigen
 loginfo "Done cloning resources from git."
 
@@ -101,11 +114,12 @@ git submodule update --init
 loginfo "Done handling submodules."
 
 loginfo "Precompiling zsh scripts..."
+logdbgr "Changing working directory to $TARGET_DIR."
 cd $TARGET_DIR
 for i in $ZSH_PRECOMPILE; do
 	printf "Precompiling $i..."
 	zsh -c "zcompile $i"
 	printf " done.\n"
 done
-cd -
+logdbgr "Changing working directory to previous working directory ($(cd -))"
 loginfo "Done precompiling zsh scripts."
