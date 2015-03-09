@@ -109,6 +109,18 @@ logdbgr "Cloning Antigen."
 git clone 'git://github.com/zsh-users/antigen.git' $TARGET_DIR/antigen
 loginfo "Done cloning resources from git."
 
+loginfo "Downloading static tarballs..."
+logdbgr "Downloading todo.txt-cli."
+# TODO: don't download if it's already there
+# TODO: install todo.txt-cli bash completion
+# TODO: fold this mkdir call into directory creation, above
+mkdir -p $TARGET_DIR/.bin/todotxt
+logdbgr "Changing working directory to $TARGET_DIR/.bin/todotxt."
+cd $TARGET_DIR/.bin/todotxt
+curl -L https://github.com/ginatrapani/todo.txt-cli/releases/download/v2.10/todo.txt_cli-2.10.tar.gz | gunzip | tar -x
+logdbgr "Changing working directory to previous working directory ($(cd -))"
+loginfo "Done downloading static tarballs."
+
 loginfo "Handling submodules..."
 git submodule update --init
 loginfo "Done handling submodules."
