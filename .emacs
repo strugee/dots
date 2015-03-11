@@ -44,12 +44,13 @@
 	'("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 ; Bug fix from the MELPA home page
-(defadvice package-compute-transaction
+(if (version< emacs-version "24.4")
+    (defadvice package-compute-transaction
 	(before package-compute-transaction-reverse (package-list requirements) activate compile)
 		"reverse the requirements"
 
 		(setq requirements (reverse requirements))
-		(print requirements))
+		(print requirements)))
 
 (package-initialize)
 
