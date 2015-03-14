@@ -44,12 +44,11 @@ fi
 #	export $(echo $_GNOME_KEYRING_INFO | grep GPG_AGENT_INFO)
 #fi
 
-# Add local Gems to PATH
-PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-
-# Fix Bundler behavior on Arch
 if type ruby &> /dev/null; then
+	# Fix Bundler behavior on Arch
 	export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+	# Add local Gems to PATH
+	PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 fi
 
 # add the sbins to the path on Debian, because it bugs me that they aren't there by default
