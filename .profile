@@ -44,6 +44,9 @@ fi
 #	export $(echo $_GNOME_KEYRING_INFO | grep GPG_AGENT_INFO)
 #fi
 
+# Add local Gems to PATH
+PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+
 # Fix Bundler behavior on Arch
 if type ruby &> /dev/null; then
 	export GEM_HOME=$(ruby -e 'print Gem.user_dir')
