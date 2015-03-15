@@ -65,7 +65,7 @@ logdbgr "Executing main script body."
 loginfo "Installing symlinks..."
 for i in $BASIC; do
 	printf "Installing $i..."
-	if [ -s $TARGET_DIR/$i ]; then
+	if [ -L $TARGET_DIR/$i ]; then
 		printf " skipped.\n"
 		continue;
 	elif [ -e $TARGET_DIR/$i ]; then
