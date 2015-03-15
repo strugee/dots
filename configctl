@@ -15,7 +15,7 @@ export POSIXLY_CORRECT=
 BASIC=".bash_aliases .bash_logout .bash_profile .bashrc .byobu .emacs .gitconfig .gitignore .gitmodules .profile .reportbugrc .screenrc .selected_editor .zsh_favlist .zshrc.pre-oh-my-zsh bin .pam_environment .netscape .hgrc .zshrc .zprofile"
 HARDLINKS=".pgpkey"
 ZSH_PRECOMPILE=".zshrc .zprofile antigen/antigen.zsh .oh-my-zsh/lib/*.zsh .oh-my-zsh/themes/*.zsh-theme .oh-my-zsh/plugins/*/*.zsh .oh-my-zsh/oh-my-zsh.sh"
-DIRS=".gnupg .ssh .aptitude .config .bin/bash_completion .bin/todotxt"
+DIRS=".gnupg .ssh .aptitude .config .bin/bash_completion .bin/todotxt .emacs.d/lisp"
 LINK_DIRS=".config/awesome .config/cower .config/terminator"
 AFTER_DIRS=".gnupg/gpg.conf .ssh/config .aptitude/config"
 TOUCH_FILES=".fetchmail.log"
@@ -66,6 +66,7 @@ fi
 
 checkavailable git "download resources from Git"
 checkavailable curl "download static tarballs"
+checkavailable emacs "download Emacs packages"
 
 # Detect zsh
 logdbgr "Checking for zsh."
@@ -155,6 +156,19 @@ ln -s $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10/todo_completion $TARGET_DIR/.bi
 logdbgr "Changing working directory to $CONFIG_DIR."
 cd $CONFIG_DIR
 loginfo "Done downloading static tarballs."
+
+loginfo "Ensuring that package.el is available..."
+# TODO: make this actually check the result of (require 'package) instead of just testing version
+if [ $(emacs --version | head -1 | cut -d ' ' -f 3 | cut -d . -f 1) -lt 24 -a ! -e $TARGET_DIR/.emacs.d/lisp/package.el ]; then
+	logdbgr "Emacs version is too old to be distributed with package.el."
+	logdbgr "Downloading package.el."
+	curl 'http://git.savannah.gnu.org/gitweb/?p=emacs.git;a=blob_plain;hb=ba08b24186711eaeb3748f3d1f23e2c2d9ed0d09;f=lisp/emacs-lisp/package.el' > $TARGET_DIR/.emacs.d/lisp/package.el
+fi
+loginfo "Done ensuring that package.el is available."
+
+loginfo "Downloading Emacs packages..."
+emacs --script .emacs
+loginfo "Done downloading Emacs packages."
 
 loginfo "Handling submodules..."
 git submodule update --init
