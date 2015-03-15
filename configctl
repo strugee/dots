@@ -109,7 +109,7 @@ loginfo "Done installing hardlinks."
 loginfo "Creating configuration directories..."
 for i in $DIRS; do
 	printf "Creating $i..."
-	mkdir -p $DIRS
+	mkdir -p $i
 	printf " done.\n"
 done
 loginfo "Done creating configuration directories."
