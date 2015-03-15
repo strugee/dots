@@ -34,6 +34,11 @@ logwarn() {
 	echo "[\033[33mwarn\033[0m] $1"
 }
 
+logfail() {
+	echo "[\033[31mfail\033[0m] $1"
+	exit $2
+}
+
 checkavailable() {
 	logdbgr "Checking for $1."
 	if command -v $1 2>&1 >/dev/null; then
@@ -56,8 +61,7 @@ if ! [ -e $TARGET_DIR ]; then
 fi
 logdbgr "Checking if target directory is a directory."
 if ! [ -d $TARGET_DIR ]; then
-	echo "[\033[31mfail\033[0m] Fatal error: $TARGET_DIR is not a directory."
-	exit 1
+	logfail "Fatal error: $TARGET_DIR is not a directory." 1
 fi
 
 checkavailable git "download resources from Git"
