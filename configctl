@@ -182,6 +182,6 @@ for i in $ZSH_PRECOMPILE; do
 	zsh -c "zcompile $i"
 	printf " done.\n"
 done
-logdbgr "Changing working directory to $CONFIG_DIR"
+logdbgr "Changing working directory to $CONFIG_DIR."
 cd $CONFIG_DIR
 loginfo "Done precompiling zsh scripts."
