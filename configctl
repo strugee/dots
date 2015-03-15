@@ -34,6 +34,15 @@ logwarn() {
 	echo "[\033[33mwarn\033[0m] $1"
 }
 
+checkavailable() {
+	logdbgr "Checking for $1."
+	if command -v $1 2>&1 >/dev/null; then
+		loginfo "Detected $(type $1 | sed 's/is/as/')."
+	else
+		logfail "Failed to detect $1. Cannot $2."
+	fi
+}
+
 loginfo "Detected configuration directory as $CONFIG_DIR."
 loginfo "Using target directory $TARGET_DIR."
 
@@ -50,6 +59,9 @@ if ! [ -d $TARGET_DIR ]; then
 	echo "[\033[31mfail\033[0m] Fatal error: $TARGET_DIR is not a directory."
 	exit 1
 fi
+
+checkavailable git "download resources from Git"
+checkavailable curl "download static tarballs"
 
 # Detect zsh
 logdbgr "Checking for zsh."
