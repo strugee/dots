@@ -148,7 +148,8 @@ mkdir -p $TARGET_DIR/.bin/todotxt
 logdbgr "Changing working directory to $TARGET_DIR/.bin/todotxt."
 cd $TARGET_DIR/.bin/todotxt
 curl -L https://github.com/ginatrapani/todo.txt-cli/releases/download/v2.10/todo.txt_cli-2.10.tar.gz | gunzip | tar -x
-logdbgr "Changing working directory to previous working directory ($(cd -))"
+logdbgr "Changing working directory to $CONFIG_DIR."
+cd $CONFIG_DIR
 loginfo "Done downloading static tarballs."
 
 loginfo "Handling submodules..."
@@ -163,5 +164,6 @@ for i in $ZSH_PRECOMPILE; do
 	zsh -c "zcompile $i"
 	printf " done.\n"
 done
-logdbgr "Changing working directory to previous working directory ($(cd -))"
+logdbgr "Changing working directory to $CONFIG_DIR"
+cd $CONFIG_DIR
 loginfo "Done precompiling zsh scripts."
