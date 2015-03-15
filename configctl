@@ -15,7 +15,7 @@ export POSIXLY_CORRECT=
 BASIC=".bash_aliases .bash_logout .bash_profile .bashrc .byobu .emacs .gitconfig .gitignore .gitmodules .profile .reportbugrc .screenrc .selected_editor .zsh_favlist .zshrc.pre-oh-my-zsh bin .pam_environment .netscape .hgrc .zshrc .zprofile"
 HARDLINKS=".pgpkey"
 ZSH_PRECOMPILE=".zshrc .zprofile antigen/antigen.zsh .oh-my-zsh/lib/*.zsh .oh-my-zsh/themes/*.zsh-theme .oh-my-zsh/plugins/*/*.zsh .oh-my-zsh/oh-my-zsh.sh"
-DIRS=".gnupg .ssh .aptitude .config .bin/bash_completion .bin/todotxt .emacs.d/lisp"
+DIRS=".gnupg .ssh .aptitude .config .bin/bash_completion .bin/todotxt .bin/bin .emacs.d/lisp"
 LINK_DIRS=".config/awesome .config/cower .config/terminator"
 AFTER_DIRS=".gnupg/gpg.conf .ssh/config .aptitude/config"
 TOUCH_FILES=".fetchmail.log"
@@ -152,7 +152,9 @@ cd $TARGET_DIR/.bin/todotxt
 curl -L https://github.com/ginatrapani/todo.txt-cli/releases/download/v2.10/todo.txt_cli-2.10.tar.gz | gunzip | tar -x
 # TODO: make this not hard-coded
 # TODO: this doesn't handle already-existing links
+chmod +x $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10/todo.sh
 ln -s $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10/todo_completion $TARGET_DIR/.bin/bash_completion
+ln -s $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10/todo.sh $TARGET_DIR/.bin/bin/todo.sh
 logdbgr "Changing working directory to $CONFIG_DIR."
 cd $CONFIG_DIR
 loginfo "Done downloading static tarballs."

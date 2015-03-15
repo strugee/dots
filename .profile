@@ -95,7 +95,7 @@ if [ -d /opt/android-sdk/platform-tools ]; then
 fi
 
 # Unconditional because configctl ensures that this is available
-PATH=$PATH:~/.bin/todotxt/todo.txt_cli-2.10
+PATH=$PATH:~/.bin/bin
 
 # Colorized Pacman output
 alias pacman="pacman --color auto"
