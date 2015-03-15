@@ -146,6 +146,7 @@ logdbgr "Changing working directory to $TARGET_DIR/.bin/todotxt."
 cd $TARGET_DIR/.bin/todotxt
 curl -L https://github.com/ginatrapani/todo.txt-cli/releases/download/v2.10/todo.txt_cli-2.10.tar.gz | gunzip | tar -x
 # TODO: make this not hard-coded
+# TODO: this doesn't handle already-existing links
 ln -s $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10/todo_completion $TARGET_DIR/.bin/bash_completion
 logdbgr "Changing working directory to $CONFIG_DIR."
 cd $CONFIG_DIR
