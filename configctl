@@ -8,6 +8,8 @@
 # TODO:
 # Handle existing installations
 
+export POSIXLY_CORRECT=
+
 # Variable definitions
 
 BASIC=".bash_aliases .bash_logout .bash_profile .bashrc .byobu .emacs .gitconfig .gitignore .gitmodules .profile .reportbugrc .screenrc .selected_editor .zsh_favlist .zshrc.pre-oh-my-zsh bin .pam_environment .netscape .hgrc .zshrc .zprofile"
