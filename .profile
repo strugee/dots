@@ -94,6 +94,9 @@ if [ -d /opt/android-sdk/platform-tools ]; then
 	export PATH="$PATH:/opt/android-sdk/platform-tools"
 fi
 
+# Unconditional because configctl ensures that this is available
+PATH=$PATH:~/.bin/todotxt/todo.txt_cli-2.10
+
 # Colorized Pacman output
 alias pacman="pacman --color auto"
 

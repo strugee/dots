@@ -98,4 +98,7 @@ if [ -d ~/.local/bin/ ]; then
 	export PATH=$PATH:~/.local/bin/
 fi
 
+# Load user-level completions. This is here because it's an extension, not POSIX.
+source ~/.bin/bash_completion/*
+
 source ~/.zprofile
