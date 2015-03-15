@@ -81,6 +81,14 @@ loginfo "Done installing symlinks."
 loginfo "Installing hardlinks..."
 for i in $HARDLINKS; do
 	printf "Installing $i..."
+	if [ $CONFIG_DIR/$i -ef $TARGET_DIR/$i  ]; then
+		printf " skipped.\n"
+		continue;
+	elif [ -e $TARGET_DIR/$i ]; then
+		printf " aborted.\n"
+		logwarn "Refusing to overwrite file $TARGET_DIR/$i."
+		continue;
+	fi
 	ln $CONFIG_DIR/$i $TARGET_DIR
 	printf " done.\n"
 done
