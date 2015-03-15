@@ -20,7 +20,7 @@ LINK_DIRS=".config/awesome .config/cower .config/terminator"
 AFTER_DIRS=".gnupg/gpg.conf .ssh/config .aptitude/config"
 TOUCH_FILES=".fetchmail.log"
 CONFIG_DIR=$(pwd)
-TARGET_DIR=~/configstest
+TARGET_DIR=~
 
 logdbgr() {
 	echo "[\033[35mdbgr\033[0m] $1"
