@@ -79,6 +79,13 @@
 	`((".*" ,emacs-tmp-dir t)))
 (setq auto-save-list-file-prefix
 	emacs-tmp-dir)
+
+;; Unicode
+(prefer-coding-system 'utf-8)
+; Request UTF-8 paste data
+(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+
+
 ;;;;;;;;;;
 ;
 ; ERC
