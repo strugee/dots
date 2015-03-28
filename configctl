@@ -142,6 +142,14 @@ logdbgr "Cloning oh-my-zsh."
 git clone 'git://github.com/robbyrussell/oh-my-zsh' $TARGET_DIR/.oh-my-zsh
 logdbgr "Cloning Antigen."
 git clone 'git://github.com/zsh-users/antigen.git' $TARGET_DIR/antigen
+logdbgr "Cloning moz-git-tools."
+git clone 'git://github.com/mozilla/moz-git-tools.git' $TARGET_DIR/.bin/moz-git-tools
+logdbgr "Initializing moz-git-tools submodules."
+logdbgr "Changing working directory to $TARGET_DIR/.bin/moz-git-tools."
+cd $TARGET_DIR/.bin/moz-git-tools
+git submodule update --init
+cd $CONFIG_DIR
+logdbgr "Changing working directory to $CONFIG_DIR."
 loginfo "Done cloning resources from git."
 
 loginfo "Downloading static tarballs..."

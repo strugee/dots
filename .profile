@@ -97,6 +97,10 @@ fi
 # Unconditional because configctl ensures that this is available
 PATH=$PATH:~/.bin/bin
 
+# moz-git-tools isn't in ~/.bin/bin because it has so many binaries,
+# it's just more convenient to do it this way
+PATH=$PATH:~/.bin/moz-git-tools
+
 # Colorized Pacman output
 alias pacman="pacman --color auto"
 
