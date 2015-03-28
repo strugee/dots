@@ -69,6 +69,8 @@ user_pref("plugin.disable_full_page_plugin_for_types", "application/pdf");
 user_pref("plugin.state.dnssecvalidatorplugin", 2);
 user_pref("plugin.state.flash", 1);
 
+user_pref("extensions.https_everywhere.show_ruleset_tests", true);
+
 /* LANGUAGE */
 
 user_pref("spellchecker.dictionary", "en-US");
