@@ -5,9 +5,6 @@
 # Usage: ./configctl
 # Targets POSIX-compliant shells - no less, and no more.
 
-# TODO:
-# Handle existing installations
-
 export POSIXLY_CORRECT=
 
 # Variable definitions
