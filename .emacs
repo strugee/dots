@@ -2,6 +2,9 @@
 ; Alex Jordan
 ; 17 July 2013
 
+; This is here instead of in Emacs Builtins to avoid a jarring frame maximization halfway through init
+(toggle-frame-maximized)
+
 ; This has to be here instead of in Emacs Builtins so that we can load package.el on Emacs 23 systems, in order to properly bootstrap the package manager.
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
