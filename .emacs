@@ -66,7 +66,7 @@
     (unless (package-installed-p package)
       (package-install package))))
 
-(ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext eide powershell annoying-arrows-mode json-mode jade-mode editorconfig magit magit-filenotify magit-gh-pulls magit-tramp org-magit gist git-commit-mode git-link git-messenger gitattributes-mode gitconfig gitconfig-mode github-browse-file github-clone gitignore-mode nyan-prompt bug-reference-github xkcd telepathy znc))
+(ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext eide powershell annoying-arrows-mode json-mode jade-mode editorconfig magit magit-filenotify magit-gh-pulls magit-tramp org-magit gist git-commit-mode git-link git-messenger gitattributes-mode gitconfig gitconfig-mode github-browse-file github-clone gitignore-mode nyan-prompt bug-reference-github xkcd telepathy znc todotxt))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
@@ -181,6 +181,10 @@
 	    (setq indent-tabs-mode t)
 	    (setq python-indent 8)
 	    (setq tab-width 8)))
+
+(autoload 'todotxt "todotxt.el" "A major mode for editing todo.txt files" t)
+(set-variable 'todotxt-file "/home/alex/ownCloud/todo/todo.txt")
+(global-set-key (kbd "C-x t") 'todotxt)
 
 ; TODO:
 ; apache-mode
