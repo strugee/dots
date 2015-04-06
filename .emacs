@@ -231,11 +231,11 @@
 (autoload 'lorem-ipsum "lorem-ipsum" "Insert dummy pseudo Latin text." t)
 ; melpa-upstream-visit
 ; mediawiki
-; grunt
-; hackernews
+(autoload 'grunt "grunt" "Some glue to stick Emacs and Gruntfiles together" t)
+(autoload 'hackernews "hackernews" "Access the hackernews aggregator from Emacs" t)
 ; eide
 ; powershell
-; editorconfig
+(autoload 'editorconfig "editorconfig" "EditorConfig Emacs extension" t)
 ; magit-*
 (autoload 'xkcd "xkcd" "Major mode for viewing xkcd (http://xkcd.com/) comics." t)
 ; TODO: do something with this
