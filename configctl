@@ -7,7 +7,7 @@
 
 export POSIXLY_CORRECT=
 
-# Variable definitions
+# VARIABLE DECLARATIONS
 
 BASIC=".bash_aliases .bash_logout .bash_profile .bashrc .byobu .emacs .gitconfig .gitignore .gitmodules .profile .reportbugrc .screenrc .selected_editor .zsh_favlist .zshrc.pre-oh-my-zsh bin .pam_environment .netscape .hgrc .zshrc .zprofile .offlineimaprc .gnus.el"
 HARDLINKS=".pgpkey"
@@ -21,7 +21,7 @@ TARGET_DIR=~
 
 DEFAULT_ACTION=install
 
-# Utility functions
+# UTILITY FUNCTIONS
 
 logdbgr() {
 	echo "[\033[35mdbgr\033[0m] $1"
@@ -49,7 +49,7 @@ checkavailable() {
 	fi
 }
 
-# Argument parsing
+# ARGUMENT PARSING
 
 ACTIONS="install uninstall link preload precompile"
 
@@ -98,7 +98,7 @@ for i in $@; do
 	true
 done
 
-# Sanity checks
+# SANITY CHECKS
 
 loginfo "Detected configuration directory as $CONFIG_DIR."
 loginfo "Using target directory $TARGET_DIR."
@@ -130,6 +130,8 @@ fi
 
 logdbgr "Finished preparing."
 logdbgr "Executing main script body."
+
+# MAIN SCRIPT BODY
 
 loginfo "Installing symlinks..."
 for i in $BASIC; do
