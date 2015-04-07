@@ -93,7 +93,7 @@ case "$1" in
 	;;
 esac
 [ -z $ACTION ] && ACTION=$1
-echo $ACTION
+
 for i in $@; do
 	true
 done
