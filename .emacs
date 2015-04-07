@@ -3,6 +3,7 @@
 ; 17 July 2013
 
 ; This is here instead of in Emacs Builtins to avoid a jarring frame maximization halfway through init
+; Note that this only handles the initial frame - new frames are handled farther down with a proper library, after the package system has bootstrapped
 (toggle-frame-maximized)
 
 ; This has to be here instead of in Emacs Builtins so that we can load package.el on Emacs 23 systems, in order to properly bootstrap the package manager.
@@ -66,7 +67,7 @@
     (unless (package-installed-p package)
       (package-install package))))
 
-(ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext eide powershell annoying-arrows-mode json-mode jade-mode editorconfig magit magit-filenotify magit-gh-pulls magit-tramp org-magit gist git-commit-mode git-link git-messenger gitattributes-mode gitconfig gitconfig-mode github-browse-file github-clone gitignore-mode nyan-prompt bug-reference-github xkcd telepathy znc todotxt frame-cmds))
+(ensure-packages '(solarized-theme sudo-ext markdown-mode markdown-mode+ stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext eide powershell annoying-arrows-mode json-mode jade-mode editorconfig magit magit-filenotify magit-gh-pulls magit-tramp org-magit gist git-commit-mode git-link git-messenger gitattributes-mode gitconfig gitconfig-mode github-browse-file github-clone gitignore-mode nyan-prompt bug-reference-github xkcd telepathy znc todotxt frame-cmds maxframe))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
@@ -246,6 +247,9 @@
 ; TODO: do something with this
 ;(require telepathy-autoloads)
 (autoload 'frame-cmds "frame-cmds" "Frame and window commands (interactive functions)." t)
+; FIXME: this frame stuff isn't working for some reason
+(autoload 'maxframe "maxframe" "maximize the emacs frame based on display size" t)
+(add-hook 'before-make-frame-hook 'maximize-frame)
 
 ;;;;;;;;;;;;;
 ;
