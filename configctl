@@ -19,6 +19,10 @@ TOUCH_FILES=".fetchmail.log .msmtp.log"
 CONFIG_DIR=$(pwd)
 TARGET_DIR=~
 
+DEFAULT_ACTION=install
+
+# Utility functions
+
 logdbgr() {
 	echo "[\033[35mdbgr\033[0m] $1"
 }
@@ -44,6 +48,57 @@ checkavailable() {
 		logfail "Failed to detect $1. Cannot $2."
 	fi
 }
+
+# Argument parsing
+
+ACTIONS="install uninstall link preload precompile"
+
+print_help() {
+cat <<EOF
+Usage: ./configctl [ACTION]
+Control configuration file installation.
+ACTION is one of $ACTIONS.
+Exit status is 0 upon success, nonzero upon error.
+EOF
+}
+
+# Validate actions
+if [ -n "$1" ]; then
+	for j in $ACTIONS; do [ $j = $1 ] && ACTION_VALID=; done
+else
+	# The default action is automatically valid
+	ACTION_VALID=
+fi
+[ ${ACTION_VALID+x} ] || { print_help; exit 1; }
+
+case "$1" in
+	'install')
+		logdbgr "Using action 'install'."
+		;;
+	'uninstall')
+		logdbgr "Using action 'uninstall'."
+		;;
+	'link')
+		logdbgr "Using action 'link'."
+		;;
+	'preload')
+		logdbgr "Using action 'preload'."
+		;;
+	'precompile')
+		logdbgr "Using action 'precompile'."
+		;;
+	*)
+		logdbgr "Using default action ('$DEFAULT_ACTION')."
+	ACTION=$DEFAULT_ACTION
+	;;
+esac
+[ -z $ACTION ] && ACTION=$1
+echo $ACTION
+for i in $@; do
+	true
+done
+
+# Sanity checks
 
 loginfo "Detected configuration directory as $CONFIG_DIR."
 loginfo "Using target directory $TARGET_DIR."
