@@ -51,7 +51,7 @@ checkavailable() {
 
 # ARGUMENT PARSING
 
-ACTIONS="install uninstall link preload precompile"
+ACTIONS="install uninstall link misc preload precompile"
 
 print_help() {
 cat <<EOF
@@ -80,6 +80,9 @@ case "$1" in
 		;;
 	'link')
 		logdbgr "Using action 'link'."
+		;;
+	'misc')
+		logdbgr "Using action 'misc'."
 		;;
 	'preload')
 		logdbgr "Using action 'preload'."
@@ -182,6 +185,16 @@ action_link() {
 	loginfo "Done installing symlinks nested in a directory."
 }
 
+action_misc() {
+	loginfo "Touching files..."
+	for i in $TOUCH_FILES; do
+		printf "Touching $i..."
+		touch $TARGET_DIR/$i
+		printf " done.\n"
+	done
+	loginfo "Done touching files."
+}
+
 action_preload() {
 	loginfo "Cloning resources from git..."
 	# TODO: handle errors
@@ -252,12 +265,7 @@ action_precompile() {
 action_link
 
 action_preload
-loginfo "Touching files..."
-for i in $TOUCH_FILES; do
-	printf "Touching $i..."
-	touch $TARGET_DIR/$i
-	printf " done.\n"
-done
-loginfo "Done touching files."
+
+action_misc
 
 action_precompile
