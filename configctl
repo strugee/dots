@@ -268,7 +268,7 @@ if [ $ACTION = 'install' ]; then
 	action_preload
 	action_precompile
 elif [ $ACTION = 'uninstall' ]; then
-	log_fail 'Uninstallation is unimpemented.'
+	logfail 'Uninstallation is unimpemented.' 2
 elif [ $ACTION = 'link' ]; then
 	action_link
 elif [ $ACTION = 'misc' ]; then
