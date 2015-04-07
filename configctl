@@ -1,8 +1,20 @@
 #!/bin/sh
 
 # configctl - control config setup and installation
+ 
+# Usage: ./configctl [ACTION]
+# Control configuration file installation.
+# ACTION is one of: $ACTIONS.
+# 
+# The 'install' action is equivalent to the 'link', 'misc', 'preload', and 'precompile' actions, in that order.
+# The 'uninstall' action is unimplemented.
+# The 'link' action creates symlinks. hardlinks, and directories.
+# The 'misc' action performs miscellaneous tasks, like touching files.
+# The 'preload' action downloads resources from the network, and is dependent on 'link'. It is the only action requiring network access.
+# The 'precompile' action precompiles zsh scripts, and is dependent on 'link' and 'preload'.
+# 
+# Exit status is 0 upon success, nonzero upon error.
 
-# Usage: ./configctl
 # Targets POSIX-compliant shells - no less, and no more.
 
 export POSIXLY_CORRECT=
@@ -49,18 +61,35 @@ checkavailable() {
 	fi
 }
 
-# ARGUMENT PARSING
-
-ACTIONS="install uninstall link misc preload precompile"
-
 print_help() {
 cat <<EOF
 Usage: ./configctl [ACTION]
 Control configuration file installation.
-ACTION is one of $ACTIONS.
+ACTION is one of: $ACTIONS.
+
+The 'install' action is equivalent to the 'link', 'misc', 'preload', and 'precompile' actions, in that order.
+The 'uninstall' action is unimplemented.
+The 'link' action creates symlinks. hardlinks, and directories.
+The 'misc' action performs miscellaneous tasks, like touching files.
+The 'preload' action downloads resources from the network, and is dependent on 'link'. It is the only action requiring network access.
+The 'precompile' action precompiles zsh scripts, and is dependent on 'link' and 'preload'.
+
 Exit status is 0 upon success, nonzero upon error.
+
+Version: configctl@$(git rev-parse --verify --short HEAD)
+
+Copyright (C) 2015 Alex Jordan <alex@strugee.net>.
+This program is free software. It comes without any warranty, to
+the extent permitted by applicable law. You can redistribute it
+and/or modify it under the terms of the Do What The Fuck You Want
+To Public License, Version 2, as published by Sam Hocevar. See
+http://www.wtfpl.net/ for more details.
 EOF
 }
+
+# ARGUMENT PARSING
+
+ACTIONS="install uninstall link misc preload precompile"
 
 # Validate actions
 if [ -n "$1" ]; then
