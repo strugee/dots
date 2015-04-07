@@ -262,10 +262,19 @@ action_precompile() {
 
 # MAIN SCRIPT BODY
 
-action_link
-
-action_preload
-
-action_misc
-
-action_precompile
+if [ $ACTION = 'install' ]; then
+	action_link
+	action_misc
+	action_preload
+	action_precompile
+elif [ $ACTION = 'uninstall' ]; then
+	log_fail 'Uninstallation is unimpemented.'
+elif [ $ACTION = 'link' ]; then
+	action_link
+elif [ $ACTION = 'misc' ]; then
+	action_misc
+elif [ $ACTION = 'preload' ]; then
+	action_preload
+elif [ $ACTION = 'precompile' ]; then
+	action_precompile
+fi
