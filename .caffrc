@@ -1,0 +1,45 @@
+# .caffrc
+# This file is in perl(1) format - see caff(1) for details.
+
+$CONFIG{'owner'} = 'Alex Jordan';
+$CONFIG{'email'} = 'alex@strugee.net';
+
+$CONFIG{'keyid'} = [ qw{43BF769C4ACA8B96} ];
+
+# Select this/these keys to sign with
+$CONFIG{'local-user'} = [ qw{43BF769C4ACA8B96} ];
+
+# Additionally encrypt messages for these keyids
+$CONFIG{'also-encrypt-to'} = [ qw{43BF769C4ACA8B96} ];
+
+# Ask to locally sign in ~/.gnupg
+$CONFIG{'also-lsign-in-gnupghome'} = 'ask';
+
+# Show photos
+$CONFIG{'show-photos'} = 'true';
+
+$CONFIG{'mail'} = 'ask-no';
+
+# Mail template to use for the encrypted part
+$CONFIG{'mail-template'} = << 'EOM';
+Hi,
+
+Please find attached the user id{(scalar @uids >= 2 ? 's' : '')}
+{foreach $uid (@uids) {
+    $OUT .= "\t".$uid."\n";
+};}of your key {$key} signed by me.
+
+If you have multiple user ids, I sent the signature for each user id
+separately to that user id's associated email address. You can import
+the signatures by running each through `gpg --import`.
+
+Note that I did not upload your key to any keyservers. If you want this
+new signature to be available to others, please upload it yourself.
+With GnuPG this can be done using
+	gpg --keyserver pool.sks-keyservers.net --send-key {$key}
+
+If you have any questions, don't hesitate to ask.
+
+Regards,
+{$owner}
+EOM
