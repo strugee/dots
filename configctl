@@ -33,6 +33,8 @@ TARGET_DIR=~
 
 DEFAULT_ACTION=install
 
+NUM_WARNINGS=0
+
 # UTILITY FUNCTIONS
 
 logdbgr() {
@@ -45,10 +47,12 @@ loginfo() {
 
 logwarn() {
 	echo "[\033[33mwarn\033[0m] $1"
+	NUM_WARNINGS=$(($NUM_WARNINGS + 1))
 }
 
 logfail() {
 	echo "[\033[31mfail\033[0m] $1"
+	echo "Finished unsuccessfully, with 1 failure and $NUM_WARNINGS warning(s)."
 	exit $2
 }
 
@@ -307,3 +311,5 @@ elif [ $ACTION = 'preload' ]; then
 elif [ $ACTION = 'precompile' ]; then
 	action_precompile
 fi
+
+echo "Finished successfully, with 0 failures and $NUM_WARNINGS warning(s)."
