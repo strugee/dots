@@ -247,18 +247,21 @@ action_preload() {
 	loginfo "Done cloning resources from git."
 
 	loginfo "Downloading static tarballs..."
-	logdbgr "Downloading todo.txt-cli."
-	# TODO: don't download if it's already there
-	logdbgr "Changing working directory to $TARGET_DIR/.bin/todotxt."
-	cd $TARGET_DIR/.bin/todotxt
-	curl -L https://github.com/ginatrapani/todo.txt-cli/releases/download/v2.10/todo.txt_cli-2.10.tar.gz | gunzip | tar -x
-	# TODO: make this not hard-coded
-	# TODO: this doesn't handle already-existing links
-	chmod +x $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10/todo.sh
-	ln -s $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10/todo_completion $TARGET_DIR/.bin/bash_completion
-	ln -s $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10/todo.sh $TARGET_DIR/.bin/bin/todo.sh
-	logdbgr "Changing working directory to $CONFIG_DIR."
-	cd $CONFIG_DIR
+	if ! [ -d $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10 ]; then
+		logdbgr "Downloading todo.txt-cli."
+		logdbgr "Changing working directory to $TARGET_DIR/.bin/todotxt."
+		cd $TARGET_DIR/.bin/todotxt
+		curl -L https://github.com/ginatrapani/todo.txt-cli/releases/download/v2.10/todo.txt_cli-2.10.tar.gz | gunzip | tar -x
+		# TODO: make this not hard-coded
+		# TODO: this doesn't handle already-existing links
+		chmod +x $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10/todo.sh
+		ln -s $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10/todo_completion $TARGET_DIR/.bin/bash_completion
+		ln -s $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10/todo.sh $TARGET_DIR/.bin/bin/todo.sh
+		logdbgr "Changing working directory to $CONFIG_DIR."
+		cd $CONFIG_DIR
+	else
+		logdbgr "Skipping todo.txt-cli due to already-existing directory."
+	fi
 	loginfo "Done downloading static tarballs."
 
 	loginfo "Ensuring that package.el is available..."
