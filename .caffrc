@@ -10,7 +10,7 @@ $CONFIG{'keyid'} = [ qw{43BF769C4ACA8B96} ];
 $CONFIG{'local-user'} = [ qw{43BF769C4ACA8B96} ];
 
 # Additionally encrypt messages for these keyids
-$CONFIG{'also-encrypt-to'} = [ qw{43BF769C4ACA8B96} ];
+$CONFIG{'also-encrypt-to'} = [ qw{43BF769C4ACA8B96}, qw{26794034633DBBC0} ];
 
 # Ask to locally sign in ~/.gnupg
 $CONFIG{'also-lsign-in-gnupghome'} = 'ask';
