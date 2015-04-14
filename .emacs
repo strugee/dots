@@ -89,6 +89,7 @@
 ; Request UTF-8 paste data
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
+(server-start)
 
 ;;;;;;;;;;
 ;
