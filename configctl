@@ -95,7 +95,7 @@ EOF
 
 # ARGUMENT PARSING
 
-ACTIONS="install uninstall prepare link misc preload precompile"
+ACTIONS="install uninstall prepare migrate link misc preload precompile"
 
 # Validate actions
 if [ -n "$1" ]; then
@@ -114,7 +114,10 @@ case "$1" in
 		logdbgr "Using action 'uninstall'."
 		;;
 	'prepare')
-		logdbgr "using action 'prepare'."
+		logdbgr "Using action 'prepare'."
+		;;
+	'migrate')
+		logdbgr "Using action 'migrate'."
 		;;
 	'link')
 		logdbgr "Using action 'link'."
@@ -182,6 +185,12 @@ action_prepare() {
 		printf " done.\n"
 	done
 	loginfo "Done creating configuration directories."
+}
+
+action_migrate() {
+	loginfo "Migrating old configurations..."
+	echo "Nothing to migrate."
+	loginfo "Done migrating old configurations."
 }
 
 action_link() {
@@ -308,6 +317,7 @@ action_precompile() {
 
 if [ $ACTION = 'install' ]; then
 	action_prepare
+	action_migrate
 	action_link
 	action_misc
 	action_preload
@@ -316,6 +326,8 @@ elif [ $ACTION = 'uninstall' ]; then
 	logfail 'Uninstallation is unimpemented.' 2
 elif [ $ACTION = 'prepare' ]; then
 	action_prepare
+elif [ $ACTION = 'migrate' ]; then
+	action_migrate
 elif [ $ACTION = 'link' ]; then
 	action_link
 elif [ $ACTION = 'misc' ]; then
