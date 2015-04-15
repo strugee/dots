@@ -8,7 +8,8 @@
 # 
 # The 'install' action is equivalent to the 'link', 'misc', 'preload', and 'precompile' actions, in that order.
 # The 'uninstall' action is unimplemented.
-# The 'link' action creates symlinks. hardlinks, and directories.
+# The 'prepare' action creates directories.
+# The 'link' action creates symlinks and hardlinks.
 # The 'misc' action performs miscellaneous tasks, like touching files.
 # The 'preload' action downloads resources from the network, and is dependent on 'link'. It is the only action requiring network access.
 # The 'precompile' action precompiles zsh scripts, and is dependent on 'link' and 'preload'.
@@ -73,7 +74,8 @@ ACTION is one of: $ACTIONS.
 
 The 'install' action is equivalent to the 'link', 'misc', 'preload', and 'precompile' actions, in that order.
 The 'uninstall' action is unimplemented.
-The 'link' action creates symlinks. hardlinks, and directories.
+The 'prepare' action creates directories.
+The 'link' action creates symlinks and hardlinks.
 The 'misc' action performs miscellaneous tasks, like touching files.
 The 'preload' action downloads resources from the network, and is dependent on 'link'. It is the only action requiring network access.
 The 'precompile' action precompiles zsh scripts, and is dependent on 'link' and 'preload'.
@@ -93,7 +95,7 @@ EOF
 
 # ARGUMENT PARSING
 
-ACTIONS="install uninstall link misc preload precompile"
+ACTIONS="install uninstall prepare link misc preload precompile"
 
 # Validate actions
 if [ -n "$1" ]; then
@@ -110,6 +112,9 @@ case "$1" in
 		;;
 	'uninstall')
 		logdbgr "Using action 'uninstall'."
+		;;
+	'prepare')
+		logdbgr "using action 'prepare'."
 		;;
 	'link')
 		logdbgr "Using action 'link'."
@@ -168,6 +173,17 @@ logdbgr "Finished preparing."
 logdbgr "Executing main script body."
 
 # ACTION DEFINITIONS
+
+action_prepare() {
+	loginfo "Creating configuration directories..."
+	for i in $DIRS; do
+		printf "Creating $i..."
+		mkdir -p $TARGET_DIR/$i
+		printf " done.\n"
+	done
+	loginfo "Done creating configuration directories."
+}
+
 action_link() {
 	loginfo "Installing symlinks..."
 	for i in $BASIC; do
@@ -200,14 +216,6 @@ action_link() {
 		printf " done.\n"
 	done
 	loginfo "Done installing hardlinks."
-
-	loginfo "Creating configuration directories..."
-	for i in $DIRS; do
-		printf "Creating $i..."
-		mkdir -p $TARGET_DIR/$i
-		printf " done.\n"
-	done
-	loginfo "Done creating configuration directories."
 
 	loginfo "Installing configuration directory symlinks..."
 	logwarn "Installing configuration directory symlinks is unimplemented."
@@ -299,12 +307,15 @@ action_precompile() {
 # MAIN SCRIPT BODY
 
 if [ $ACTION = 'install' ]; then
+	action_prepare
 	action_link
 	action_misc
 	action_preload
 	action_precompile
 elif [ $ACTION = 'uninstall' ]; then
 	logfail 'Uninstallation is unimpemented.' 2
+elif [ $ACTION = 'prepare' ]; then
+	action_prepare
 elif [ $ACTION = 'link' ]; then
 	action_link
 elif [ $ACTION = 'misc' ]; then
