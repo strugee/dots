@@ -3,3 +3,4 @@ export VISUAL=emacs
 export PAGER=less
 export EMAIL=alex@strugee.net
 export NAME="Alex Jordan"
+export LESS="--quit-if-one-screen"
