@@ -1,4 +1,5 @@
 [global_config]
+  enabled_plugins = ,
   dbus = True
   inactive_color_offset = 0.86
 [keybindings]
@@ -12,6 +13,7 @@
     [[[child1]]]
       type = Terminal
       parent = window0
+      profile = default
     [[[window0]]]
       type = Window
       parent = ""
