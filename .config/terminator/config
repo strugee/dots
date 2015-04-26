@@ -1,5 +1,6 @@
 [global_config]
   enabled_plugins = ,
+  window_state = maximise
   dbus = True
   inactive_color_offset = 0.86
 [keybindings]
