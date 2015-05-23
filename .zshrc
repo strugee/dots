@@ -8,9 +8,9 @@ if [[ NAME == "Arch Linux" ]]; then
 fi
 if [[ $(uname -s) == Darwin ]]; then
 	DISTRO=DARWIN
-fi
-if [[ $(uname -o) == Cygwin ]]; then
+else if [[ $(uname -o) == Cygwin ]]; then
 	DISTRO=CYGWIN
+fi
 fi
 
 # Set name of the theme to load.
