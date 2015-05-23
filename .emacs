@@ -4,9 +4,11 @@
 
 ; This is here instead of in Emacs Builtins to avoid a jarring frame maximization halfway through init
 ; Note that this only handles the initial frame - new frames are handled farther down with a proper library, after the package system has bootstrapped
-(if (not (eq system-type 'windows-nt))
-  (toggle-frame-maximized)
-  (w32-send-sys-command 61488))
+(if (eq system-type 'windows-nt)
+  (w32-send-sys-command 61488)
+  (if (eq system-type 'darwin)
+      (toggle-frame-fullscreen)
+    (toggle-frame-maximized)))
 
 ; This has to be here instead of in Emacs Builtins so that we can load package.el on Emacs 23 systems, in order to properly bootstrap the package manager.
 (add-to-list 'load-path "~/.emacs.d/lisp")
