@@ -73,7 +73,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-if [[ DISTRO != "CYGWIN" ]]; then
+if [[ $DISTRO != "CYGWIN" ]]; then
 	# Use Antigen
 	source ~/antigen/antigen.zsh
 	
