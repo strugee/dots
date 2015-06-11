@@ -3,9 +3,9 @@
 # Your todo.txt directory
 # Cygwin
 if [ -d ~/userdir/ ]; then
-	export TODO_DIR="/home/alex/userdir/ownCloud/todo"
+	export TODO_DIR="$HOME/userdir/ownCloud/todo"
 else
-	export TODO_DIR="/home/alex/ownCloud/todo"
+	export TODO_DIR="$HOME/ownCloud/todo"
 fi
 
 # Your todo/done/report.txt locations
