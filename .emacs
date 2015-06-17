@@ -187,9 +187,9 @@
 (global-set-key (kbd "C-x t") 'todotxt)
 
 ; js2-mode
-(require 'js2-mode-autoloads)
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 ; TODO: reorganize so that this isn't so out of place
-(require 'smart-tabs-mode-autoloads)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
 (setq js2-include-node-externs t)
