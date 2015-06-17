@@ -284,6 +284,7 @@ action_preload() {
 
 	loginfo "Ensuring that package.el is available..."
 	# TODO: make this actually check the result of (require 'package) instead of just testing version
+	# TODO: clean an old package.el if Emacs has been upgraded
 	if [ $(emacs --version | head -1 | cut -d ' ' -f 3 | cut -d . -f 1) -lt 24 -a ! -e $TARGET_DIR/.emacs.d/lisp/package.el ]; then
 		logdbgr "Emacs version is too old to be distributed with package.el."
 		logdbgr "Downloading package.el."
