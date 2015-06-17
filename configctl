@@ -163,6 +163,7 @@ fi
 checkavailable git "download resources from Git"
 checkavailable curl "download static tarballs"
 checkavailable emacs "download Emacs packages"
+checkavailable patch "patch ZNC.el"
 
 # Detect zsh
 logdbgr "Checking for zsh."
@@ -293,6 +294,14 @@ action_preload() {
 	loginfo "Downloading Emacs packages..."
 	emacs --script .emacs
 	loginfo "Done downloading Emacs packages."
+
+	loginfo "Patching ZNC.el..."
+	cd $TARGET_DIR/.emacs.d/elpa/znc-*
+	curl https://github.com/rschuetzler/ZNC.el/commit/e58db9afef82957ffcea6a72977f5f2b4fb53d05.patch | patch
+	# FIXME
+	#emacs --eval "(byte-recompile-directory $TARGET_DIR/\.emacs\.d/elpa/znc-*/ 0)"
+	cd $CONFIG_DIR
+	loginfo "Done patching ZNC.el."
 
 	loginfo "Handling submodules..."
 	git submodule update --init
