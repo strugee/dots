@@ -380,20 +380,8 @@ if [ $ACTION = 'install' ]; then
 	action_precompile
 elif [ $ACTION = 'uninstall' ]; then
 	logfail 'Uninstallation is unimpemented.' 2
-elif [ $ACTION = 'prepare' ]; then
-	action_prepare
-elif [ $ACTION = 'migrate' ]; then
-	action_migrate
-elif [ $ACTION = 'link' ]; then
-	action_link
-elif [ $ACTION = 'misc' ]; then
-	action_misc
-elif [ $ACTION = 'preload' ]; then
-	action_preload
-elif [ $ACTION = 'precompile' ]; then
-	action_precompile
-elif [ $ACTION = 'check' ]; then
-	action_check
+else
+	action_$ACTION
 fi
 
 echo "Finished successfully, with 0 failures and $NUM_WARNINGS warning(s)."
