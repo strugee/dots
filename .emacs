@@ -123,6 +123,8 @@
 ; ZNC-based ERC
 (require 'znc)
 
+(znc-all)
+
 ; Control character handling customizations
 
 (setq erc-beep-p 't)
