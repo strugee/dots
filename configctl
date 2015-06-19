@@ -13,6 +13,7 @@
 # The 'misc' action performs miscellaneous tasks, like touching files.
 # The 'preload' action downloads resources from the network, and is dependent on 'link'. It is the only action requiring network access.
 # The 'precompile' action precompiles zsh scripts, and is dependent on 'link' and 'preload'.
+# The 'check' action searches for common binaries and reports if they are missing.
 # 
 # Exit status is 0 upon success, nonzero upon error.
 
@@ -66,6 +67,15 @@ checkavailable() {
 	fi
 }
 
+checkavailable_warn() {
+	logdbgr "Checking for $1."
+	if command -v $1 2>&1 >/dev/null; then
+		loginfo "Detected $(type $1 | sed 's/is/as/')."
+	else
+		logwarn "Failed to detect $1. $2"
+	fi
+}
+
 print_help() {
 cat <<EOF
 Usage: ./configctl [ACTION]
@@ -79,6 +89,7 @@ The 'link' action creates symlinks and hardlinks.
 The 'misc' action performs miscellaneous tasks, like touching files.
 The 'preload' action downloads resources from the network, and is dependent on 'link'. It is the only action requiring network access.
 The 'precompile' action precompiles zsh scripts, and is dependent on 'link' and 'preload'.
+The 'check' action searches for common binaries and reports if they are missing.
 
 Exit status is 0 upon success, nonzero upon error.
 
@@ -95,7 +106,7 @@ EOF
 
 # ARGUMENT PARSING
 
-ACTIONS="install uninstall prepare migrate link misc preload precompile"
+ACTIONS="install uninstall prepare migrate link misc preload precompile check"
 
 # Validate actions
 if [ -n "$1" ]; then
@@ -130,6 +141,9 @@ case "$1" in
 		;;
 	'precompile')
 		logdbgr "Using action 'precompile'."
+		;;
+	'check')
+		logdbgr "Using action 'check'."
 		;;
 	*)
 		logdbgr "Using default action ('$DEFAULT_ACTION')."
@@ -323,6 +337,16 @@ action_precompile() {
 	loginfo "Done precompiling zsh scripts."
 }
 
+action_check() {
+	logdbgr 'Checking for standard utilities.'
+	checkavailable_warn parcimonie 'GPG keys will not be refreshed!'
+	checkavailable_warn offlineimap 'You will not be able to download mail!'
+	checkavailable_warn sponge 'You will not be able to use sponge!'
+	checkavailable_warn firefox-nightly 'You will have to use the stable Firefox channel.'
+	checkavailable_warn ssh 'You will not be able to remotely log in to machines!'
+	checkavailable_warn terminator 'You will not be able to use your preferred terminal emulator!'
+}
+
 # MAIN SCRIPT BODY
 
 if [ $ACTION = 'install' ]; then
@@ -346,6 +370,8 @@ elif [ $ACTION = 'preload' ]; then
 	action_preload
 elif [ $ACTION = 'precompile' ]; then
 	action_precompile
+elif [ $ACTION = 'check' ]; then
+	action_check
 fi
 
 echo "Finished successfully, with 0 failures and $NUM_WARNINGS warning(s)."
