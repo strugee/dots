@@ -290,9 +290,9 @@
    (quote
     (("strugee.net" 7000 t
       ((freenode "alex" "TODO_secure_this")
-       (moznet "alex.moznet" "TODO_secure_this")
-       (oftc "alex.oftc" "TODO_secure_this")
-       (gimpnet "alex.gimpnet" "TODO_secure_this")))))))
+       (moznet "alex" "TODO_secure_this")
+       (oftc "alex" "TODO_secure_this")
+       (gimpnet "alex" "TODO_secure_this")))))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
