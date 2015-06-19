@@ -76,6 +76,22 @@ checkavailable_warn() {
 	fi
 }
 
+checkssh() {
+	if [ ${1+x} ]; then
+		DESCRIPTION=" $1"
+	fi
+	if [ ${2+x} ]; then
+		KEYNAME="_$2"
+	fi
+	logdbgr "Checking for$DESCRIPTION SSH key..."
+	if [ ! -e $TARGET_DIR/.ssh/id_rsa$KEYNAME ]; then
+		logwarn "Could not find$DESCRIPTION SSH key."
+	else
+		loginfo "Found$DESCRIPTION SSH key at $TARGET_DIR/.ssh/id_rsa$KEYNAME."
+	fi
+	logdbgr "Done checking for$DESCRIPTION SSH key."
+}
+
 print_help() {
 cat <<EOF
 Usage: ./configctl [ACTION]
@@ -345,6 +361,12 @@ action_check() {
 	checkavailable_warn firefox-nightly 'You will have to use the stable Firefox channel.'
 	checkavailable_warn ssh 'You will not be able to remotely log in to machines!'
 	checkavailable_warn terminator 'You will not be able to use your preferred terminal emulator!'
+	checkavailable_warn profanity 'You will not be able to connect to your XMPP account!'
+	logdbgr 'Done checking for standard utilities'
+	logdbgr 'Checking for SSH keys...'
+	checkssh general-use
+	checkssh GitHub github
+	logdbgr 'Done checking for SSH keys.'
 }
 
 # MAIN SCRIPT BODY
