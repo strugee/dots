@@ -1,0 +1,1 @@
+terminator -m --execute sleep 0.3\; profanity
