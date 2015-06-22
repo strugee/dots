@@ -37,6 +37,12 @@ DEFAULT_ACTION=install
 
 NUM_WARNINGS=0
 
+if [ -f $CONFIG_DIR/local-config ]; then
+	CONFIG_DATA="$(cat $CONFIG_DIR/local-config)"
+else
+	CONFIG_DATA=''
+fi
+
 # UTILITY FUNCTIONS
 
 logdbgr() {
@@ -355,16 +361,20 @@ action_precompile() {
 
 action_check() {
 	logdbgr 'Checking for standard utilities.'
-	checkavailable_warn parcimonie 'GPG keys will not be refreshed!'
-	checkavailable_warn offlineimap 'You will not be able to download mail!'
 	checkavailable_warn sponge 'You will not be able to use sponge!'
-	checkavailable_warn firefox-nightly 'You will have to use the stable Firefox channel.'
 	checkavailable_warn ssh 'You will not be able to remotely log in to machines!'
-	checkavailable_warn terminator 'You will not be able to use your preferred terminal emulator!'
-	checkavailable_warn profanity 'You will not be able to connect to your XMPP account!'
+	if ! [ $(echo "$CONFIG_DATA" | grep headless) ]; then
+		checkavailable_warn parcimonie 'GPG keys will not be refreshed!'
+		checkavailable_warn offlineimap 'You will not be able to download mail!'
+		checkavailable_warn firefox-nightly 'You will have to use the stable Firefox channel.'
+		checkavailable_warn terminator 'You will not be able to use your preferred terminal emulator!'
+		checkavailable_warn profanity 'You will not be able to connect to your XMPP account!'
+	fi
 	logdbgr 'Done checking for standard utilities'
 	logdbgr 'Checking for SSH keys...'
-	checkssh general-use
+	if ! [ $(echo "$CONFIG_DATA" | grep no-ssh) ]; then
+		checkssh general-use
+	fi
 	checkssh GitHub github
 	logdbgr 'Done checking for SSH keys.'
 }
