@@ -99,10 +99,10 @@ if type qsub &> /dev/null; then
 	PATH="/com/local/bin:$PATH"
 	alias big_machine='qsub -W group_list=hyak-mako -l walltime=500:00:00,mem=200gb -I'
 	alias any_machine='qsub -W group_list=hyak-mako -l walltime=500:00:00,mem=100gb -I'
-	PYTHON_PATH="/com/local/lib/python3.4:$PYTHON_PATH"
-	LD_LIBRARY_PATH="/com/local/lib:${LD_LIBRARY_PATH}"
-	PKG_CONFIG_PATH=/com/local/lib/pkgconfig:/usr/share/pkgconfig
-	MC_CORES=16
+	export PYTHON_PATH="/com/local/lib/python3.4:$PYTHON_PATH"
+	export LD_LIBRARY_PATH="/com/local/lib:${LD_LIBRARY_PATH}"
+	export PKG_CONFIG_PATH=/com/local/lib/pkgconfig:/usr/share/pkgconfig
+	export MC_CORES=16
 	umask 007
 fi
 
