@@ -80,6 +80,14 @@ user_pref("plugin.state.dnssecvalidatorplugin", 2);
 user_pref("plugin.state.flash", 1);
 
 user_pref("extensions.https_everywhere.show_ruleset_tests", true);
+user_pref("extensions.https_everywhere._observatory.alt_roots", true);
+user_pref("extensions.https_everywhere._observatory.clean_config", true);
+user_pref("extensions.https_everywhere._observatory.enabled", true);
+user_pref("extensions.https_everywhere._observatory.popup_shown", true);
+user_pref("extensions.https_everywhere._observatory.priv_dns", true);
+user_pref("extensions.https_everywhere.firstrun_context_menu", false);
+user_pref("extensions.https_everywhere.prefs_version", 1);
+user_pref("extensions.https_everywhere.toolbar_hint_shown", true);
 
 /* LANGUAGE */
 
