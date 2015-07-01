@@ -48,6 +48,16 @@ user_pref("devtools.toolsidebar-width.inspector", 0);
 user_pref("devtools.webconsole.enabled", true);
 user_pref("devtools.webconsole.filter.", true);
 user_pref("devtools.webconsole.filter.networkinfo", true);
+user_pref("devtools.shadereditor.enabled", true);
+user_pref("devtools.storage.enabled", true);
+user_pref("devtools.canvasdebugger.enabled", true);
+user_pref("devtools.profiler.ui.show-platform-data", true);
+user_pref("devtools.command-button-eyedropper.enabled", true);
+user_pref("devtools.command-button-paintflashing.enabled", true);
+user_pref("devtools.command-button-scratchpad.enabled", true);
+user_pref("devtools.command-button-tilt.enabled", true);
+user_pref("devtools.theme", "dark");
+user_pref("devtools.toolbar.visible", true);
 
 /* FIREFOX SYNC */
 
