@@ -363,6 +363,7 @@ action_check() {
 	logdbgr 'Checking for standard utilities.'
 	checkavailable_warn sponge 'You will not be able to use sponge!'
 	checkavailable_warn ssh 'You will not be able to remotely log in to machines!'
+	checkavailable_warn dos2unix 'You will not be able to manipulate line endings!'
 	if ! [ $(echo "$CONFIG_DATA" | grep headless) ]; then
 		checkavailable_warn parcimonie 'GPG keys will not be refreshed!'
 		checkavailable_warn offlineimap 'You will not be able to download mail!'
