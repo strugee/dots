@@ -101,11 +101,45 @@
 (require 'tls)
 
 (setq erc-modules
-  (quote
-   (autojoin button completion fill irccontrols list log match menu move-to-prompt netsplit networks noncommands notifications readonly ring stamp track)))
+      (quote
+       (autojoin button completion fill irccontrols list log match menu move-to-prompt netsplit networks noncommands notifications readonly ring stamp track)))
 (setq erc-nick "strugee")
 (setq erc-notifications-mode t)
 (setq erc-user-full-name "Alex Jordan")
+
+; Control character handling customizations
+
+(setq erc-beep-p 't)
+(setq erc-interpret-mirc-color 't)
+
+; Only add stuff to the modeline if nick or keywords are mentioned
+
+(setq erc-track-exclude-types '("JOIN" "PART" "QUIT" "NICK" "MODE"))
+(setq erc-track-use-faces t)
+(setq erc-track-faces-priority-list
+      '(erc-current-nick-face erc-keyword-face))
+(setq erc-track-priority-faces-only 'all)
+
+; Allow cycling through unvisited channels
+
+(defvar erc-channels-to-visit nil
+  "Channels that have not yet been visited by erc-next-channel-buffer")
+(defun erc-next-channel-buffer ()
+  "Switch to the next unvisited channel. See erc-channels-to-visit"
+  (interactive)
+  (when (null erc-channels-to-visit)
+    (setq erc-channels-to-visit
+	  (remove (current-buffer) (erc-channel-list nil))))
+  (let ((target (pop erc-channels-to-visit)))
+    (if target
+	(switch-to-buffer target))))
+
+; Beep when nick or keywords are mentioned
+
+(add-hook 'erc-text-matched-hook 'erc-beep-on-match)
+(setq erc-beep-match-types '(current-nick keyword))
+
+; TODO: Beep when a private message is received
 
 ; Traditional ERC
 (defun start-erc()
@@ -130,46 +164,12 @@
 
 (setq znc-servers
       '(("strugee.net" 7000 t
-	((freenode "alex" "TODO_secure_this")
-	(moznet "alex" "TODO_secure_this")
-	(oftc "alex" "TODO_secure_this")
-	(gimpnet "alex" "TODO_secure_this")))))
+	 ((freenode "alex" "TODO_secure_this")
+	  (moznet "alex" "TODO_secure_this")
+	  (oftc "alex" "TODO_secure_this")
+	  (gimpnet "alex" "TODO_secure_this")))))
 
 (znc-all)
-
-; Control character handling customizations
-
-(setq erc-beep-p 't)
-(setq erc-interpret-mirc-color 't)
-
-; Only add stuff to the modeline if nick or keywords are mentioned
-
-(setq erc-track-exclude-types '("JOIN" "PART" "QUIT" "NICK" "MODE"))
-(setq erc-track-use-faces t)
-(setq erc-track-faces-priority-list
-      '(erc-current-nick-face erc-keyword-face))
-(setq erc-track-priority-faces-only 'all)
-
-; Allow cycling through unvisited channels
-
-(defvar erc-channels-to-visit nil
-  "Channels that have not yet been visited by erc-next-channel-buffer")
-(defun erc-next-channel-buffer ()
-  "Switch to the next unvisited channel. See erc-channels-to-visit"
-  (interactive)
-  (when (null erc-channels-to-visit)
-    (setq erc-channels-to-visit 
-	  (remove (current-buffer) (erc-channel-list nil))))
-  (let ((target (pop erc-channels-to-visit)))
-    (if target 
-	(switch-to-buffer target))))
-
-; Beep when nick or keywords are mentioned
-
-(add-hook 'erc-text-matched-hook 'erc-beep-on-match)
-(setq erc-beep-match-types '(current-nick keyword))
-
-; TODO: Beep when a private message is received
 
 ;;;;;;;;;;;;;
 ;
@@ -300,4 +300,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-p
