@@ -123,6 +123,13 @@
 ; ZNC-based ERC
 (require 'znc)
 
+(setq znc-servers
+      '(("strugee.net" 7000 t
+	((freenode "alex" "TODO_secure_this")
+	(moznet "alex" "TODO_secure_this")
+	(oftc "alex" "TODO_secure_this")
+	(gimpnet "alex" "TODO_secure_this")))))
+
 (znc-all)
 
 ; Control character handling customizations
@@ -287,14 +294,7 @@
  '(erc-notifications-mode t)
  '(erc-user-full-name "Alex Jordan")
  '(magit-repo-dirs ~/Development)
- '(magit-use-overlays nil)
- '(znc-servers
-   (quote
-    (("strugee.net" 7000 t
-      ((freenode "alex" "TODO_secure_this")
-       (moznet "alex" "TODO_secure_this")
-       (oftc "alex" "TODO_secure_this")
-       (gimpnet "alex" "TODO_secure_this")))))))
+ '(magit-use-overlays nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
