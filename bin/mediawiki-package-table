@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo '{'
+for i in $(dpkg --get-selections | awk '{print $1}'); do
+	echo '|-'
+	echo "| $i"
+	if [[ $(apt-mark showauto | grep $i) != '' ]]; then
+		echo "| auto"
+	else
+		echo "| manual"
+	fi
+	echo "| "
+done
+echo '}'
