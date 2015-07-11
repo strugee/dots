@@ -369,6 +369,9 @@ action_check() {
 		checkavailable_warn firefox-nightly 'You will have to use the stable Firefox channel.'
 		checkavailable_warn terminator 'You will not be able to use your preferred terminal emulator!'
 		checkavailable_warn profanity 'You will not be able to connect to your XMPP account!'
+		checkavailable_warn secret-tool 'You will not be able to connect to your XMPP account!'
+		# TODO: check for the presence of Profanity keyring secrets
+		checkavailable_warn pv 'You will not be able to monitor the progress of pipes!'
 	fi
 	logdbgr 'Done checking for standard utilities'
 	logdbgr 'Checking for SSH keys...'
