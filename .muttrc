@@ -1,0 +1,10 @@
+source ~/.mutt/muttrc.mailboxes
+
+set mbox_type=Maildir
+set folder=/home/alex/Maildir/INBOX
+set spoolfile=+/
+set header_cache=~/.cache/mutt
+set record=+Sent
+set postponed=+Drafts
+set realname="Alex Jordan"
+set from="Alex Jordan <alex@strugee.net>"
