@@ -19,3 +19,11 @@ ssl = yes
 cert_fingerprint = 570c65fd3460fb75cfa1ad61a698432b45ef4020
 remotehost = imap.strugee.net
 remoteuser = alex@strugee.net
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt/muttrc.mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
