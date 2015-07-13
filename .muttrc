@@ -11,3 +11,10 @@ set from="Alex Jordan <alex@strugee.net>"
 
 set editor=emacsclient
 set pager=emacsclient
+
+source ~/.mutt/gpg.rc
+set pgp_autosign=yes
+set pgp_replyencrypt=yes
+set pgp_replysignencrypted=yes
+set pgp_sign_as=0x43BF769C4ACA8B96
+set pgp_verify_sig=yes
