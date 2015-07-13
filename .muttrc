@@ -8,3 +8,6 @@ set record=+Sent
 set postponed=+Drafts
 set realname="Alex Jordan"
 set from="Alex Jordan <alex@strugee.net>"
+
+set editor=emacsclient
+set pager=emacsclient
