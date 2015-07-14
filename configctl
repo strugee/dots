@@ -375,7 +375,7 @@ action_check() {
 		checkavailable_warn pv 'You will not be able to monitor the progress of pipes!'
 		checkavailable_warn sl 'You will not see a locomotive upon typing `sl`!'
 	fi
-	logdbgr 'Done checking for standard utilities'
+	logdbgr 'Done checking for standard utilities.'
 	logdbgr 'Checking for SSH keys...'
 	if ! [ $(echo "$CONFIG_DATA" | grep no-ssh) ]; then
 		checkssh general-use
