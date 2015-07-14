@@ -375,6 +375,14 @@ action_check() {
 		checkavailable_warn pv 'You will not be able to monitor the progress of pipes!'
 		checkavailable_warn sl 'You will not see a locomotive upon typing `sl`!'
 	fi
+	if ! [ $(echo "$CONFIG_DATA" | grep no-nodejs) ]; then
+		checkavailable_warn node 'You will not be able to develop and use Node.js-based projects!'
+		checkavailable_warn npm 'You will not be able to download npm packages and scripts!'
+		checkavailable_warn grunt 'You will not be able to build Grunt projects!'
+		checkavailable_warn gulp 'You will not be able to build Gulp projects!'
+		checkavailable_warn yo 'You will not be able to bootstrap projects with Yeoman!'
+		checkavailable_warn yosay 'You will not be able to use yosay!'
+	fi
 	logdbgr 'Done checking for standard utilities.'
 	logdbgr 'Checking for SSH keys...'
 	if ! [ $(echo "$CONFIG_DATA" | grep no-ssh) ]; then
