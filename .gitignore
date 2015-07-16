@@ -6,3 +6,4 @@
 # Repository-specific
 
 local-config
+.mutt/muttrc.mailboxes
