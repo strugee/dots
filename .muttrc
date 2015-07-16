@@ -15,5 +15,7 @@ source ~/.mutt/gpg.rc
 set pgp_autosign=yes
 set pgp_replyencrypt=yes
 set pgp_replysignencrypted=yes
-set pgp_sign_as=0x43BF769C4ACA8B96
+set pgp_sign_as=0x26794034633DBBC0
+set pgp_ignore_subkeys=no
+
 set pgp_verify_sig=yes
