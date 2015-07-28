@@ -143,6 +143,7 @@
 	(switch-to-buffer target))))
 
 ; Beep when nick or keywords are mentioned
+; TODO: this doesn't catch "strugee's"
 
 (add-hook 'erc-text-matched-hook 'erc-beep-on-match)
 (setq erc-beep-match-types '(current-nick keyword))
