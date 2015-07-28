@@ -206,10 +206,10 @@ checkavailable patch "patch ZNC.el"
 logdbgr "Checking for zsh."
 if command -v zsh 2>&1 >/dev/null; then
 	loginfo "Detected $(type zsh | sed 's/is/as/')."
-	ZSH_AVAILABLE=true
+	HAS_ZSH=0
 else
 	logwarn "Failed to detect zsh. Precompilation will not occur."
-	ZSH_AVAILABLE=false
+	HAS_ZSH=1
 fi
 
 logdbgr "Finished preparing."
@@ -363,21 +363,21 @@ action_preload() {
 }
 
 action_precompile() {
-	if ! $ZSH_AVAILABLE; then
-		logwarn "Cannot precompile zsh scripts due to missing zsh binary."
-		exit 1
+	if [ $HAS_ZSH = 0 ]; then
+		loginfo "Precompiling zsh scripts..."
+		logdbgr "Changing working directory to $TARGET_DIR."
+		cd $TARGET_DIR
+		for i in $ZSH_PRECOMPILE; do
+			printf "Precompiling $i..."
+			zsh -c "zcompile $i"
+			printf " done.\n"
+		done
+		logdbgr "Changing working directory to $CONFIG_DIR."
+		cd $CONFIG_DIR
+		loginfo "Done precompiling zsh scripts."
+	else
+		logwarn "Not precompiling zsh scripts due to missing zsh."
 	fi
-	loginfo "Precompiling zsh scripts..."
-	logdbgr "Changing working directory to $TARGET_DIR."
-	cd "$TARGET_DIR"
-	for i in $ZSH_PRECOMPILE; do
-		printf "Precompiling $i..."
-		zsh -c "zcompile $i"
-		printf " done.\n"
-	done
-	logdbgr "Changing working directory to $CONFIG_DIR."
-	cd $CONFIG_DIR
-	loginfo "Done precompiling zsh scripts."
 }
 
 action_check() {
