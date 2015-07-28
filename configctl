@@ -4,11 +4,12 @@
  
 # Usage: ./configctl [ACTION]
 # Control configuration file installation.
-# ACTION is one of: $ACTIONS.
+# ACTION is one of: install uninstall prepare migrate link misc preload precompile check.
 # 
-# The 'install' action is equivalent to the 'link', 'misc', 'preload', and 'precompile' actions, in that order.
+# The 'install' action is equivalent to the 'prepare', 'migrate', 'link', 'misc', 'preload', and 'precompile' actions, in that order.
 # The 'uninstall' action is unimplemented.
 # The 'prepare' action creates directories.
+# The 'migrate' action migrates old configurations.
 # The 'link' action creates symlinks and hardlinks.
 # The 'misc' action performs miscellaneous tasks, like touching files.
 # The 'preload' action downloads resources from the network, and is dependent on 'link'. It is the only action requiring network access.
@@ -105,9 +106,10 @@ Usage: ./configctl [ACTION]
 Control configuration file installation.
 ACTION is one of: $ACTIONS.
 
-The 'install' action is equivalent to the 'link', 'misc', 'preload', and 'precompile' actions, in that order.
+The 'install' action is equivalent to the 'prepare', 'migrate', 'link', 'misc', 'preload', and 'precompile' actions, in that order.
 The 'uninstall' action is unimplemented.
 The 'prepare' action creates directories.
+The 'migrate' action migrates old configurations.
 The 'link' action creates symlinks and hardlinks.
 The 'misc' action performs miscellaneous tasks, like touching files.
 The 'preload' action downloads resources from the network, and is dependent on 'link'. It is the only action requiring network access.
