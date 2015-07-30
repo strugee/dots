@@ -1,0 +1,51 @@
+#!/bin/sh -
+
+# TODO: doesn't properly handle shebang lines in -d mode
+
+print_help() {
+cat <<EOF
+Usage: bfmin [-d] [FILE]
+Minify a Brainfuck program.
+
+  -h, --help                Print usage information.
+  -d, --enable-debugging    Do not strip beef-compatible debugging
+                            commands.
+
+If FILE is not specified, bfmin will read from standard input.
+EOF
+}
+
+if [ "$1" = --help ] || [ "$1" = -h ]; then
+	print_help
+	exit 0
+fi
+
+if [ "$1" = '-d' ] || [ "$1" = '--enable-debugging' ]; then
+	ENABLE_DEBUGGING=0
+	# If there's a second argument, use it, otherwise use stdin
+	if [ ${2+x} ]; then
+		INPUT="$2"
+	else
+		INPUT=/dev/stdin
+	fi
+else if [ "$2" = '-d' ] || [ "$2" = '--enable-debugging' ]; then
+	ENABLE_DEBUGGING=0
+	# Since there's a second argument the first argument must be a filename
+	INPUT="$1"
+else
+	ENABLE_DEBUGGING=1
+	if [ ${1+x} ]; then
+		INPUT="$1"
+	else
+		INPUT=/dev/stdin
+	fi
+fi
+fi
+
+if [ $ENABLE_DEBUGGING = 0 ]; then
+	REGEXP='[][+<>#.,-]*'
+else
+	REGEXP='[][+<>.,-]*'
+fi
+
+grep -o $REGEXP "$INPUT" | tr -d '\n' | grep '.*'
