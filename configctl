@@ -78,7 +78,7 @@ checkavailable_warn() {
 	if command -v $1 2>&1 >/dev/null; then
 		loginfo "Detected $(type $1 | sed 's/is/as/')."
 	else
-		logwarn "Failed to detect $1. $2"
+		logwarn "Failed to detect $1."
 	fi
 }
 
@@ -361,27 +361,28 @@ action_precompile() {
 
 action_check() {
 	logdbgr 'Checking for standard utilities.'
-	checkavailable_warn sponge 'You will not be able to use sponge!'
-	checkavailable_warn ssh 'You will not be able to remotely log in to machines!'
-	checkavailable_warn dos2unix 'You will not be able to manipulate line endings!'
+	checkavailable_warn sponge
+	checkavailable_warn ssh
+	checkavailable_warn dos2unix
 	if ! [ $(echo "$CONFIG_DATA" | grep headless) ]; then
-		checkavailable_warn parcimonie 'GPG keys will not be refreshed!'
-		checkavailable_warn offlineimap 'You will not be able to download mail!'
-		checkavailable_warn firefox-nightly 'You will have to use the stable Firefox channel.'
-		checkavailable_warn terminator 'You will not be able to use your preferred terminal emulator!'
-		checkavailable_warn profanity 'You will not be able to connect to your XMPP account!'
-		checkavailable_warn secret-tool 'You will not be able to connect to your XMPP account!'
+		checkavailable_warn parcimonie
+		checkavailable_warn offlineimap
+		checkavailable_warn firefox-nightly
+		checkavailable_warn terminator
+		checkavailable_warn profanity
+		checkavailable_warn secret-tool
 		# TODO: check for the presence of Profanity keyring secrets
-		checkavailable_warn pv 'You will not be able to monitor the progress of pipes!'
-		checkavailable_warn sl 'You will not see a locomotive upon typing `sl`!'
+		checkavailable_warn pv
+		checkavailable_warn sl
 	fi
 	if ! [ $(echo "$CONFIG_DATA" | grep no-nodejs) ]; then
-		checkavailable_warn node 'You will not be able to develop and use Node.js-based projects!'
-		checkavailable_warn npm 'You will not be able to download npm packages and scripts!'
-		checkavailable_warn grunt 'You will not be able to build Grunt projects!'
-		checkavailable_warn gulp 'You will not be able to build Gulp projects!'
-		checkavailable_warn yo 'You will not be able to bootstrap projects with Yeoman!'
-		checkavailable_warn yosay 'You will not be able to use yosay!'
+		checkavailable_warn node
+		checkavailable_warn npm
+		checkavailable_warn grunt
+		checkavailable_warn gulp
+		checkavailable_warn yo
+		checkavailable_warn yosay
+		checkavailable_warn nsp
 	fi
 	logdbgr 'Done checking for standard utilities.'
 	logdbgr 'Checking for SSH keys...'
