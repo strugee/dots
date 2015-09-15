@@ -46,7 +46,7 @@ fi
 
 if type ruby &> /dev/null && type gem &> /dev/null; then
 	# Fix Bundler behavior on Arch
-	export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+	export GEM_HOME="$(ruby -e 'print Gem.user_dir')"
 	# Add local Gems to PATH
 	PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 fi

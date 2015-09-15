@@ -31,7 +31,7 @@ LINK_DIRS=".config/awesome .config/cower .config/terminator .config/profanity .m
 AFTER_DIRS=".gnupg/gpg.conf .ssh/config .aptitude/config .todo/config .bazaar/bazaar.conf .local/share/applications/firefox-nightly.desktop"
 TOUCH_FILES=".fetchmail.log .msmtp.log"
 CONFIG_DIR=$(pwd)
-TARGET_DIR=~
+TARGET_DIR="~"
 
 DEFAULT_ACTION=install
 
@@ -90,7 +90,7 @@ checkssh() {
 		KEYNAME="_$2"
 	fi
 	logdbgr "Checking for$DESCRIPTION SSH key..."
-	if [ ! -e $TARGET_DIR/.ssh/id_rsa$KEYNAME ]; then
+	if [ ! -e "$TARGET_DIR"/.ssh/id_rsa$KEYNAME ]; then
 		logwarn "Could not find$DESCRIPTION SSH key."
 	else
 		loginfo "Found$DESCRIPTION SSH key at $TARGET_DIR/.ssh/id_rsa$KEYNAME."
@@ -185,14 +185,14 @@ loginfo "Using target directory $TARGET_DIR."
 
 # Error checking on target directory
 logdbgr "Checking if target directory exists."
-if ! [ -e $TARGET_DIR ]; then
+if ! [ -e "$TARGET_DIR" ]; then
 	logwarn "Target directory does not exist."
 	loginfo "Creating target directory $TARGET_DIR."
-	mkdir -p $TARGET_DIR
+	mkdir -p "$TARGET_DIR"
 	# TODO handle errors
 fi
 logdbgr "Checking if target directory is a directory."
-if ! [ -d $TARGET_DIR ]; then
+if ! [ -d "$TARGET_DIR" ]; then
 	logfail "Fatal error: $TARGET_DIR is not a directory." 1
 fi
 
@@ -220,7 +220,7 @@ action_prepare() {
 	loginfo "Creating configuration directories..."
 	for i in $DIRS; do
 		printf "Creating $i..."
-		mkdir -p $TARGET_DIR/$i
+		mkdir -p "$TARGET_DIR"/$i
 		printf " done.\n"
 	done
 	loginfo "Done creating configuration directories."
@@ -236,15 +236,15 @@ action_link() {
 	loginfo "Installing symlinks..."
 	for i in $BASIC; do
 		printf "Installing $i..."
-		if [ -L $TARGET_DIR/$i ]; then
+		if [ -L "$TARGET_DIR"/$i ]; then
 			printf " skipped.\n"
 			continue;
-		elif [ -e $TARGET_DIR/$i ]; then
+		elif [ -e "$TARGET_DIR"/$i ]; then
 			printf " aborted.\n"
 			logwarn "Refusing to overwrite file $TARGET_DIR/$i."
 			continue;
 		fi
-		ln -s $CONFIG_DIR/$i $TARGET_DIR
+		ln -s $CONFIG_DIR/$i "$TARGET_DIR"
 		printf " done.\n"
 	done
 	loginfo "Done installing symlinks."
@@ -252,15 +252,15 @@ action_link() {
 	loginfo "Installing hardlinks..."
 	for i in $HARDLINKS; do
 		printf "Installing $i..."
-		if [ $CONFIG_DIR/$i -ef $TARGET_DIR/$i  ]; then
+		if [ $CONFIG_DIR/$i -ef "$TARGET_DIR"/$i  ]; then
 			printf " skipped.\n"
 			continue;
-		elif [ -e $TARGET_DIR/$i ]; then
+		elif [ -e "$TARGET_DIR"/$i ]; then
 			printf " aborted.\n"
 			logwarn "Refusing to overwrite file $TARGET_DIR/$i."
 			continue;
 		fi
-		ln $CONFIG_DIR/$i $TARGET_DIR
+		ln $CONFIG_DIR/$i "$TARGET_DIR"
 		printf " done.\n"
 	done
 	loginfo "Done installing hardlinks."
@@ -278,7 +278,7 @@ action_misc() {
 	loginfo "Touching files..."
 	for i in $TOUCH_FILES; do
 		printf "Touching $i..."
-		touch $TARGET_DIR/$i
+		touch "$TARGET_DIR"/$i
 		printf " done.\n"
 	done
 	loginfo "Done touching files."
@@ -289,30 +289,30 @@ action_preload() {
 	# TODO: handle errors
 	# TODO: print logs for each clone operation
 	logdbgr "Cloning oh-my-zsh."
-	git clone 'git://github.com/robbyrussell/oh-my-zsh' $TARGET_DIR/.oh-my-zsh
+	git clone 'git://github.com/robbyrussell/oh-my-zsh' "$TARGET_DIR"/.oh-my-zsh
 	logdbgr "Cloning Antigen."
-	git clone 'git://github.com/zsh-users/antigen.git' $TARGET_DIR/antigen
+	git clone 'git://github.com/zsh-users/antigen.git' "$TARGET_DIR"/antigen
 	logdbgr "Cloning moz-git-tools."
-	git clone 'git://github.com/mozilla/moz-git-tools.git' $TARGET_DIR/.bin/moz-git-tools
+	git clone 'git://github.com/mozilla/moz-git-tools.git' "$TARGET_DIR"/.bin/moz-git-tools
 	logdbgr "Initializing moz-git-tools submodules."
 	logdbgr "Changing working directory to $TARGET_DIR/.bin/moz-git-tools."
-	cd $TARGET_DIR/.bin/moz-git-tools
+	cd "$TARGET_DIR"/.bin/moz-git-tools
 	git submodule update --init
 	cd $CONFIG_DIR
 	logdbgr "Changing working directory to $CONFIG_DIR."
 	loginfo "Done cloning resources from git."
 
 	loginfo "Downloading static tarballs..."
-	if ! [ -d $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10 ]; then
+	if ! [ -d "$TARGET_DIR"/.bin/todotxt/todo.txt_cli-2.10 ]; then
 		logdbgr "Downloading todo.txt-cli."
 		logdbgr "Changing working directory to $TARGET_DIR/.bin/todotxt."
-		cd $TARGET_DIR/.bin/todotxt
+		cd "$TARGET_DIR"/.bin/todotxt
 		curl -L https://github.com/ginatrapani/todo.txt-cli/releases/download/v2.10/todo.txt_cli-2.10.tar.gz | gunzip | tar -x
 		# TODO: make this not hard-coded
 		# TODO: this doesn't handle already-existing links
-		chmod +x $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10/todo.sh
-		ln -s $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10/todo_completion $TARGET_DIR/.bin/bash_completion
-		ln -s $TARGET_DIR/.bin/todotxt/todo.txt_cli-2.10/todo.sh $TARGET_DIR/.bin/bin/todo.sh
+		chmod +x "$TARGET_DIR"/.bin/todotxt/todo.txt_cli-2.10/todo.sh
+		ln -s "$TARGET_DIR"/.bin/todotxt/todo.txt_cli-2.10/todo_completion "$TARGET_DIR"/.bin/bash_completion
+		ln -s "$TARGET_DIR"/.bin/todotxt/todo.txt_cli-2.10/todo.sh "$TARGET_DIR"/.bin/bin/todo.sh
 		logdbgr "Changing working directory to $CONFIG_DIR."
 		cd $CONFIG_DIR
 	else
@@ -323,10 +323,10 @@ action_preload() {
 	loginfo "Ensuring that package.el is available..."
 	# TODO: make this actually check the result of (require 'package) instead of just testing version
 	# TODO: clean an old package.el if Emacs has been upgraded
-	if [ $(emacs --version | head -1 | cut -d ' ' -f 3 | cut -d . -f 1) -lt 24 -a ! -e $TARGET_DIR/.emacs.d/lisp/package.el ]; then
+	if [ $(emacs --version | head -1 | cut -d ' ' -f 3 | cut -d . -f 1) -lt 24 -a ! -e "$TARGET_DIR"/.emacs.d/lisp/package.el ]; then
 		logdbgr "Emacs version is too old to be distributed with package.el."
 		logdbgr "Downloading package.el."
-		curl 'http://git.savannah.gnu.org/gitweb/?p=emacs.git;a=blob_plain;hb=ba08b24186711eaeb3748f3d1f23e2c2d9ed0d09;f=lisp/emacs-lisp/package.el' > $TARGET_DIR/.emacs.d/lisp/package.el
+		curl 'http://git.savannah.gnu.org/gitweb/?p=emacs.git;a=blob_plain;hb=ba08b24186711eaeb3748f3d1f23e2c2d9ed0d09;f=lisp/emacs-lisp/package.el' > "$TARGET_DIR"/.emacs.d/lisp/package.el
 	fi
 	loginfo "Done ensuring that package.el is available."
 
@@ -335,7 +335,7 @@ action_preload() {
 	loginfo "Done downloading Emacs packages."
 
 	loginfo "Patching ZNC.el..."
-	cd $TARGET_DIR/.emacs.d/elpa/znc-*
+	cd "$TARGET_DIR"/.emacs.d/elpa/znc-*
 	curl https://github.com/rschuetzler/ZNC.el/commit/e58db9afef82957ffcea6a72977f5f2b4fb53d05.patch | patch
 	# FIXME
 	#emacs --eval "(byte-recompile-directory $TARGET_DIR/\.emacs\.d/elpa/znc-*/ 0)"
@@ -354,7 +354,7 @@ action_precompile() {
 	fi
 	loginfo "Precompiling zsh scripts..."
 	logdbgr "Changing working directory to $TARGET_DIR."
-	cd $TARGET_DIR
+	cd "$TARGET_DIR"
 	for i in $ZSH_PRECOMPILE; do
 		printf "Precompiling $i..."
 		zsh -c "zcompile $i"
