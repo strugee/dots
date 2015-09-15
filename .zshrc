@@ -73,16 +73,14 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-if [[ $DISTRO != "CYGWIN" ]]; then
-	# Use Antigen
-	source ~/antigen/antigen.zsh
-	
+# Use Antigen
+source ~/antigen/antigen.zsh
+
 antigen bundles <<EOF
 	zsh-users/zsh-syntax-highlighting
 EOF
-	
-	antigen apply
-fi
+
+antigen apply
 
 # done in .profile nowadays
 # export PATH=$PATH:~/bin
