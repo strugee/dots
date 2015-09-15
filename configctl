@@ -366,6 +366,9 @@ action_check() {
 	checkavailable_warn dos2unix
 	checkavailable_warn pv
 	checkavailable_warn sl
+	checkavailable_warn nano
+	checkavailable_warn pkill
+	checkavailable_warn killall
 	if ! [ $(echo "$CONFIG_DATA" | grep headless) ]; then
 		checkavailable_warn parcimonie
 		checkavailable_warn offlineimap
