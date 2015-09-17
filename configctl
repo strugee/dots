@@ -36,6 +36,7 @@ TARGET_DIR="~"
 DEFAULT_ACTION=install
 
 NUM_WARNINGS=0
+NUM_MIGRATIONS=0
 
 if [ -f $CONFIG_DIR/local-config ]; then
 	CONFIG_DATA="$(cat $CONFIG_DIR/local-config)"
@@ -60,7 +61,7 @@ logwarn() {
 
 logfail() {
 	echo "[\033[31mfail\033[0m] $1"
-	echo "Finished unsuccessfully, with 1 failure and $NUM_WARNINGS warning(s)."
+	echo "Finished unsuccessfully, with 1 failure, $NUM_WARNINGS warning(s), and 0 migrations."
 	exit $2
 }
 
@@ -228,7 +229,21 @@ action_prepare() {
 
 action_migrate() {
 	loginfo "Migrating old configurations..."
-	echo "Nothing to migrate."
+	if ls ~/.emacs.d/elpa/git-commit-mode* > /dev/null 2>&1; then
+		printf "Detected obsolete git-commit-mode, removing..."
+		NUM_MIGRATIONS=$(($NUM_MIGRATIONS + 1))
+		rm -rf ~/.emacs.d/elpa/git-commit-mode*
+		printf " done.\n"
+	fi
+	if ls ~/.emacs.d/elpa/git-rebase-mode* > /dev/null 2>&1; then
+		printf "Detected obsolete git-rebase-mode, removing..."
+		NUM_MIGRATIONS=$(($NUM_MIGRATIONS + 1))
+		rm -rf ~/.emacs.d/elpa/git-rebase-mode*
+		printf " done.\n"
+	fi
+	if [ $NUM_MIGRATIONS = 0 ]; then
+		echo "Nothing to migrate."
+	fi
 	loginfo "Done migrating old configurations."
 }
 
@@ -418,4 +433,4 @@ else
 	action_$ACTION
 fi
 
-echo "Finished successfully, with 0 failures and $NUM_WARNINGS warning(s)."
+echo "Finished successfully, with 0 failures, $NUM_WARNINGS warning(s), and $NUM_MIGRATIONS migrations."
