@@ -1,7 +1,7 @@
 source ~/.mutt/muttrc.mailboxes
 
 set mbox_type=Maildir
-set folder=/home/alex/Maildir/INBOX
+set folder=~/Maildir/INBOX
 set spoolfile=+/
 set header_cache=~/.cache/mutt
 set record=+Sent
