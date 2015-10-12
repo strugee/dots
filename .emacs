@@ -114,7 +114,8 @@
 
 ; Only add stuff to the modeline if nick or keywords are mentioned
 
-(setq erc-track-exclude-types '("JOIN" "PART" "QUIT" "NICK" "MODE"))
+(setq erc-track-exclude-types '("JOIN" "PART" "QUIT" "NICK" "MODE"
+				"324" "329" "332" "333" "353" "477"))
 (setq erc-track-use-faces t)
 (setq erc-track-faces-priority-list
       '(erc-current-nick-face erc-keyword-face))
