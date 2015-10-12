@@ -119,7 +119,7 @@
 (setq erc-track-use-faces t)
 (setq erc-track-faces-priority-list
       '(erc-current-nick-face erc-keyword-face))
-(setq erc-track-priority-faces-only 'all)
+(setq erc-track-priority-faces-only nil)
 
 ; Make private messages more urgent
 
