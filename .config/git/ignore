@@ -6,8 +6,3 @@
 # OS X
 *~
 .DS_Store
-
-# Repository-specific
-
-local-config
-.mutt/muttrc.mailboxes
