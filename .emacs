@@ -233,6 +233,13 @@
 	    (setq python-indent 8)
 	    (setq tab-width 8)))
 
+; HTML mode
+(add-hook 'html-mode-hook
+(lambda()
+            (setq sgml-basic-offset 4)
+            (setq indent-tabs-mode t)))
+
+; todotxt mode
 (autoload 'todotxt "todotxt.el" "A major mode for editing todo.txt files" t)
 (set-variable 'todotxt-file "/home/alex/ownCloud/todo/todo.txt")
 (global-set-key (kbd "C-x t") 'todotxt)
