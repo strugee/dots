@@ -16,7 +16,7 @@ localfolders = ~/Maildir
 [Repository Remote]
 type = IMAP
 ssl = yes
-cert_fingerprint = 570c65fd3460fb75cfa1ad61a698432b45ef4020
+cert_fingerprint = 8dc1fac52dadce42a022989c7329ef6b18b15244
 remotehost = imap.strugee.net
 remoteuser = alex@strugee.net
 
