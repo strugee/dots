@@ -188,8 +188,7 @@
 	   :nick "strugee" :full-name "Alex Jordan")
   (erc-tls :server "irc.mozilla.org" :port 6697
 	   :nick "strugee" :full-name "Alex Jordan")
-  ; For shame, GNOME! No TLS?
-  (erc :server "irc.gnome.org" :port 6667
+  (erc-tls :server "irc.gnome.org" :port 6697
        :nick "strugee" :full-name "Alex Jordan")
   (setq erc-autojoin-channels-alist '(("oftc.net" "#emacs" "#debian" "#debian-devel" "#debian-mozilla" "#debian-gnome" "#debian-next" "#debian-offtopic")
 				      ("freenode.net" "#libreplanet-wa" "#archlinux" "#archlinux-offtopic" "#archlinux-newbies" "#steevie" "#plan9" "#gnome" "#whatwg")
