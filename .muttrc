@@ -9,6 +9,9 @@ set postponed=+Drafts
 set realname="Alex Jordan"
 set from="Alex Jordan <alex@strugee.net>"
 
+set envelope_from=yes
+set sendmail="msmtp -oem -oi"
+
 set editor="emacsclient -nw"
 
 source ~/.mutt/gpg.rc
