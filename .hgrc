@@ -9,6 +9,7 @@ progress =
 color = 
 rebase = 
 histedit = 
+strip =
 bzexport = ~/.mozbuild/version-control-tools/hgext/bzexport
 reviewboard = ~/.mozbuild/version-control-tools/hgext/reviewboard/client.py
 bzpost = ~/.mozbuild/version-control-tools/hgext/bzpost
