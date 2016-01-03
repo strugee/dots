@@ -123,6 +123,8 @@
 ;
 ;;;;;;;;;;
 
+; See also CUSTOM
+
 (require 'erc)
 
 ; SSL/TLS support
