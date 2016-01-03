@@ -94,6 +94,9 @@
 ; Disable VC
 (setq vc-handled-backends nil)
 
+(if (eq system-type 'darwin)
+    (add-to-list 'exec-path "/usr/local/bin"))
+
 ;;;;;;;;;;;;;
 ;
 ; MODELINE
