@@ -207,12 +207,21 @@
 ; ZNC-based ERC
 (require 'znc)
 
+(setq znc-password (let ((secret (plist-get (nth 0 (auth-source-search :max 1
+								       :host 'znc.strugee.net
+								       :require '(:secret)
+								       :create t))
+					    :secret)))
+		     (if (functionp secret)
+			 (funcall secret)
+		       secret)))
+
 (setq znc-servers
-      '(("strugee.net" 7000 t
-	 ((freenode "alex" "TODO_secure_this")
-	  (moznet "alex" "TODO_secure_this")
-	  (oftc "alex" "TODO_secure_this")
-	  (gimpnet "alex" "TODO_secure_this")))))
+      `(("znc.strugee.net" 7000 t
+	 ((freenode "alex" ,znc-password)
+	  (moznet "alex" ,znc-password)
+	  (oftc "alex" ,znc-password)
+	  (gimpnet "alex" ,znc-password)))))
 
 (znc-all)
 
