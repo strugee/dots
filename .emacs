@@ -161,6 +161,10 @@
       (setq ad-return-value (intern "erc-current-nick-face"))
     ad-do-it))
 
+; Bury new IRC buffers
+
+(setq erc-join-buffer 'bury)
+
 ; Allow cycling through unvisited channels
 
 (defvar erc-channels-to-visit nil
