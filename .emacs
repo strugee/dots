@@ -165,6 +165,9 @@
 
 (setq erc-join-buffer 'bury)
 
+; Reuse existing buffers on reconnect
+(setq erc-reuse-buffers t)
+
 ; Allow cycling through unvisited channels
 
 (defvar erc-channels-to-visit nil
