@@ -360,6 +360,7 @@ action_preload() {
 	loginfo "Done patching ZNC.el."
 
 	loginfo "Handling submodules..."
+	cd $CONFIG_DIR
 	git submodule update --init
 	loginfo "Done handling submodules."
 }
