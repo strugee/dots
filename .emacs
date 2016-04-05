@@ -302,6 +302,8 @@
 ;(require 'hardcore-mode)
 ;(global-hardcore-mode)
 
+(linum-mode)
+
 ; TODO:
 ; display-theme-mode
 ; markdown-mode+
