@@ -8,3 +8,5 @@
 	ui = auto
 [branch]
 	autosetuprebase = always
+[alias]
+	hate = blame
