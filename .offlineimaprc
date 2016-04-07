@@ -7,7 +7,7 @@ accounts = steevie
 [Account steevie]
 localrepository = Local
 remoterepository = Remote
-connections = 5
+connections = 20
 
 [Repository Local]
 type = Maildir
