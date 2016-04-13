@@ -394,6 +394,7 @@ action_check() {
 	checkavailable_warn pkill
 	checkavailable_warn killall
 	checkavailable_warn tree
+	checkavailable_warn traceroute
 	if ! [ $(echo "$CONFIG_DATA" | grep headless) ]; then
 		checkavailable_warn parcimonie
 		checkavailable_warn offlineimap
@@ -403,6 +404,7 @@ action_check() {
 		checkavailable_warn secret-tool
 		# TODO: check for the presence of Profanity keyring secrets
 		checkavailable_warn xclip
+		checkavailable_warn mutt
 	fi
 	if ! [ $(echo "$CONFIG_DATA" | grep no-nodejs) ]; then
 		checkavailable_warn node
