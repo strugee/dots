@@ -63,11 +63,11 @@ if [ $(uname -s) = "Darwin" ]; then
 	# For distributed.net client
 	PATH="$PATH:/Applications/dnetc518-macosx-x86"
 
-	# TODO: this totally borks shell startup
-	# For Android
-	PATH="/Applications/Android SDK/tools:/Applications/Android SDK/platform-tools:$PATH"
 	# For Homebrew formulae on OS X
 	PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+
+	# For Android
+	PATH="/Applications/Android SDK/tools:/Applications/Android SDK/platform-tools:$PATH"
 
 	# For Ruby gems. This should be done better with e.g. rvm, because Ruby upgrades will break the path, but I can't be bothered.
 	export GEMPATH=/usr/local/Cellar/ruby/2.1.0/lib/ruby/gems/2.1.0/gems/
