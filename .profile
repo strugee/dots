@@ -62,10 +62,7 @@ fi
 if [ $(uname -s) = "Darwin" ]; then
 	# For distributed.net client
 	PATH="$PATH:/Applications/dnetc518-macosx-x86"
-	# For MacPorts
-	PATH="$PATH:/opt/local/bin:/opt/local/sbin"
-	# For Fink
-	test -r /sw/bin/init.sh && . /sw/bin/init.sh
+
 	# TODO: this totally borks shell startup
 	# For Android
 	PATH="/Applications/Android SDK/tools:/Applications/Android SDK/platform-tools:$PATH"
@@ -77,14 +74,6 @@ if [ $(uname -s) = "Darwin" ]; then
 	
 	# Metasploit
 	PATH="$PATH:/opt/metasploit-framework/bin"
-
-	##
-	# Your previous /Users/alex/.bash_profile file was backed up as /Users/alex/.bash_profile.macports-saved_2013-03-16_at_00:07:13
-	##
-	
-	# MacPorts Installer addition on 2013-03-16_at_00:07:13: adding an appropriate PATH variable for use with MacPorts.
-	PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-	# Finished adapting your PATH environment variable for use with MacPorts.
 
 	export PATH
 fi
