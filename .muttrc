@@ -14,6 +14,9 @@ set sendmail="msmtp -oem -oi"
 
 set editor="emacsclient -nw"
 
+set sort="threads"
+set strict_threads=yes
+
 source ~/.mutt/gpg.rc
 set pgp_autosign=yes
 set pgp_replyencrypt=yes
