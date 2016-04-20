@@ -1,0 +1,143 @@
+#!/bin/bash
+
+# Parse arguments
+
+OPTIND=1
+
+USING_FLAVOR=false
+USING_WIDTH=false
+
+FLAVOR=none
+WIDTH=
+
+XARGS_OPTS=
+
+print_help() {
+cat <<EOF
+Usage: tabify-tree [OPTIONS] -f FLAVOR
+ or:   tabify-tree [OPTIONS] -w WIDTH
+In the first form, tabify based on a predefined project type.
+In the second form, tabify based on a manually-specified width.
+
+A side-effect of tabify-tree is that all files will be newline-terminated.
+
+Mandatory arguments to long options are mandatory for short options too.
+  -f, --flavor FLAVOR   Use FLAVOR as the flavor to base indentation level on;
+                          -f is mutually exclusive with -w
+  -w, --width WIDTH     Assume WIDTH spaces per indentation level;
+                          -w is mutually exclusive with -f
+  -v, --verbose         Print sed commands as they are executed
+  -h, --help            Show this help text
+
+FLAVOR can be one of: bespoke
+EOF
+}
+
+while [[ $# > 0 ]]; do
+	case "$1" in
+		-h|--help)
+			# TODO
+			print_help
+			exit 0
+			shift
+			;;
+		-f|--flavor)
+			if $USING_WIDTH; then
+				echo tabify-tree: can\'t specify both a flavor and a width >&2
+				exit 1
+			fi
+			USING_FLAVOR=true
+			shift
+			if [ -z ${1+x} ]; then
+				echo tabify-tree: flavor required >&2
+				exit 1
+			fi
+			# TODO check if this is actually valid
+			FLAVOR="$1"
+			shift
+			;;
+		-w|--width)
+			if $USING_FLAVOR; then
+				echo tabify-tree: can\'t specify both a flavor and a width >&2
+				exit 1
+			fi
+			USING_WIDTH=true
+			shift
+			if [ -z ${1+x} ]; then
+				echo tabify-tree: width required >&2
+				exit 1
+			fi
+			# TODO check if this is actually an integer
+			WIDTH="$1"
+			shift
+			;;
+		-v|--verbose)
+			XARGS_OPTS='-t'
+			shift
+			;;
+		*)
+			# Assume that the unknown argument is a Unix-style combination
+			# TODO this is incorrect and a mess and I don't give enough of a shit
+			while getopts "hvf:w:" opt; do
+				case "$opt" in
+					h)
+						echo help
+						;;
+					f)
+						echo flavor
+						echo $opt
+						;;
+					w)
+						echo width
+						;;
+					v)
+						echo verbose
+						;;
+					*)
+						echo unknown
+						exit 1
+						;;
+				esac
+			done
+			shift
+			;;
+	esac
+done
+
+# If we have a flavor, turn it into a useful $WIDTH
+
+if [ "$FLAVOR" != none ]; then
+	case "$FLAVOR" in
+		bespoke)
+			WIDTH=2
+			;;
+		*)
+			echo tabify-tree: invalid flavor -- $FLAVOR >&2
+			exit 2
+			;;
+	esac
+fi
+
+# Did the user let us down and not provide enough to get a width?
+
+if ! [[ $WIDTH > 0 ]]; then
+	echo tabify-tree: either -f or -w required >&2
+	echo Try \'tabify-tree -h\' for more information. >&2
+	exit 1
+fi
+
+# Build the list of package manager-controlled crap we exclude
+# Supports Git, Ruby, Node.js, and HTML frontend assets. Any other language or VCS isn't well-defined or isn't worth caring about.
+EXCLUSION_ARGS=''
+for dir in .git .gem .bundle .bundler node_modules package.json bower_components bower.json; do
+	EXCLUSION_ARGS="$EXCLUSION_ARGS ! -path */$dir/*"
+done
+
+# Warn that we don't handle .editorconfig
+if [ -e .editorconfig ]; then
+	echo tabify-tree: warning: found .editorconfig file but not adjusting >&2
+fi
+
+# After all that, invoke this anticlimactic oneliner
+# We're already using bash, so let's just say 'fuck it' to portability and assume we've got GNU -print0, too
+find . $EXCLUSION_ARGS -type f -print0 | xargs -0 -n 1 $XARGS_OPTS -- sed -i '' "s/$(printf ' %.0s' $(seq 1 $WIDTH))/	/g"
