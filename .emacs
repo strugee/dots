@@ -224,7 +224,8 @@
 	 ((freenode "alex" ,znc-password)
 	  (moznet "alex" ,znc-password)
 	  (oftc "alex" ,znc-password)
-	  (gimpnet "alex" ,znc-password)))))
+	  (gimpnet "alex" ,znc-password)
+	  (W3C "alex" ,znc-password)))))
 
 (znc-all)
 
