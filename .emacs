@@ -273,8 +273,8 @@
 (setq js2-include-node-externs t)
 (smart-tabs-advice js2-indent-line js2-basic-offset)
 
-; mutt
-(add-to-list 'auto-mode-alist '("/mutt" . mail-mode))
+; org-mode
+(setq org-log-done t)
 
 ; TODO:
 ; apache-mode
