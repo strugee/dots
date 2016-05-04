@@ -1,0 +1,24 @@
+#!/bin/sh
+
+echo '[General]
+StartWithLastProfile=1
+'
+
+count=0
+
+for i in $((for j in Profiles/*; do
+	echo $(stat -f %B "$j") $j
+done) | sort | colrm 1 11) ; do
+	echo [Profile$count]
+	echo 'Name='$(echo $i | cut -d'.' -f 2)
+	echo IsRelative=1
+	echo Path=$i
+	if [ $count = 0 ]; then
+		echo Default=1
+	else
+		echo Default=0
+	fi
+	echo
+	
+	count=$(($count + 1))
+done
