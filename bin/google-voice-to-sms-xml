@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+
+import argparse
+
+parser = argparse.ArgumentParser(description='Transform Google Voice HTML data into SMS Backup & Restore-compatible XML.')
+parser.add_argument('source_dir', help='Source directory to read HTML data from', default='.', type=open)
+parser.add_argument('xml_fd', help='XML output file', default='GoogleVoiceSMS.xml', metavar='output', type=open)
+args = parser.parse_args()
+
+
