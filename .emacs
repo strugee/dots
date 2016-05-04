@@ -248,11 +248,10 @@
 (setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode)) auto-mode-alist))
 
 ; Python mode
-(add-hook 'python-mode-hook
-	  (lambda ()
-	    (setq indent-tabs-mode t)
-	    (setq python-indent 8)
-	    (setq tab-width 8)))
+(add-hook 'python-mode-hook 'guess-style-guess-tabs-mode)
+(add-hook 'python-mode-hook (lambda ()
+			      (when indent-tabs-mode
+				(guess-style-guess-tab-width))))
 
 ; HTML mode
 (add-hook 'html-mode-hook
