@@ -8,6 +8,7 @@ accounts = steevie
 localrepository = Local
 remoterepository = Remote
 connections = 20
+autorefresh = 15
 
 [Repository Local]
 type = Maildir
