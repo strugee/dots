@@ -86,6 +86,11 @@ if [ -d /opt/android-sdk/platform-tools ]; then
 	export PATH="$PATH:/opt/android-sdk/platform-tools"
 fi
 
+# nvm
+if [ -f /usr/share/nvm/init-nvm.sh ]; then
+	source /usr/share/nvm/init-nvm.sh
+fi
+
 # Hyak
 if type qsub &> /dev/null; then
 	PATH="/com/local/bin:$PATH"
