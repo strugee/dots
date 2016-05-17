@@ -113,4 +113,6 @@ PATH=$PATH:~/.bin/moz-git-tools
 # Colorized Pacman output
 alias pacman="pacman --color auto"
 
+alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
+
 #_byobu_sourced=1 . /usr/bin/byobu-launch
