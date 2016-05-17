@@ -18,7 +18,7 @@
 # 
 # Exit status is 0 upon success, nonzero upon error.
 
-# Targets POSIX-compliant shells - no less, and no more.
+# Targets POSIX-compliant systems - no less, and no more.
 
 export POSIXLY_CORRECT=
 
