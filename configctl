@@ -16,7 +16,7 @@
 # The 'precompile' action precompiles zsh scripts, and is dependent on 'link' and 'preload'.
 # The 'check' action searches for common binaries and reports if they are missing.
 # 
-# Exit status is 0 upon success, nonzero upon error.
+# Exit status is 0 upon success, 1 upon a sanity check error, 2 upon unimplemented functionality.
 
 # Targets POSIX-compliant systems - no less, and no more.
 
@@ -72,7 +72,7 @@ checkavailable() {
 	if command -v $1 2>&1 >/dev/null; then
 		loginfo "Detected $(type $1 | sed 's/is/as/')."
 	else
-		logfail "Failed to detect $1. Cannot $2."
+		logfail "Failed to detect $1. Cannot $2." 1
 	fi
 }
 
@@ -222,7 +222,7 @@ if ! [ -e "$TARGET_DIR" ]; then
 	logwarn "Target directory does not exist."
 	loginfo "Creating target directory $TARGET_DIR."
 	if ! mkdir -p "$TARGET_DIR"; then
-		logfail "Failed to create directory $TARGET_DIR."
+		logfail "Failed to create directory $TARGET_DIR." 1
 	fi
 fi
 logdbgr "Checking if target directory is a directory."
