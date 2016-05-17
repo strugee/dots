@@ -192,8 +192,9 @@ logdbgr "Checking if target directory exists."
 if ! [ -e "$TARGET_DIR" ]; then
 	logwarn "Target directory does not exist."
 	loginfo "Creating target directory $TARGET_DIR."
-	mkdir -p "$TARGET_DIR"
-	# TODO handle errors
+	if ! mkdir -p "$TARGET_DIR"; then
+		logfail "Failed to create directory $TARGET_DIR."
+	fi
 fi
 logdbgr "Checking if target directory is a directory."
 if ! [ -d "$TARGET_DIR" ]; then
