@@ -101,6 +101,11 @@ checkssh() {
 	logdbgr "Done checking for$DESCRIPTION SSH key."
 }
 
+clone_from_git() {
+	logdbgr "Cloning $1."
+	git clone "$2" "$TARGET_DIR/$3"
+}
+
 print_help() {
 cat <<EOF
 Usage: ./configctl [ACTION]
@@ -307,12 +312,9 @@ action_preload() {
 	loginfo "Cloning resources from git..."
 	# TODO: handle errors
 	# TODO: print logs for each clone operation
-	logdbgr "Cloning oh-my-zsh."
-	git clone 'git://github.com/robbyrussell/oh-my-zsh' "$TARGET_DIR"/.oh-my-zsh
-	logdbgr "Cloning Antigen."
-	git clone 'git://github.com/zsh-users/antigen.git' "$TARGET_DIR"/antigen
-	logdbgr "Cloning moz-git-tools."
-	git clone 'git://github.com/mozilla/moz-git-tools.git' "$TARGET_DIR"/.bin/moz-git-tools
+	clone_from_git oh-my-zsh 'git://github.com/robbyrussell/oh-my-zsh' .oh-my-zsh
+	clone_from_git Antigen 'git://github.com/zsh-users/antigen.git' antigen
+	clone_from_git moz-git-tools 'git://github.com/mozilla/moz-git-tools.git' .bin/moz-git-tools
 	logdbgr "Initializing moz-git-tools submodules."
 	logdbgr "Changing working directory to $TARGET_DIR/.bin/moz-git-tools."
 	cd "$TARGET_DIR"/.bin/moz-git-tools
