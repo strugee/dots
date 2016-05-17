@@ -102,8 +102,32 @@ checkssh() {
 }
 
 clone_from_git() {
-	logdbgr "Cloning $1."
-	git clone "$2" "$TARGET_DIR/$3"
+	# TODO Handle submodles
+	if [ -d "$TARGET_DIR/$3" ]; then
+		loginfo "$1 already cloned; pulling with rebase..."
+		logdbgr "Changing working directory to $TARGET_DIR/$3."
+		cd "$TARGET_DIR/$3"
+		if git pull --rebase; then
+			loginfo "Done pulling with rebase."
+		else
+			logwarn "Failed to pull with rebase."
+		fi
+	else
+		if [ -e "$TARGET_DIR/$3" ]; then
+			logwarn "$3 exists but is not a directory. Failed to clone $1."
+		else
+			logdbgr "Changing working directory to $CONFIG_DIR."
+			logdbgr "Cloning $1..."
+			if git clone "$2" "$TARGET_DIR/$3"; then
+				loginfo "Done cloning $1."
+			else
+				logwarn "Failed to clone $1."
+			fi
+		fi
+	fi
+
+	logdbgr "Changing working directory to $CONFIG_DIR."
+	cd "$CONFIG_DIR"
 }
 
 print_help() {
@@ -310,8 +334,6 @@ action_misc() {
 
 action_preload() {
 	loginfo "Cloning resources from git..."
-	# TODO: handle errors
-	# TODO: print logs for each clone operation
 	clone_from_git oh-my-zsh 'git://github.com/robbyrussell/oh-my-zsh' .oh-my-zsh
 	clone_from_git Antigen 'git://github.com/zsh-users/antigen.git' antigen
 	clone_from_git moz-git-tools 'git://github.com/mozilla/moz-git-tools.git' .bin/moz-git-tools
