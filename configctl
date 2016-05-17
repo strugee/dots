@@ -47,21 +47,22 @@ fi
 
 # UTILITY FUNCTIONS
 
+# printf for these guys because echo -e isn't portable
 logdbgr() {
-	echo "[\033[35mdbgr\033[0m] $1"
+	printf "[\033[35mdbgr\033[0m] $1\n"
 }
 
 loginfo() {
-	echo "[\033[36minfo\033[0m] $1"
+	printf "[\033[36minfo\033[0m] $1\n"
 }
 
 logwarn() {
-	echo "[\033[33mwarn\033[0m] $1"
+	printf "[\033[33mwarn\033[0m] $1\n"
 	NUM_WARNINGS=$(($NUM_WARNINGS + 1))
 }
 
 logfail() {
-	echo "[\033[31mfail\033[0m] $1"
+	printf "[\033[31mfail\033[0m] $1\n"
 	echo "Finished unsuccessfully, with 1 failure, $NUM_WARNINGS warning(s), and 0 migrations."
 	exit $2
 }
