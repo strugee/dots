@@ -354,7 +354,8 @@ action_preload() {
 
 	loginfo "Patching ZNC.el..."
 	cd "$TARGET_DIR"/.emacs.d/elpa/znc-*
-	curl https://github.com/rschuetzler/ZNC.el/commit/e58db9afef82957ffcea6a72977f5f2b4fb53d05.patch | patch
+	# TODO: is patch -N portable?
+	curl https://github.com/rschuetzler/ZNC.el/commit/e58db9afef82957ffcea6a72977f5f2b4fb53d05.patch | patch -N
 	# FIXME
 	#emacs --eval "(byte-recompile-directory $TARGET_DIR/\.emacs\.d/elpa/znc-*/ 0)"
 	cd $CONFIG_DIR
