@@ -16,7 +16,7 @@
 # The 'precompile' action precompiles zsh scripts, and is dependent on 'link' and 'preload'.
 # The 'check' action searches for common binaries and reports if they are missing.
 # 
-# Exit status is 0 upon success, 1 upon a sanity check error, 2 upon unimplemented functionality.
+# Exit status is 0 upon success; 1 upon a sanity check error; 2 upon unimplemented functionality; 3 upon failed migration.
 
 # Targets POSIX-compliant systems - no less, and no more.
 
@@ -274,6 +274,32 @@ action_migrate() {
 		rm -rf $TARGET_DIR/.emacs.d/elpa/git-rebase-mode*
 		printf " done.\n"
 	fi
+	if [ -d $TARGET_DIR/.bin/todotxt ]; then
+		printf "Detected obsolete todotxt bin directory, moving..."
+		if mv $TARGET_DIR/.bin/todotxt $TARGET_DIR/.bin/todo.txt-cli; then
+			printf " done.\n"
+		else
+			logfail "Failed to move obsolete todotxt bin directory. You should remove all todo.txt-related files and rerun configctl." 3
+		fi
+		NUM_MIGRATIONS=$(($NUM_MIGRATIONS + 1))
+
+		printf "Detected obsolete todo_completion symlink, fixing..."
+		if rm "$TARGET_DIR"/.bin/bash_completion/todo_completion && ln -s "$TARGET_DIR"/.bin/todo.txt-cli/todo.txt_cli-2.10/todo_completion "$TARGET_DIR"/.bin/bash_completion; then
+			printf " done.\n"
+		else
+			logfail "Failed to fix obsolete todo_completion symlink. You should remove all todo.txt-related files and rerun configctl." 3
+		fi
+		NUM_MIGRATIONS=$(($NUM_MIGRATIONS + 1))
+
+		printf "Detected obsolete todo.sh symlink, fixing..."
+		if rm "$TARGET_DIR"/.bin/bin/todo.sh && ln -s "$TARGET_DIR"/.bin/todo.txt-cli/todo.txt_cli-2.10/todo.sh "$TARGET_DIR"/.bin/bin; then
+			printf " done.\n"
+		else
+			logfail "Failed to fix obsolete todo.sh symlink. You should remove all todo.txt-related files and rerun configctl." 3
+		fi
+		NUM_MIGRATIONS=$(($NUM_MIGRATIONS + 1))
+	fi
+
 	if [ $NUM_MIGRATIONS = 0 ]; then
 		echo "Nothing to migrate."
 	fi
