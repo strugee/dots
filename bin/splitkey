@@ -1,0 +1,41 @@
+#!/usr/bin/python
+
+# https://bugzilla.mozilla.org/show_bug.cgi?id=790487
+
+import subprocess
+import glob
+import base64
+import textwrap
+import crcmod
+import struct
+
+keyid = "4ACA8B96"
+
+def make_gpg_crc(data):
+    CRC24_INIT = 0xB704CE
+    CRC24_POLY = 0x1864CFB
+    CRC = crcmod.Crc(CRC24_POLY, CRC24_INIT, False)
+        
+    CRC.update(data)
+    crc = CRC.digest()
+    return "=" + base64.b64encode(crc)
+
+# gpg --export --export-options export-minimal KEYID > ex2.key
+subprocess.call(["gpg", "--export", "--export-options", "export-minimal", "-o", "public.keys", keyid]);
+
+# gpgsplit ex2.key
+subprocess.call(["gpgsplit", "public.keys"])
+
+# http://superuser.com/questions/764465/how-to-ascii-armor-my-public-key-without-installing-gpg
+for key_filename in glob.glob("*.public_subkey"):
+    data = open(key_filename).read()
+    b64 = base64.b64encode(data)
+    print "-----BEGIN PGP PUBLIC KEY BLOCK-----"
+    print "Version: splitkey v1.0"
+    print
+    print "\n".join(textwrap.wrap(b64, 76))
+
+    # Checksum
+    # http://tools.ietf.org/html/rfc4880#section-6.1
+    print make_gpg_crc(data)
+    print "-----END PGP PUBLIC KEY BLOCK-----"
