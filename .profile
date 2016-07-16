@@ -48,7 +48,7 @@ if type ruby &> /dev/null && type gem &> /dev/null; then
 	# Fix Bundler behavior on Arch
 	export GEM_HOME="$(ruby -e 'print Gem.user_dir')"
 	# Add local Gems to PATH
-	PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+	PATH="$GEM_HOME/bin:$PATH"
 fi
 
 # add the sbins to the path on Debian, because it bugs me that they aren't there by default
@@ -69,9 +69,6 @@ if [ $(uname -s) = "Darwin" ]; then
 	# For Android
 	PATH="/Applications/Android SDK/tools:/Applications/Android SDK/platform-tools:$PATH"
 
-	# For Ruby gems. This should be done better with e.g. rvm, because Ruby upgrades will break the path, but I can't be bothered.
-	export GEMPATH=/usr/local/Cellar/ruby/2.1.0/lib/ruby/gems/2.1.0/gems/
-	
 	# Metasploit
 	PATH="$PATH:/opt/metasploit-framework/bin"
 
