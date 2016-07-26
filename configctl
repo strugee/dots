@@ -131,20 +131,23 @@ clone_from_git() {
 }
 
 download_from_tarball() {
-	if ! [ -d "$TARGET_DIR"/.bin/$1/todo.txt_cli-2.10 ]; then
+	NAME=$1
+	URL=$2
+	EXTRACTED_DIRECTORY=$3
+	if ! [ -d "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY ]; then
 		logdbgr "Downloading $1."
-		logdbgr "Changing working directory to $TARGET_DIR/.bin/todotxt."
-		cd "$TARGET_DIR"/.bin/$1
-		curl -L https://github.com/ginatrapani/todo.txt-cli/releases/download/v2.10/todo.txt_cli-2.10.tar.gz | gunzip | tar -x
+		logdbgr "Changing working directory to $TARGET_DIR/.bin/$1."
+		cd "$TARGET_DIR"/.bin/$NAME
+		curl -L $URL | gunzip | tar -x
 		# TODO: make this not hard-coded
 		# TODO: this doesn't handle already-existing links
-		chmod +x "$TARGET_DIR"/.bin/$1/todo.txt_cli-2.10/todo.sh
-		ln -s "$TARGET_DIR"/.bin/$1/todo.txt_cli-2.10/todo_completion "$TARGET_DIR"/.bin/bash_completion
-		ln -s "$TARGET_DIR"/.bin/$1/todo.txt_cli-2.10/todo.sh "$TARGET_DIR"/.bin/bin/todo.sh
+		chmod +x "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/todo.sh
+		ln -s "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/todo_completion "$TARGET_DIR"/.bin/bash_completion
+		ln -s "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/todo.sh "$TARGET_DIR"/.bin/bin/todo.sh
 		logdbgr "Changing working directory to $CONFIG_DIR."
 		cd $CONFIG_DIR
 	else
-		logdbgr "Skipping todo.txt-cli due to already-existing directory."
+		logdbgr "Skipping $NAME due to already-existing directory."
 	fi
 }
 
@@ -390,7 +393,7 @@ action_preload() {
 	loginfo "Done cloning resources from git."
 
 	loginfo "Downloading static tarballs..."
-	download_from_tarball todo.txt-cli
+	download_from_tarball todo.txt-cli https://github.com/ginatrapani/todo.txt-cli/releases/download/v2.10/todo.txt_cli-2.10.tar.gz todo.txt_cli-2.10
 
 	loginfo "Done downloading static tarballs."
 
