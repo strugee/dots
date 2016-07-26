@@ -134,6 +134,8 @@ download_from_tarball() {
 	NAME=$1
 	URL=$2
 	EXTRACTED_DIRECTORY=$3
+	SCRIPT_FILE=$4
+	COMPLETION_FILE=$5
 	if ! [ -d "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY ]; then
 		logdbgr "Downloading $1."
 		logdbgr "Changing working directory to $TARGET_DIR/.bin/$1."
@@ -141,9 +143,9 @@ download_from_tarball() {
 		curl -L $URL | gunzip | tar -x
 		# TODO: make this not hard-coded
 		# TODO: this doesn't handle already-existing links
-		chmod +x "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/todo.sh
-		ln -s "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/todo_completion "$TARGET_DIR"/.bin/bash_completion
-		ln -s "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/todo.sh "$TARGET_DIR"/.bin/bin/todo.sh
+		chmod +x "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/$SCRIPT_FILE
+		ln -s "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/$SCRIPT_FILE "$TARGET_DIR"/.bin/bin/$SCRIPT_FILE
+		ln -s "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/$COMPLETION_FILE "$TARGET_DIR"/.bin/bash_completion
 		logdbgr "Changing working directory to $CONFIG_DIR."
 		cd $CONFIG_DIR
 	else
@@ -393,7 +395,7 @@ action_preload() {
 	loginfo "Done cloning resources from git."
 
 	loginfo "Downloading static tarballs..."
-	download_from_tarball todo.txt-cli https://github.com/ginatrapani/todo.txt-cli/releases/download/v2.10/todo.txt_cli-2.10.tar.gz todo.txt_cli-2.10
+	download_from_tarball todo.txt-cli https://github.com/ginatrapani/todo.txt-cli/releases/download/v2.10/todo.txt_cli-2.10.tar.gz todo.txt_cli-2.10 todo.sh todo_completion
 
 	loginfo "Done downloading static tarballs."
 
