@@ -10,3 +10,5 @@
 	autosetuprebase = always
 [alias]
 	hate = blame
+[github]
+	user = strugee
