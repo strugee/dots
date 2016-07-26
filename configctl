@@ -101,11 +101,23 @@ checkssh() {
 	logdbgr "Done checking for$DESCRIPTION SSH key."
 }
 
+# This is extremely gross. Please forgive me - POSIX sh doesn't have `builtin`.
+
+setup_cd() {
+	cd() {
+		logdbgr "Changing working directory to $1."
+		unset -f cd
+		cd $1
+		setup_cd
+	}
+}
+
+setup_cd
+
 clone_from_git() {
 	# TODO Handle submodles
 	if [ -d "$TARGET_DIR/$3" ]; then
 		loginfo "$1 already cloned; pulling with rebase..."
-		logdbgr "Changing working directory to $TARGET_DIR/$3."
 		cd "$TARGET_DIR/$3"
 		if git pull --rebase; then
 			loginfo "Done pulling with rebase."
@@ -126,7 +138,6 @@ clone_from_git() {
 		fi
 	fi
 
-	logdbgr "Changing working directory to $CONFIG_DIR."
 	cd "$CONFIG_DIR"
 }
 
@@ -138,7 +149,6 @@ download_from_tarball() {
 	COMPLETION_FILE=$5
 	if ! [ -d "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY ]; then
 		logdbgr "Downloading $1."
-		logdbgr "Changing working directory to $TARGET_DIR/.bin/$1."
 		cd "$TARGET_DIR"/.bin/$NAME
 		curl -L $URL | gunzip | tar -x
 		# TODO: make this not hard-coded
@@ -146,7 +156,6 @@ download_from_tarball() {
 		chmod +x "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/$SCRIPT_FILE
 		ln -s "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/$SCRIPT_FILE "$TARGET_DIR"/.bin/bin/$SCRIPT_FILE
 		ln -s "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/$COMPLETION_FILE "$TARGET_DIR"/.bin/bash_completion
-		logdbgr "Changing working directory to $CONFIG_DIR."
 		cd $CONFIG_DIR
 	else
 		logdbgr "Skipping $NAME due to already-existing directory."
@@ -387,11 +396,9 @@ action_preload() {
 	clone_from_git Antigen 'git://github.com/zsh-users/antigen.git' antigen
 	clone_from_git moz-git-tools 'git://github.com/mozilla/moz-git-tools.git' .bin/moz-git-tools
 	logdbgr "Initializing moz-git-tools submodules."
-	logdbgr "Changing working directory to $TARGET_DIR/.bin/moz-git-tools."
 	cd "$TARGET_DIR"/.bin/moz-git-tools
 	git submodule update --init
 	cd $CONFIG_DIR
-	logdbgr "Changing working directory to $CONFIG_DIR."
 	loginfo "Done cloning resources from git."
 
 	loginfo "Downloading static tarballs..."
@@ -431,14 +438,12 @@ action_preload() {
 action_precompile() {
 	if [ $HAS_ZSH = 0 ]; then
 		loginfo "Precompiling zsh scripts..."
-		logdbgr "Changing working directory to $TARGET_DIR."
 		cd $TARGET_DIR
 		for i in $ZSH_PRECOMPILE; do
 			printf "Precompiling $i..."
 			zsh -c "zcompile $i"
 			printf " done.\n"
 		done
-		logdbgr "Changing working directory to $CONFIG_DIR."
 		cd $CONFIG_DIR
 		loginfo "Done precompiling zsh scripts."
 	else
