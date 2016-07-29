@@ -107,8 +107,8 @@ PATH=$PATH:~/.bin/bin
 # it's just more convenient to do it this way
 PATH=$PATH:~/.bin/moz-git-tools
 
-# Colorized Pacman output
-alias pacman="pacman --color auto"
+# Colorize Pacman output; assume Pacmatic is available everywhere because I'd rather fail than get plain Pacman
+alias pacman="pacmatic --color auto"
 
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 
