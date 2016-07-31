@@ -113,7 +113,14 @@
 ;
 ;;;;;;;;;;;;;;;;;
 
-(make-frame)
+(defconst irc-frame
+  (make-frame)
+  "Live frame intended to hold windows with ERC buffers")
+
+; IRC frame windows - top-bottom first, then right-left
+(split-window (frame-root-window irc-frame) nil 'below)
+(dolist (window (window-list irc-frame))
+  (split-window window nil 'right))
 
 ;;;;;;;;;;
 ;
