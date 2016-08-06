@@ -413,11 +413,11 @@ action_preload() {
 	loginfo "Done downloading static tarballs."
 
 	loginfo "Ensuring that package.el is available..."
-	# TODO: make this actually check the result of (require 'package) instead of just testing version
 	# TODO: clean an old package.el if Emacs has been upgraded
-	if [ $(emacs --version | head -1 | cut -d ' ' -f 3 | cut -d . -f 1) -lt 24 -a ! -e "$TARGET_DIR"/.emacs.d/lisp/package.el ]; then
-		logdbgr "Emacs version is too old to be distributed with package.el."
+	if emacs -Q --eval "(if (eq (require 'package nil t) nil) (kill-emacs 0) (kill-emacs 1))" -nw && [ ! -e "$TARGET_DIR"/.emacs.d/lisp/package.el ]; then
+		logdbgr "\(require 'package)\` failed, probably Emacs is too old to have package.el."
 		logdbgr "Downloading package.el."
+		# TODO: check if this can be HTTPS
 		curl 'http://git.savannah.gnu.org/gitweb/?p=emacs.git;a=blob_plain;hb=ba08b24186711eaeb3748f3d1f23e2c2d9ed0d09;f=lisp/emacs-lisp/package.el' > "$TARGET_DIR"/.emacs.d/lisp/package.el
 	fi
 	loginfo "Done ensuring that package.el is available."
