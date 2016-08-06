@@ -426,7 +426,7 @@ action_preload() {
 	loginfo "Ensuring that package.el is available..."
 	# TODO: clean an old package.el if Emacs has been upgraded
 	if check_emacs_package package && [ ! -e "$TARGET_DIR"/.emacs.d/lisp/package.el ]; then
-		logdbgr "\(require 'package)\` failed, probably Emacs is too old to have package.el."
+		logdbgr "\`(require 'package)\` failed, probably Emacs is too old to have package.el."
 		logdbgr "Downloading package.el."
 		# TODO: check if this can be HTTPS
 		curl 'http://git.savannah.gnu.org/gitweb/?p=emacs.git;a=blob_plain;hb=ba08b24186711eaeb3748f3d1f23e2c2d9ed0d09;f=lisp/emacs-lisp/package.el' > "$TARGET_DIR"/.emacs.d/lisp/package.el
