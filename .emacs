@@ -66,7 +66,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Save all tempfiles in $TMPDIR/emacs$UID/
-(defconst emacs-tmp-dir (format "%s/%s%s/" temporary-file-directory "emacs" (user-uid)))
+(defconst emacs-tmp-dir
+  (format "%s/%s%s/" temporary-file-directory "emacs" (user-uid)))
 (setq backup-directory-alist
 	`((".*" . ,emacs-tmp-dir)))
 (setq auto-save-file-name-transforms
@@ -81,6 +82,7 @@
 
 (server-start)
 
+; Don't break hard-tabs into spaces on DEL
 (setq backward-delete-char-untabify-method nil)
 
 ; Disable VC
