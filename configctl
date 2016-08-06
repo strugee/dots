@@ -353,6 +353,14 @@ action_migrate() {
 		NUM_MIGRATIONS=$(($NUM_MIGRATIONS + 1))
 	fi
 
+	# Remove manually-installed package.el if Emacs has been upgraded, i.e. if `(require 'package)` suddenly starts working
+	if check_emacs_package package && [ -e "$TARGET_DIR"/.emacs.d/lisp/package.el ]; then
+		printf "Detected now-unneeded package.el, removing..."
+		rm "$TARGET_DIR"/.emacs.d/lisp/package.el
+		NUM_MIGRATIONS=$(($NUM_MIGRATIONS + 1))
+		printf " done.\n"
+	fi
+
 	if [ $NUM_MIGRATIONS = 0 ]; then
 		echo "Nothing to migrate."
 	fi
@@ -424,7 +432,6 @@ action_preload() {
 	loginfo "Done downloading static tarballs."
 
 	loginfo "Ensuring that package.el is available..."
-	# TODO: clean an old package.el if Emacs has been upgraded
 	if ! check_emacs_package package && [ ! -e "$TARGET_DIR"/.emacs.d/lisp/package.el ]; then
 		logdbgr "\`(require 'package)\` failed, probably Emacs is too old to have package.el."
 		logdbgr "Downloading package.el."
