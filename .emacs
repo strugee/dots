@@ -233,7 +233,11 @@
 	  (gimpnet "alex" ,znc-password)
 	  (W3C "alex" ,znc-password)))))
 
-(znc-all)
+; TODO don't blindly swallow all errors
+; Instead we want to check if the error message exactly equals "znc.strugee.net/7000 nodename nor servname provided, or not known"
+(condition-case nil
+    (znc-all)
+  (error (message "ZNC initialization failure due to network connectivity problem")))
 
 ;;;;;;;;;;;;;
 ;
