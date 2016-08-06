@@ -96,6 +96,11 @@
 (add-to-list 'window-system-default-frame-alist
 	     '(ns (fullscreen . fullscreen)))
 
+; Session restore
+(desktop-save-mode 1)
+(setq desktop-auto-save-timeout 30)
+(savehist-mode)
+
 ;;;;;;;;;;;;;
 ;
 ; MODELINE
