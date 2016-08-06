@@ -282,6 +282,9 @@
 ; org-mode
 (setq org-log-done t)
 
+; git-commit-mode
+(global-git-commit-mode)
+
 ; TODO:
 ; apache-mode
 ; less-css-mode
