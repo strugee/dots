@@ -93,6 +93,8 @@
 
 ; Maximize all frames
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+(add-to-list 'window-system-default-frame-alist
+	     '(ns (fullscreen . fullscreen)))
 
 ;;;;;;;;;;;;;
 ;
