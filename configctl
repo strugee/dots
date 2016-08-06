@@ -162,7 +162,6 @@ download_from_tarball() {
 		logdbgr "Downloading $1."
 		cd "$TARGET_DIR"/.bin/$NAME
 		curl -L $URL | gunzip | tar -x
-		# TODO: make this not hard-coded
 		# TODO: this doesn't handle already-existing links
 		chmod +x "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/$SCRIPT_FILE
 		ln -s "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/$SCRIPT_FILE "$TARGET_DIR"/.bin/bin/$SCRIPT_FILE
