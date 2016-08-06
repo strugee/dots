@@ -101,6 +101,11 @@ checkssh() {
 	logdbgr "Done checking for$DESCRIPTION SSH key."
 }
 
+check_emacs_package() {
+	PACKAGE=$1
+	emacs -Q --eval "(if (eq (require '$PACKAGE nil t) nil) (kill-emacs 0) (kill-emacs 1))" -nw
+}
+
 # This is extremely gross. Please forgive me - POSIX sh doesn't have `builtin`.
 
 setup_cd() {
@@ -420,7 +425,7 @@ action_preload() {
 
 	loginfo "Ensuring that package.el is available..."
 	# TODO: clean an old package.el if Emacs has been upgraded
-	if emacs -Q --eval "(if (eq (require 'package nil t) nil) (kill-emacs 0) (kill-emacs 1))" -nw && [ ! -e "$TARGET_DIR"/.emacs.d/lisp/package.el ]; then
+	if check_emacs_package package && [ ! -e "$TARGET_DIR"/.emacs.d/lisp/package.el ]; then
 		logdbgr "\(require 'package)\` failed, probably Emacs is too old to have package.el."
 		logdbgr "Downloading package.el."
 		# TODO: check if this can be HTTPS
