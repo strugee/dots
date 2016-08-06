@@ -114,12 +114,22 @@ setup_cd() {
 
 setup_cd
 
+handle_submodules() {
+	logdbgr "Handling submodules..."
+
+	if git submodule update --init; then
+		logdbgr "Done handling submodules."
+	else
+		logwarn "Failed to handle submodules."
+	fi
+}
+
 clone_from_git() {
-	# TODO Handle submodles
 	if [ -d "$TARGET_DIR/$3" ]; then
 		loginfo "$1 already cloned; pulling with rebase..."
 		cd "$TARGET_DIR/$3"
 		if git pull --rebase; then
+			handle_submodules
 			loginfo "Done pulling with rebase."
 		else
 			logwarn "Failed to pull with rebase."
@@ -131,6 +141,7 @@ clone_from_git() {
 			logdbgr "Changing working directory to $CONFIG_DIR."
 			logdbgr "Cloning $1..."
 			if git clone "$2" "$TARGET_DIR/$3"; then
+				handle_submodules
 				loginfo "Done cloning $1."
 			else
 				logwarn "Failed to clone $1."
@@ -395,10 +406,6 @@ action_preload() {
 	clone_from_git oh-my-zsh 'git://github.com/robbyrussell/oh-my-zsh' .oh-my-zsh
 	clone_from_git Antigen 'git://github.com/zsh-users/antigen.git' antigen
 	clone_from_git moz-git-tools 'git://github.com/mozilla/moz-git-tools.git' .bin/moz-git-tools
-	logdbgr "Initializing moz-git-tools submodules."
-	cd "$TARGET_DIR"/.bin/moz-git-tools
-	git submodule update --init
-	cd $CONFIG_DIR
 	loginfo "Done cloning resources from git."
 
 	loginfo "Downloading static tarballs..."
@@ -429,10 +436,7 @@ action_preload() {
 	cd $CONFIG_DIR
 	loginfo "Done patching ZNC.el."
 
-	loginfo "Handling submodules..."
-	cd $CONFIG_DIR
-	git submodule update --init
-	loginfo "Done handling submodules."
+	handle_submodules
 }
 
 action_precompile() {
