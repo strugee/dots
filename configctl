@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -
 
 # configctl - control config setup and installation
  
