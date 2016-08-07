@@ -1,6 +1,6 @@
 [connection]
-defaccount=strugee@member.fsf.org
-account=strugee@member.fsf.org
+defaccount=alex@strugee.net
+account=alex@strugee.net
 
 autoping=0
 
