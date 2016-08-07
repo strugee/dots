@@ -401,7 +401,21 @@ action_link() {
 	loginfo "Done installing hardlinks."
 
 	loginfo "Installing configuration directory symlinks..."
-	logwarn "Installing configuration directory symlinks is unimplemented."
+	for i in $LINK_DIRS; do
+		printf "Installing $i..."
+		if [ $CONFIG_DIR/$i -ef "$TARGET_DIR"/$i  ]; then
+			printf " skipped.\n"
+			continue;
+		elif [ -e "$TARGET_DIR"/$i ]; then
+			printf " aborted.\n"
+			logwarn "Refusing to overwrite file $TARGET_DIR/$i."
+			continue;
+		fi
+		# TODO: make this relative, _maybe_
+		ln -s $CONFIG_DIR/$i "$TARGET_DIR/$i"
+
+		printf " done.\n"
+	done
 	loginfo "Done installing configuration directory symlinks."
 
 	loginfo "Installing symlinks nested in a directory..."
