@@ -4,6 +4,9 @@ account=strugee@member.fsf.org
 
 autoping=0
 
+receipts.request=true
+receipts.send=true
+
 carbons=true
 
 [ui]
