@@ -73,6 +73,8 @@ if [ $(uname -s) = "Darwin" ]; then
 	PATH="$PATH:/opt/metasploit-framework/bin"
 
 	export PATH
+
+	export NVM_DIR="$HOME/.nvm"
 fi
 
 if [ -f /usr/bin/pacmatic ]; then
