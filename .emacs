@@ -320,7 +320,7 @@
 ;(require 'hardcore-mode)
 ;(global-hardcore-mode)
 
-(linum-mode)
+(global-linum-mode)
 
 ; TODO:
 ; display-theme-mode
