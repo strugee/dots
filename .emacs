@@ -113,6 +113,8 @@
 (setq powerline-default-separator 'wave)
 (setq spaceline-window-numbers-unicode t)
 
+(setq spaceline-erc-track-p nil)
+
 (require 'nyan-mode)
 (nyan-mode)
 
