@@ -114,4 +114,6 @@ alias pacman="pacmatic --color auto"
 
 alias sprunge="curl -F 'sprunge=<-' http://sprunge.us"
 
+alias upload-weekly-report="scp ~/ownCloud/gap-year-time-tracking.html steevie:public_html/gap-year-reports.html"
+
 #_byobu_sourced=1 . /usr/bin/byobu-launch
