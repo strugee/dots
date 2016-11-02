@@ -44,7 +44,7 @@ fi
 #	export $(echo $_GNOME_KEYRING_INFO | grep GPG_AGENT_INFO)
 #fi
 
-if type ruby &> /dev/null && type gem &> /dev/null; then
+if ! [ $(uname) == Darwin ] && type ruby &> /dev/null && type gem &> /dev/null; then
 	# Fix Bundler behavior on Arch
 	export GEM_HOME="$(ruby -e 'print Gem.user_dir')"
 	# Add local Gems to PATH
