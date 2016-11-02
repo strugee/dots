@@ -100,3 +100,12 @@ fi
 source ~/.bin/bash_completion/*
 
 source ~/.zprofile
+
+# This would be better in .profile, but unfortunately that needs to be only POSIX and POSIX doesn't have `command`
+function git() {
+	if [[ $@ == 'log' ]]; then
+		command git log --graph
+	else
+		command git $@
+	fi
+}
