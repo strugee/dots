@@ -36,11 +36,44 @@ vercheck=true
 enc.warn=true
 
 time.console=%H:%M:%S
-time.chat=%H:%M:%S
-time.muc=%H:%M:%S
-time.mucconfig=%H:%M:%S
-time.private=%H:%M:%S
+time.chat=%d/%m/%y %H:%M:%S
+time.muc=%d/%m/%y %H:%M:%S
+time.mucconfig=off
+time.private=%d/%m/%y %H:%M:%S
 time.xmlconsole=%H:%M:%S
+
+wins.autotidy=true
+occupants.jid=false
+roster.resource.join=true
+roster.presence=true
+roster.status=true
+roster.empty=false
+roster.wrap=true
+roster.count.zero=false
+roster.priority=false
+roster.contacts=true
+roster.unsubscribed=true
+roster.rooms=true
+tls.show=true
+time.statusbar=%H:%M:%S
+time.lastactivity=%d/%m/%y %H:%M:%S
+console.muc=first
+console.private=all
+console.chat=all
+roster.order=presence
+roster.unread=after
+roster.rooms.order=name
+roster.rooms.unread=after
+roster.rooms.pos=last
+roster.rooms.by=none
+roster.private=room
+roster.count=unread
+roster.header.char=@
+roster.resource.char=/
+roster.rooms.private.char=/
+roster.contact.indent=1
+roster.resource.indent=1
+roster.presence.indent=-1
 
 [logging]
 chlog=true
@@ -61,3 +94,9 @@ invite=true
 [chatstates]
 outtype=true
 enabled=true
+
+[otr]
+otr.char=@
+
+[pgp]
+pgp.char=%
