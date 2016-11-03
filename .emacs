@@ -57,7 +57,7 @@
     (unless (package-installed-p package)
       (package-install package))))
 
-(ensure-packages '(solarized-theme markdown-mode stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext eide powershell annoying-arrows-mode json-mode jade-mode editorconfig magit magit-gh-pulls orgit gist git-link git-messenger gitattributes-mode gitconfig gitconfig-mode github-browse-file github-clone gitignore-mode nyan-prompt bug-reference-github xkcd telepathy znc todotxt frame-cmds maxframe js2-mode smart-tabs-mode muttrc-mode spaceline window-numbering coffee-mode yaml-mode))
+(ensure-packages '(solarized-theme markdown-mode stupid-indent-mode pkgbuild-mode nyan-mode 2048-game apache-mode display-theme less-css-mode know-your-http-well lua-mode lorem-ipsum list-processes+ melpa-upstream-visit mediawiki grunt hardcore-mode hackernews ham-mode list-packages-ext eide powershell annoying-arrows-mode json-mode jade-mode editorconfig magit magit-gh-pulls orgit gist git-link git-messenger gitattributes-mode gitconfig gitconfig-mode github-browse-file github-clone gitignore-mode nyan-prompt bug-reference-github xkcd telepathy znc todotxt frame-cmds maxframe js2-mode smart-tabs-mode muttrc-mode spaceline window-numbering coffee-mode yaml-mode sed-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
@@ -383,7 +383,7 @@
  '(magit-use-overlays nil)
  '(package-selected-packages
    (quote
-    (yaml-mode znc xkcd window-numbering todotxt telepathy sudo-ext stupid-indent-mode spaceline solarized-theme smart-tabs-mode powershell pkgbuild-mode orgit org-magit nyan-prompt nyan-mode muttrc-mode melpa-upstream-visit mediawiki maxframe markdown-mode+ magit-tramp magit-gh-pulls magit-filenotify lua-mode lorem-ipsum list-processes+ list-packages-ext less-css-mode know-your-http-well json-mode js2-mode jade-mode hardcore-mode ham-mode hackernews grunt gitignore-mode github-clone github-browse-file gitconfig-mode gitconfig gitattributes-mode git-messenger git-link gist frame-cmds eide editorconfig-core editorconfig display-theme coffee-mode bug-reference-github bbcode-mode apache-mode annoying-arrows-mode 2048-game))))
+    (sed-mode yaml-mode znc xkcd window-numbering todotxt telepathy sudo-ext stupid-indent-mode spaceline solarized-theme smart-tabs-mode powershell pkgbuild-mode orgit org-magit nyan-prompt nyan-mode muttrc-mode melpa-upstream-visit mediawiki maxframe markdown-mode+ magit-tramp magit-gh-pulls magit-filenotify lua-mode lorem-ipsum list-processes+ list-packages-ext less-css-mode know-your-http-well json-mode js2-mode jade-mode hardcore-mode ham-mode hackernews grunt gitignore-mode github-clone github-browse-file gitconfig-mode gitconfig gitattributes-mode git-messenger git-link gist frame-cmds eide editorconfig-core editorconfig display-theme coffee-mode bug-reference-github bbcode-mode apache-mode annoying-arrows-mode 2048-game))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
