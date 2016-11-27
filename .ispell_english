@@ -8,16 +8,19 @@ app
 apps
 avatar
 AWS
+bikeshed
 bugfix
 bugfixes
 CA
 CentOS
 chatroom
 CI
+cjdns
 CLI
 codebase
 config
 Conservancy
+CryptoParties
 CryptoParty
 CSV
 deb
@@ -32,6 +35,7 @@ GeoJSON
 gory
 GPG
 Homebrew
+homegrown
 HTTPS
 inode
 inodes
@@ -45,10 +49,14 @@ keepalive
 LFNW
 LibreJS
 LibreOffice
+LibrePlanet
 LinuxFest
 localhost
 ls
 MediaGoblin
+meshnet
+meshnets
+MVP
 Nagios
 npm
 nuked
@@ -61,6 +69,7 @@ rm
 ruleset
 SAAS
 setuid
+shitstorm
 sourced
 StatusNet
 stderr
@@ -88,4 +97,5 @@ utml
 versioning
 WebSocket
 whoo
+wiki
 XSS
