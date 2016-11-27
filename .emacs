@@ -272,8 +272,8 @@
 
 ; HTML mode
 (add-hook 'html-mode-hook
-(lambda()
-            (setq sgml-basic-offset 4)
+	  (lambda()
+            (setq sgml-basic-offset 8)
             (setq indent-tabs-mode t)))
 
 ; todotxt mode
