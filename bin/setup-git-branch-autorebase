@@ -1,0 +1,12 @@
+for i in */; do
+	cd "$i"
+
+	if ! test -d .git; then
+		cd ..
+		continue
+	fi
+
+	git branch -q | sed 's/. //g' | xargs -n 1 -I % git config branch.%.rebase true
+
+	cd ..
+done
