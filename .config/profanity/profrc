@@ -9,6 +9,8 @@ receipts.send=true
 
 carbons=true
 
+reconnect=3
+
 [ui]
 beep=false
 history=true
