@@ -1,0 +1,6 @@
+#!/bin/sh
+
+while true; do
+	ssh steevie-boot && break
+	sleep 1
+done
