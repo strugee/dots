@@ -504,13 +504,15 @@ action_check() {
 	if ! [ $(echo "$CONFIG_DATA" | grep headless) ]; then
 		checkavailable_warn parcimonie
 		checkavailable_warn offlineimap
-		checkavailable_warn firefox-nightly
-		checkavailable_warn terminator
 		checkavailable_warn profanity
-		checkavailable_warn secret-tool
-		# TODO: check for the presence of Profanity keyring secrets
-		checkavailable_warn xclip
 		checkavailable_warn mutt
+		if ! [ $(echo "$CONFIG_DATA" | grep darwin) ]; then
+			# TODO: check for the presence of Profanity keyring secrets
+			checkavailable_warn xclip
+			checkavailable_warn secret-tool
+			checkavailable_warn firefox-nightly
+			checkavailable_warn terminator
+		fi
 	fi
 	if ! [ $(echo "$CONFIG_DATA" | grep no-nodejs) ]; then
 		checkavailable_warn node

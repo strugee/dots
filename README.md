@@ -29,6 +29,8 @@ To put it another way, `configctl` knows how to bootstrap most of the environmen
 | `no-ssh`    | Specifies that `configctl check` should not warn if it cannot find a general-purpose SSH key.                                                 |
 | `headless`  | Specifies that `configctl check` should not warn if it cannot find programs that would only make sense to have under a graphical environment. |
 | `no-nodejs` | Specifies that `configctl check` should assume that Node.js is not available.                                                                 |
+| `darwin`    | Specifies that `configctl check` is running on a Darwin (macOS) system. Linux is assumed otherwise.                                           |
+
 ## License
 
 Unless otherwise noted, the contents of this repository are licensed under [the WTFPL][1].
