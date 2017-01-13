@@ -25,13 +25,13 @@ wrap=true
 resource.title=true
 resource.message=true
 statuses.console=all
-statuses.chat=all
-statuses.muc=all
+statuses.chat=none
+statuses.muc=none
 occupants.size=15
 roster=true
 roster.offline=true
 roster.resource=true
-roster.by=presence
+roster.by=group
 roster.size=25
 vercheck=true
 
