@@ -4,7 +4,21 @@
 
 This repository contains my personal dotfiles. Most of it is geared towards a git-, Emacs-, and zsh-centric workflow. You'll also find some legacy files for e.g. bash that haven't been touched in ages.
 
-This repository also contains a useful script called `configctl`, which is used to manage all the files in this repository. It's semi-automatic and is pretty easy to understand (`head -25 configctl` will show a nice overview of the parameters, and you can get a nice help summary by executing `./configctl help`).
+This repository also contains a pretty useful script called `configctl`, which is used to manage all the files in this repository. It's very smart, fully automatic, and is pretty easy to understand (`head -25 configctl` will show a nice overview of the parameters, and you can get a nice help summary by executing `./configctl help`).
+
+`configctl` knows how to:
+
+* Link configurations into place
+* Install tools in ~ from both git clones and tarballs
+* Preinstall Emacs packages
+* Migrate old configurations
+* Precompile zsh scripts
+* Check for common binaries that I expect to have available
+* Perform other miscellaneous tasks
+
+To put it another way, `configctl` knows how to bootstrap most of the environment I expect by itself, and it knows how to tell me what's missing for almost all of the rest.
+
+`configctl` requires only POSIX, so it will run under almost any Unix under the sun.
 
 ## local-config
 
