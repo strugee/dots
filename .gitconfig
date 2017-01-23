@@ -14,3 +14,5 @@
 	user = strugee
 [core]
 	editor = emacsclient -nw
+[help]
+	autoCorrect = -1
