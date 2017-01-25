@@ -16,3 +16,5 @@
 	editor = emacsclient -nw
 [help]
 	autoCorrect = -1
+[commit]
+	gpgSign = true
