@@ -87,12 +87,6 @@ source $ZSH/oh-my-zsh.sh
 # export PATH=$PATH:~/bin
 
 # TODO
-# should probably be in .profile, since it's generic to all shells.
-if [[ DISTRO == "DARWIN" ]]; then
-	export PATH=/usr/local/bin:$PATH
-fi
-
-# TODO
 if [ -d ~/.local/bin/ ]; then
 	export PATH=$PATH:~/.local/bin/
 fi
