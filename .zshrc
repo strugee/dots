@@ -54,7 +54,7 @@ fi
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-base_plugins=(git cp rails hg colorize battery colored-man)
+base_plugins=(git cp rails hg colorize battery colored-man history-substring-search)
 
 # Generic base plugins
 plugins=($base_plugins)
@@ -69,10 +69,6 @@ if [[ DISTRO == DARWIN ]]; then
 	plugins=($base_plugins osx brew)
 fi
 
-source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
-
 # Use Antigen
 source ~/antigen/antigen.zsh
 
@@ -81,6 +77,11 @@ antigen bundles <<EOF
 EOF
 
 antigen apply
+
+# We load zsh after Antigen because apparently history-substring-search is incompatible with zsh-syntax-highlighting
+source $ZSH/oh-my-zsh.sh
+
+# Customize to your needs...
 
 # done in .profile nowadays
 # export PATH=$PATH:~/bin
