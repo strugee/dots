@@ -60,12 +60,12 @@ base_plugins=(git cp rails hg colorize battery colored-man history-substring-sea
 plugins=($base_plugins)
 
 # Arch Linux plugins
-if [[ DISTRO == ARCH ]]; then
+if [[ $DISTRO == ARCH ]]; then
 	plugins=($base_plugins archlinux)
 fi
 
 # Mac OS X plugins
-if [[ DISTRO == DARWIN ]]; then
+if [[ $DISTRO == DARWIN ]]; then
 	plugins=($base_plugins osx brew)
 fi
 
