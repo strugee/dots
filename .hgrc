@@ -1,6 +1,7 @@
 [ui]
 username = Alex Jordan <alex@strugee.net>
 interface = curses
+editor = emacsclient -nw
 [diff]
 git = 1
 showfunc = 1
