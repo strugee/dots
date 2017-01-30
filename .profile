@@ -75,6 +75,7 @@ if [ $(uname -s) = "Darwin" ]; then
 	export PATH
 
 	export NVM_DIR="$HOME/.nvm"
+	source $(brew --prefix nvm)/nvm.sh
 fi
 
 if [ -f /usr/bin/pacmatic ]; then
