@@ -409,7 +409,7 @@ action_link() {
 			continue;
 		elif [ -e "$TARGET_DIR"/$i ]; then
 			printf " aborted.\n"
-			logwarn "Refusing to overwrite file $TARGET_DIR/$i."
+			logwarn "Refusing to overwrite directory $TARGET_DIR/$i."
 			continue;
 		fi
 		# TODO: make this relative, _maybe_
