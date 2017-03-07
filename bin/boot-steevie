@@ -1,6 +1,6 @@
 #!/bin/sh
 
 while true; do
-	ssh steevie-boot && break
-	sleep 1
+	if ssh steevie-boot; then break; fi
+	sleep 3
 done
