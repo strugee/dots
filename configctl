@@ -1,6 +1,8 @@
 #!/bin/sh -
 
 # configctl - control config setup and installation
+
+# Licensed GPLv3+
  
 # Usage: ./configctl [ACTION]
 # Control configuration file installation.
@@ -20,7 +22,11 @@
 
 # Targets POSIX-compliant systems - no less, and no more.
 
+# TODO call exec on this script if this isn't already exported, so the shell gets this too
+
 export POSIXLY_CORRECT=
+
+# TODO pull dotfile updates and reexec if anything changes
 
 # VARIABLE DECLARATIONS
 
@@ -46,6 +52,8 @@ else
 fi
 
 # UTILITY FUNCTIONS
+
+# TODO fix colors when running under (some versions of?) bash, not dash
 
 # printf for these guys because echo -e isn't portable
 logdbgr() {
@@ -208,6 +216,8 @@ EOF
 }
 
 # ARGUMENT PARSING
+
+# TODO fix this hot mess to support short options
 
 ACTIONS="install uninstall prepare migrate link misc preload precompile check"
 
