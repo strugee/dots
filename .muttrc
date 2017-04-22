@@ -15,6 +15,7 @@ set sendmail="msmtp -oem -oi"
 set editor="emacsclient -nw"
 
 set sort="threads"
+set sort_aux = last-date-received
 set strict_threads=yes
 
 source ~/.mutt/gpg.rc
