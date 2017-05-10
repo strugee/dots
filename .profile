@@ -76,6 +76,8 @@ if [ $(uname -s) = "Darwin" ]; then
 
 	export NVM_DIR="$HOME/.nvm"
 	source $(brew --prefix nvm)/nvm.sh
+
+	export BROWSER=/Applications/Firefox\ Nightly.app/Contents/MacOS/firefox
 fi
 
 if [ -f /usr/bin/pacmatic ]; then
