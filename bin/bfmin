@@ -1,5 +1,7 @@
 #!/bin/sh -
 
+export POSIXLY_CORRECT=
+
 # TODO: doesn't properly handle shebang lines in -d mode
 
 print_help() {
