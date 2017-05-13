@@ -1,5 +1,7 @@
 #!/bin/sh -
 
+# TODO: script doesn't seem to work anymore? At least not on my Darwin system
+
 export POSIXLY_CORRECT=
 
 # TODO: doesn't properly handle shebang lines in -d mode
