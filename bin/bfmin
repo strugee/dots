@@ -50,4 +50,6 @@ else
 	REGEXP='[][+<>.,-]*'
 fi
 
+# TODO: this final grep adds a trailing newline but this is *definitely* an abuse of grep
+
 grep -o $REGEXP "$INPUT" | tr -d '\n' | grep '.*'
