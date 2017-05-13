@@ -23,7 +23,7 @@ if [ "$1" = --help ] || [ "$1" = -h ]; then
 fi
 
 if [ "$1" = '-d' ] || [ "$1" = '--enable-debugging' ]; then
-	ENABLE_DEBUGGING=0
+	ENABLE_DEBUGGING=true
 	# If there's a second argument, use it, otherwise use stdin
 	if [ ${2+x} ]; then
 		INPUT="$2"
@@ -31,11 +31,11 @@ if [ "$1" = '-d' ] || [ "$1" = '--enable-debugging' ]; then
 		INPUT=/dev/stdin
 	fi
 else if [ "$2" = '-d' ] || [ "$2" = '--enable-debugging' ]; then
-	ENABLE_DEBUGGING=0
+	ENABLE_DEBUGGING=true
 	# Since there's a second argument the first argument must be a filename
 	INPUT="$1"
 else
-	ENABLE_DEBUGGING=1
+	ENABLE_DEBUGGING=false
 	if [ ${1+x} ]; then
 		INPUT="$1"
 	else
@@ -44,7 +44,7 @@ else
 fi
 fi
 
-if [ $ENABLE_DEBUGGING = 0 ]; then
+if $ENABLE_DEBUGGING; then
 	REGEXP='[][+<>#.,-]*'
 else
 	REGEXP='[][+<>.,-]*'
