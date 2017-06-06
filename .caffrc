@@ -1,7 +1,7 @@
 # .caffrc
 # This file is in perl(1) format - see caff(1) for details.
 
-$CONFIG{'owner'} = 'Alex Jordan';
+$CONFIG{'owner'} = 'AJ Jordan';
 $CONFIG{'email'} = 'alex@strugee.net';
 
 $CONFIG{'keyid'} = [ qw{43BF769C4ACA8B96} ];

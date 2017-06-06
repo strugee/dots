@@ -6,8 +6,8 @@ set spoolfile=+/
 set header_cache=~/.cache/mutt
 set record=~/Maildir/Sent
 set postponed=~/Maildir/Drafts
-set realname="Alex Jordan"
-set from="Alex Jordan <alex@strugee.net>"
+set realname="AJ Jordan"
+set from="AJ Jordan <alex@strugee.net>"
 
 set envelope_from=yes
 set sendmail="msmtp -oem -oi"

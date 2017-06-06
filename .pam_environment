@@ -2,5 +2,5 @@ export EDITOR=nano
 export VISUAL=emacs
 export PAGER=less
 export EMAIL=alex@strugee.net
-export NAME="Alex Jordan"
+export NAME="AJ Jordan"
 export LESS="--quit-if-one-screen --RAW-CONTROL-CHARS"

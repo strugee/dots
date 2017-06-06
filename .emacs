@@ -151,7 +151,7 @@
        (autojoin button completion fill irccontrols list log match menu move-to-prompt netsplit networks noncommands notifications readonly ring stamp track)))
 (setq erc-nick "strugee")
 (setq erc-notifications-mode t)
-(setq erc-user-full-name "Alex Jordan")
+(setq erc-user-full-name "AJ Jordan")
 
 ; Control character handling customizations
 
@@ -208,13 +208,13 @@
   "Start to waste time on IRC with ERC."
   (interactive)
   (erc-tls :server "irc.oftc.net" :port 6697
-	   :nick "strugee" :full-name "Alex Jordan")
+	   :nick "strugee" :full-name "AJ Jordan")
   (erc-tls :server "chat.freenode.net" :port 6697
-	   :nick "strugee" :full-name "Alex Jordan")
+	   :nick "strugee" :full-name "AJ Jordan")
   (erc-tls :server "irc.mozilla.org" :port 6697
-	   :nick "strugee" :full-name "Alex Jordan")
+	   :nick "strugee" :full-name "AJ Jordan")
   (erc-tls :server "irc.gnome.org" :port 6697
-       :nick "strugee" :full-name "Alex Jordan")
+       :nick "strugee" :full-name "AJ Jordan")
   (setq erc-autojoin-channels-alist '(("oftc.net" "#emacs" "#debian" "#debian-devel" "#debian-mozilla" "#debian-gnome" "#debian-next" "#debian-offtopic")
 				      ("freenode.net" "#libreplanet-wa" "#archlinux" "#archlinux-offtopic" "#archlinux-newbies" "#steevie" "#plan9" "#gnome" "#whatwg" "#pump.io" "#conservancy" "#stratic")
 				      ("mozilla.org" "#introduction" "#seattle" "#qa" "#developers" "#firefox" "#bugzilla" "#mozwebqa" "#js" "#webcompat" "#planning" "#fx-team" "#contributors" "#ux" "#labs" "#identity" "#webdev" "#www" "#devtools" "#build")

@@ -9,7 +9,7 @@ ui text
 # offline setting - comment out to be online
 #offline
 # name and email setting (if non-default)
-# realname "Alex Jordan"
+# realname "AJ Jordan"
 email "alex@strugee.net"
 # If nothing else works, remove the # at the beginning
 # of the following three lines:

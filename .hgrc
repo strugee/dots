@@ -1,5 +1,5 @@
 [ui]
-username = Alex Jordan <alex@strugee.net>
+username = AJ Jordan <alex@strugee.net>
 interface = curses
 editor = emacsclient -nw
 [diff]
