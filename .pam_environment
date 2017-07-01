@@ -1,5 +1,5 @@
 export EDITOR=nano
-export VISUAL=emacs
+export VISUAL='emacsclient -nw'
 export PAGER=less
 export EMAIL=alex@strugee.net
 export NAME="AJ Jordan"
