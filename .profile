@@ -13,6 +13,16 @@
 #  that normally don't source this, e.g. bash if .bash_profile
 #  exists.
 
+# load PAM environment if the system doesn't do it for us
+if ! [ -z ${PAM_ENVIRONMENT_SET+x} ]; then
+	if [ $(uname) != Darwin ]; then
+		echo 'Warning: expected .pam_environment to be respected on a PAM system but didn'\''t find PAM_ENVIRONMENT_SET in the environment!' 2>&1
+		echo 'Running `source .pam_environment` to correct this problem.' 2>&1
+	fi
+
+	source "$HOME/.pam_environment"
+fi
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists

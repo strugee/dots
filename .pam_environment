@@ -4,3 +4,4 @@ export PAGER=less
 export EMAIL=alex@strugee.net
 export NAME="AJ Jordan"
 export LESS="--quit-if-one-screen --RAW-CONTROL-CHARS"
+export PAM_ENVIRONMENT_EXPORTED=
