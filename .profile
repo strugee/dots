@@ -39,7 +39,7 @@ fi
 # general environment variables
 export PATH="~/bin:$PATH"
 if [ -n "$DISPLAY" ]; then
-	export BROWSER=firefox
+	export BROWSER=firefox-nightly
 else
 	export BROWSER=lynx
 fi
