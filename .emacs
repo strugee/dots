@@ -11,9 +11,13 @@
 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; Emacs 24
+; Emacs 25
 
 ; Compatible out-of-the-box.
+
+; Emacs 24
+
+; Compatible out-of-the-box. May need manual .emacs intervention when adding packages.
 
 ; Emacs 23
 
