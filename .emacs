@@ -304,6 +304,12 @@
 ; git-commit-mode
 (global-git-commit-mode)
 
+(setq auto-mode-alist
+      (append  '(("\\.st\\'" . smalltalk-mode))
+	       auto-mode-alist))
+
+(autoload 'smalltalk-mode "gnu-smalltalk/smalltalk-mode" "" t)
+
 ; TODO:
 ; apache-mode
 ; less-css-mode
