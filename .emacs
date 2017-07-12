@@ -223,28 +223,32 @@
 ; ZNC-based ERC
 (require 'znc)
 
-(setq znc-password (let ((secret (plist-get (nth 0 (auth-source-search :max 1
-								       :host 'znc.strugee.net
-								       :require '(:secret)
-								       :create t))
-					    :secret)))
-		     (if (functionp secret)
-			 (funcall secret)
-		       secret)))
+(if (not (string-equal system-name "steevie.strugee.net"))
+    ; TODO seems like this lambda is sketchy? I have no idea how to Lisp
+    (funcall
+     (lambda ()
+       (setq znc-password (let ((secret (plist-get (nth 0 (auth-source-search :max 1
+									      :host 'znc.strugee.net
+									      :require '(:secret)
+									      :create t))
+						   :secret)))
+			    (if (functionp secret)
+				(funcall secret)
+			      secret)))
 
-(setq znc-servers
-      `(("znc.strugee.net" 7000 t
-	 ((freenode "alex" ,znc-password)
-	  (moznet "alex" ,znc-password)
-	  (oftc "alex" ,znc-password)
-	  (gimpnet "alex" ,znc-password)
-	  (W3C "alex" ,znc-password)))))
-
-; TODO don't blindly swallow all errors
-; Instead we want to check if the error message exactly equals "znc.strugee.net/7000 nodename nor servname provided, or not known"
-(condition-case nil
-    (znc-all)
-  (error (message "ZNC initialization failure due to network connectivity problem")))
+       (setq znc-servers
+	     `(("znc.strugee.net" 7000 t
+		((freenode "alex" ,znc-password)
+		 (moznet "alex" ,znc-password)
+		 (oftc "alex" ,znc-password)
+		 (gimpnet "alex" ,znc-password)
+		 (W3C "alex" ,znc-password)))))
+					; TODO don't blindly swallow all errors
+					; Instead we want to check if the error message exactly equals "znc.strugee.net/7000 nodename nor servname provided, or not known"
+       (condition-case nil
+	   (znc-all)
+	 (error (message "ZNC initialization failure due to network connectivity problem")))
+       )))
 
 ;;;;;;;;;;;;;
 ;
