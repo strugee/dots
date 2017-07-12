@@ -94,6 +94,15 @@ fi
 # Load user-level completions. This is here because it's an extension, not POSIX.
 source ~/.bin/bash_completion/*
 
+if [[ $(hostname) == steevie ]]; then
+	autoload -U up-line-or-beginning-search
+	autoload -U down-line-or-beginning-search
+	zle -N up-line-or-beginning-search
+	zle -N down-line-or-beginning-search
+	bindkey "^[[A" up-line-or-beginning-search # Up
+	bindkey "^[[B" down-line-or-beginning-search # Down
+fi
+
 source ~/.zprofile
 
 # This would be better in .profile, but unfortunately that needs to be only POSIX and POSIX doesn't have `command`
