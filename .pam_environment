@@ -1,7 +1,7 @@
-export EDITOR=nano
-export VISUAL='emacsclient -nw'
-export PAGER=less
-export EMAIL=alex@strugee.net
-export NAME="AJ Jordan"
-export LESS="--quit-if-one-screen --RAW-CONTROL-CHARS"
-export PAM_ENVIRONMENT_EXPORTED=
+EDITOR=nano
+VISUAL='emacsclient -nw'
+PAGER=less
+EMAIL=alex@strugee.net
+NAME="AJ Jordan"
+LESS="--quit-if-one-screen --RAW-CONTROL-CHARS"
+PAM_ENVIRONMENT_EXPORTED=

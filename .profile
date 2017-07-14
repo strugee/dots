@@ -20,7 +20,7 @@ if ! [ -z ${PAM_ENVIRONMENT_SET+x} ]; then
 		echo 'Running `source .pam_environment` to correct this problem.' 2>&1
 	fi
 
-	source "$HOME/.pam_environment"
+	eval $(sed 's/^/export /g' "$HOME/.pam_environment")
 fi
 
 # if running bash
