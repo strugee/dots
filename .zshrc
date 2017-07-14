@@ -114,3 +114,9 @@ function git() {
 		command git $@
 	fi
 }
+
+# nvm
+# WHen in .profile this script throws parse errors because of emulate sh -c
+if [[ -f /usr/share/nvm/init-nvm.sh ]]; then
+	source /usr/share/nvm/init-nvm.sh
+fi
