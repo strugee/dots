@@ -448,6 +448,12 @@ action_link() {
 }
 
 action_misc() {
+	loginfo "Checking npm configuration..."
+	if ! grep -v authToken $TARGET_DIR/.npmrc | diff /dev/stdin $CONFIG_DIR/.npmrc > /dev/null; then
+		logwarn "$TARGET_DIR/.npmrc is out of sync!"
+	fi
+	loginfo "Done checking npm configuration."
+
 	loginfo "Touching files..."
 	for i in $TOUCH_FILES; do
 		printf "Touching $i..."
