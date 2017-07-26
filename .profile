@@ -90,9 +90,9 @@ if [ $(uname -s) = "Darwin" ]; then
 	export BROWSER=/Applications/Firefox\ Nightly.app/Contents/MacOS/firefox
 fi
 
-if [ -f /usr/bin/pacmatic ]; then
-	alias pacman="pacmatic --color auto"
-fi
+# Expand aliases for sudo
+# https://unix.stackexchange.com/a/148548/29146
+alias sudo='sudo '
 
 if [ -d /opt/android-sdk/platform-tools ]; then
 	export PATH="$PATH:/opt/android-sdk/platform-tools"
