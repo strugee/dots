@@ -3,5 +3,7 @@ VISUAL='emacsclient -nw'
 PAGER=less
 EMAIL=alex@strugee.net
 NAME="AJ Jordan"
+DEBEMAIL=alex@strugee.net
+DEBFULLNAME="AJ Jordan"
 LESS="--quit-if-one-screen --RAW-CONTROL-CHARS"
 PAM_ENVIRONMENT_EXPORTED=
