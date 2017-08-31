@@ -449,7 +449,7 @@ action_link() {
 
 action_misc() {
 	loginfo "Checking npm configuration..."
-	if ! grep -v authToken $TARGET_DIR/.npmrc | diff /dev/stdin $CONFIG_DIR/.npmrc > /dev/null; then
+	if ! grep -v authToken $TARGET_DIR/.npmrc 2>&1 | diff /dev/stdin $CONFIG_DIR/.npmrc > /dev/null; then
 		logwarn "$TARGET_DIR/.npmrc is out of sync!"
 	fi
 	loginfo "Done checking npm configuration."
