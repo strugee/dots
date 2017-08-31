@@ -487,6 +487,7 @@ action_preload() {
 	loginfo "Done ensuring that package.el is available."
 
 	loginfo "Downloading Emacs packages..."
+	# TODO handle errors
 	emacs --script .emacs
 	loginfo "Done downloading Emacs packages."
 
