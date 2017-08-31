@@ -495,8 +495,8 @@ action_preload() {
 	cd "$TARGET_DIR"/.emacs.d/elpa/znc-*
 	# patch -N is specified all the way back in POSIX.1
 	curl https://github.com/rschuetzler/ZNC.el/commit/e58db9afef82957ffcea6a72977f5f2b4fb53d05.patch | patch -N
-	# FIXME
-	#emacs --eval "(byte-recompile-directory $TARGET_DIR/\.emacs\.d/elpa/znc-*/ 0)"
+	rm *.elc
+	emacs --batch --eval "(byte-recompile-directory \"/home/alex/.emacs.d/elpa/znc-20160627.1332\" 0)"
 	cd $CONFIG_DIR
 	loginfo "Done patching ZNC.el."
 
