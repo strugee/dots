@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Dump as much debugging as possible
+# Useful for things like git's gpg.program option which don't let you specify arguments in any sane way
+
+exec gpg --verbose --verbose --verbose --debug 1024 $@
