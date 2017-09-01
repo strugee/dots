@@ -536,6 +536,7 @@ action_check() {
 		checkavailable_warn offlineimap
 		checkavailable_warn profanity
 		checkavailable_warn mutt
+		checkavailable_warn http
 		if ! [ $(echo "$CONFIG_DATA" | grep darwin) ]; then
 			# TODO: check for the presence of Profanity keyring secrets
 			checkavailable_warn xclip
