@@ -536,6 +536,8 @@ action_check() {
 		checkavailable_warn offlineimap
 		checkavailable_warn profanity
 		checkavailable_warn mutt
+		# TODO check for msmtp secrets
+		checkavailable_warn msmtp
 		checkavailable_warn http
 		if ! [ $(echo "$CONFIG_DATA" | grep darwin) ]; then
 			# TODO: check for the presence of Profanity keyring secrets
