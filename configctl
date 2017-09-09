@@ -557,6 +557,8 @@ action_check() {
 		checkavailable_warn yosay
 		checkavailable_warn nsp
 		checkavailable_warn bunyan
+		checkavailable_warn vows
+		checkavailable_warn perjury
 	fi
 	logdbgr 'Done checking for standard utilities.'
 	logdbgr 'Checking for SSH keys...'
