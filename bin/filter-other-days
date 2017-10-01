@@ -4,6 +4,17 @@
 # The rationale is that it's better to receive irrelevant information than it is to miss relevant information.
 #
 # This design becomes security-critical in implementations of Artificial Ignorance.
+#
+# This file is split up into multiple sections - each one corresponds to one family of logfile timestamp styles
+
+#
+# HUMAN-READABLE
+#
+# E.g.:
+#
+#   Jan  1 03:44:00 hostname <message>
+#   January  1 03:44:00 hostname <message>
+#
 
 # Base dataset
 
@@ -49,12 +60,34 @@ SHORT_MONTHS_REGEX=$(echo $OTHER_SHORT_MONTHS | sed 's/ /\\|/g')
 ALL_DAYS_REGEX=$(echo $ALL_DAYS | sed 's/ /\\|/g')
 DAY_REGEX=$(echo $OTHER_ALL_DAYS | sed 's/ /\\|/g')
 
-# Actual `grep` invocation
+#
+# STANDARD
+#
+# E.g.:
+#
+#   2017-01-01 06:12:18 <message>
+#
 
-# We have to do this in two passes because we can't exclude today's day for other months
+STANDARD_YEARS=$(seq 2000 2019)
+STANDARD_MONTHS_NUM=$(seq 12)
+
+NOW_YEAR=$(date +%Y)
+NOW_MONTH_NUM=$(date +%m)
+
+OTHER_MONTHS_NUM=$(echo "$STANDARD_MONTHS_NUM" | grep -v $NOW_MONTH_NUM)
+
+YEARS_REGEX=$(echo $STANDARD_YEARS | sed 's/ /\\|/g')
+STANDARD_MONTHS_REGEX=$(echo $OTHER_MONTHS_NUM | sed 's/ /\\|/g')
+
+#
+# ACTUAL `grep` INVOCATION
+#
+
+# We have to do the human-readable variants in two passes because we can't exclude today's day for other months
 # E.g. if it's October 1st, we still want to match September 1st so we use $ALL_DAYS_REGEX, not $DAYS_REGEX
 # Also I have literally no idea why the second regex has to use capturing groups. Whatever.
-exec grep -v \
+grep -v \
 -e "\(:?$FULL_MONTHS_REGEX\|$SHORT_MONTHS_REGEX\)[[:space:]]\+\(:?$ALL_DAYS_REGEX\)" \
--e "\($NOW_SHORT_MONTH\|$NOW_FULL_MONTH\)[[:space:]]\+\(:?$DAY_REGEX\)"
-
+-e "\($NOW_SHORT_MONTH\|$NOW_FULL_MONTH\)[[:space:]]\+\(:?$DAY_REGEX\)" \
+-e "\($YEARS_REGEX\)-\($STANDARD_MONTHS_REGEX\)-\($ALL_DAYS_REGEX\)" \
+-e "\($YEARS_REGEX\)-$NOW_MONTH_NUM-\($DAY_REGEX\)"
