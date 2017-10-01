@@ -1,0 +1,60 @@
+#!/bin/sh
+
+# This script exclusively uses `grep -v` to ensure it never discards log entries from today, ever.
+# The rationale is that it's better to receive irrelevant information than it is to miss relevant information.
+#
+# This design becomes security-critical in implementations of Artificial Ignorance.
+
+# Base dataset
+
+FULL_MONTHS="January
+February
+March
+April
+May
+June
+July
+August
+September
+October
+November
+December"
+
+SHORT_MONTHS=$(echo "$FULL_MONTHS" | cut -c -3)
+
+FULL_DAYS=$(seq 31 | sed 's/^/0/g' | sed 's/0\(..\)/\1/g')
+DAYS=$(seq 31)
+ALL_DAYS=$(echo "$FULL_DAYS\n$DAYS" | sort | uniq)
+
+# Current values
+
+NOW_SHORT_MONTH=$(date +%b)
+NOW_FULL_MONTH=$(date +%B)
+NOW_FULL_DAY=$(date +%d)
+NOW_DAY=$(echo $NOW_FULL_DAY | sed 's/^0//')
+
+# Filtered dataset
+
+OTHER_SHORT_MONTHS=$(echo "$SHORT_MONTHS" | grep -Fxv $NOW_SHORT_MONTH)
+OTHER_FULL_MONTHS=$(echo "$FULL_MONTHS" | grep -Fxv $NOW_FULL_MONTH)
+OTHER_DAYS=$(echo "$DAYS" | grep -Fxv $NOW_DAY)
+OTHER_FULL_DAYS=$(echo "$FULL_DAYS" | grep -Fxv $NOW_FULL_DAY)
+OTHER_ALL_DAYS=$(echo "$OTHER_FULL_DAYS\n$OTHER_DAYS" | sort | uniq)
+
+# Built regexps
+
+# Unquoted on purpose so the shell turns newlines into spaces
+FULL_MONTHS_REGEX=$(echo $OTHER_FULL_MONTHS | sed 's/ /\\|/g')
+SHORT_MONTHS_REGEX=$(echo $OTHER_SHORT_MONTHS | sed 's/ /\\|/g')
+ALL_DAYS_REGEX=$(echo $ALL_DAYS | sed 's/ /\\|/g')
+DAY_REGEX=$(echo $OTHER_ALL_DAYS | sed 's/ /\\|/g')
+
+# Actual `grep` invocation
+
+# We have to do this in two passes because we can't exclude today's day for other months
+# E.g. if it's October 1st, we still want to match September 1st so we use $ALL_DAYS_REGEX, not $DAYS_REGEX
+# Also I have literally no idea why the second regex has to use capturing groups. Whatever.
+exec grep -v \
+-e "\(:?$FULL_MONTHS_REGEX\|$SHORT_MONTHS_REGEX\)[[:space:]]\+\(:?$ALL_DAYS_REGEX\)" \
+-e "\($NOW_SHORT_MONTH\|$NOW_FULL_MONTH\)[[:space:]]\+\(:?$DAY_REGEX\)"
+
