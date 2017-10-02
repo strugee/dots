@@ -472,7 +472,6 @@ action_preload() {
 
 	loginfo "Downloading static tarballs..."
 	download_from_tarball todo.txt-cli https://github.com/ginatrapani/todo.txt-cli/releases/download/v2.10/todo.txt_cli-2.10.tar.gz todo.txt_cli-2.10 todo.sh todo_completion
-
 	loginfo "Done downloading static tarballs."
 
 	loginfo "Ensuring that package.el is available..."
