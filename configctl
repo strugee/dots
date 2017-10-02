@@ -468,6 +468,7 @@ action_preload() {
 	clone_from_git oh-my-zsh 'git://github.com/robbyrussell/oh-my-zsh' .oh-my-zsh
 	clone_from_git Antigen 'git://github.com/zsh-users/antigen.git' antigen
 	clone_from_git moz-git-tools 'git://github.com/mozilla/moz-git-tools.git' .bin/moz-git-tools
+	clone_from_git filter-other-days 'git://github.com/strugee/filter-other-days.git' .bin/filter-other-days
 	loginfo "Done cloning resources from git."
 
 	loginfo "Downloading static tarballs..."

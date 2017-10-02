@@ -117,6 +117,8 @@ PATH=$PATH:~/.bin/bin
 # it's just more convenient to do it this way
 PATH=$PATH:~/.bin/moz-git-tools
 
+PATH=$PATH:~/.bin/filter-other-days/bin
+
 # Colorize Pacman output; assume Pacmatic is available everywhere because I'd rather fail than get plain Pacman
 alias pacman="pacmatic --color auto"
 
