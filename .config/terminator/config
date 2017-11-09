@@ -1,21 +1,21 @@
 [global_config]
   enabled_plugins = ,
-  window_state = maximise
-  dbus = True
   inactive_color_offset = 0.86
+  window_state = maximise
 [keybindings]
-[profiles]
-  [[default]]
-    background_darkness = 0.92
-    background_image = None
-    background_type = transparent
 [layouts]
   [[default]]
     [[[child1]]]
-      type = Terminal
       parent = window0
       profile = default
+      type = Terminal
     [[[window0]]]
-      type = Window
       parent = ""
+      type = Window
 [plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.92
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    scrollback_lines = 5000
