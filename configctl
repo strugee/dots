@@ -30,7 +30,7 @@ export POSIXLY_CORRECT=
 
 # VARIABLE DECLARATIONS
 
-LINK_FILES=".bash_aliases .bash_logout .bash_profile .bashrc .byobu .emacs .gitconfig .gitignore .gitmodules .profile .reportbugrc .screenrc .selected_editor .zsh_favlist .zshrc.pre-oh-my-zsh bin .pam_environment .netscape .hgrc .zshrc .zprofile .offlineimaprc .gnus.el .caffrc .ispell_english .muttrc .msmtprc"
+LINK_FILES=".bash_aliases .bash_logout .bash_profile .bashrc .byobu .emacs .gitconfig .gitignore .gitmodules .profile .reportbugrc .screenrc .selected_editor .zsh_favlist .zshrc.pre-oh-my-zsh bin .pam_environment .netscape .hgrc .zshrc .zprofile .offlineimaprc .gnus.el .caffrc .ispell_english .muttrc .msmtprc .dput.cf"
 HARDLINKS=".pgpkey"
 ZSH_PRECOMPILE=".zshrc .zprofile antigen/antigen.zsh .oh-my-zsh/lib/*.zsh .oh-my-zsh/themes/*.zsh-theme .oh-my-zsh/plugins/*/*.zsh .oh-my-zsh/oh-my-zsh.sh"
 DIRS=".gnupg .ssh .aptitude .config .bin/bash_completion .bin/todo.txt-cli .bin/bin .emacs.d/lisp .todo .bazaar .local/share/applications .mutt"
