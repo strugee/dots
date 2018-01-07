@@ -9,7 +9,7 @@ ui text
 # offline setting - comment out to be online
 #offline
 # name and email setting (if non-default)
-# realname "AJ Jordan"
+realname "AJ Jordan"
 email "alex@strugee.net"
 # If nothing else works, remove the # at the beginning
 # of the following three lines:
@@ -18,3 +18,4 @@ email "alex@strugee.net"
 #smtphost reportbug.debian.org
 # You can add other settings after this line.  See
 # /etc/reportbug.conf for a full listing of options.
+mutt
