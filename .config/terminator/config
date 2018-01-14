@@ -19,3 +19,4 @@
     background_type = transparent
     cursor_color = "#aaaaaa"
     scrollback_lines = 5000
+    scrollbar_position = hidden
