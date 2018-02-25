@@ -552,7 +552,6 @@ action_check() {
 	if ! [ $(echo "$CONFIG_DATA" | grep no-nodejs) ]; then
 		checkavailable_warn node
 		checkavailable_warn npm
-		checkavailable_warn bower
 		checkavailable_warn grunt
 		checkavailable_warn gulp
 		checkavailable_warn yo
