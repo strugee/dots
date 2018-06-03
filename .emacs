@@ -227,29 +227,37 @@
 ; ZNC-based ERC
 (require 'znc)
 
-(if (not (string-equal system-name "steevie.strugee.net"))
+(unless (string-equal system-name "steevie.strugee.net")
     (setf znc-password
-	  (let ((secret (plist-get (nth 0 (auth-source-search :max 1
-							      :host 'znc.strugee.net
-							      :require '(:secret)
-							      :create t))
-				   :secret)))
+	  (let ((secret
+		 (plist-get
+		  (nth 0
+		       (let ((auth-source-creation-defaults '(user "alex"))
+			     (auth-source-creation-prompts
+			      '((password . "Enter ZNC password for %h:%p: "))))
+			 (auth-source-search :max 1
+					     :host 'znc.strugee.net
+					     :port 7000
+					     :type 'netrc
+					     :require '(:secret)
+					     :create t)))
+		  :secret)))
 	    (if (functionp secret)
 		(funcall secret)
 	      secret)))
 
-  (setf znc-servers
-	`(("znc.strugee.net" 7000 t
-	   ((freenode "alex" ,znc-password)
-	    (moznet "alex" ,znc-password)
-	    (oftc "alex" ,znc-password)
-	    (gimpnet "alex" ,znc-password)
-	    (W3C "alex" ,znc-password)))))
-  ; TODO don't blindly swallow all errors
-  ; Instead we want to check if the error message exactly equals "znc.strugee.net/7000 nodename nor servname provided, or not known"
-  (condition-case nil
-      (znc-all)
-    (error (message "ZNC initialization failure due to network connectivity problem"))))
+    (setf znc-servers
+	  `(("znc.strugee.net" 7000 t
+	     ((freenode "alex" ,znc-password)
+	      (moznet "alex" ,znc-password)
+	      (oftc "alex" ,znc-password)
+	      (gimpnet "alex" ,znc-password)
+	      (W3C "alex" ,znc-password)))))
+    ;; TODO don't blindly swallow all errors
+    ;; Instead we want to check if the error message exactly equals "znc.strugee.net/7000 nodename nor servname provided, or not known"
+    (condition-case nil
+	(znc-all)
+      (error (message "ZNC initialization failure due to network connectivity problem"))))
 
 ;;;;;;;;;;;;;
 ;
