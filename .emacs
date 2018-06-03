@@ -47,7 +47,7 @@
 	(before package-compute-transaction-reverse (package-list requirements) activate compile)
 		"reverse the requirements"
 
-		(setq requirements (reverse requirements))
+		(setf requirements (reverse requirements))
 		(print requirements)))
 
 (package-initialize)
@@ -72,25 +72,25 @@
 ;; Save all tempfiles in $TMPDIR/emacs$UID/
 (defconst emacs-tmp-dir
   (format "%s/%s%s/" temporary-file-directory "emacs" (user-uid)))
-(setq backup-directory-alist
+(setf backup-directory-alist
 	`((".*" . ,emacs-tmp-dir)))
-(setq auto-save-file-name-transforms
+(setf auto-save-file-name-transforms
 	`((".*" ,emacs-tmp-dir t)))
-(setq auto-save-list-file-prefix
+(setf auto-save-list-file-prefix
 	emacs-tmp-dir)
 
 ;; Unicode
 (prefer-coding-system 'utf-8)
 ; Request UTF-8 paste data
-(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+(setf x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
 (server-start)
 
 ; Don't break hard-tabs into spaces on DEL
-(setq backward-delete-char-untabify-method nil)
+(setf backward-delete-char-untabify-method nil)
 
 ; Disable VC
-(setq vc-handled-backends nil)
+(setf vc-handled-backends nil)
 
 (if (eq system-type 'darwin)
     (add-to-list 'exec-path "/usr/local/bin"))
@@ -102,7 +102,7 @@
 
 ; Session restore
 (desktop-save-mode 1)
-(setq desktop-auto-save-timeout 30)
+(setf desktop-auto-save-timeout 30)
 (savehist-mode)
 
 ;;;;;;;;;;;;;
@@ -114,10 +114,10 @@
 (require 'spaceline-config)
 (spaceline-emacs-theme)
 
-(setq powerline-default-separator 'wave)
-(setq spaceline-window-numbers-unicode t)
+(setf powerline-default-separator 'wave)
+(setf spaceline-window-numbers-unicode t)
 
-(setq spaceline-erc-track-p nil)
+(setf spaceline-erc-track-p nil)
 
 (require 'nyan-mode)
 (nyan-mode)
@@ -150,40 +150,40 @@
 ; SSL/TLS support
 (require 'tls)
 
-(setq erc-modules
+(setf erc-modules
       (quote
        (autojoin button completion fill irccontrols list log match menu move-to-prompt netsplit networks noncommands notifications readonly ring stamp track)))
-(setq erc-nick "strugee")
-(setq erc-notifications-mode t)
-(setq erc-user-full-name "AJ Jordan")
+(setf erc-nick "strugee")
+(setf erc-notifications-mode t)
+(setf erc-user-full-name "AJ Jordan")
 
 ; Control character handling customizations
 
-(setq erc-beep-p 't)
-(setq erc-interpret-mirc-color 't)
+(setf erc-beep-p 't)
+(setf erc-interpret-mirc-color 't)
 
 ; Only add stuff to the modeline if nick or keywords are mentioned
 
-(setq erc-track-exclude-types '("JOIN" "PART" "QUIT" "NICK" "MODE"
+(setf erc-track-exclude-types '("JOIN" "PART" "QUIT" "NICK" "MODE"
 				"324" "329" "332" "333" "353" "477"))
-(setq erc-track-use-faces t)
-(setq erc-track-faces-priority-list
+(setf erc-track-use-faces t)
+(setf erc-track-faces-priority-list
       '(erc-current-nick-face erc-keyword-face))
-(setq erc-track-priority-faces-only nil)
+(setf erc-track-priority-faces-only nil)
 
 ; Make private messages more urgent
 
 (defadvice erc-track-find-face (around erc-track-find-face-promote-query activate)
   (if (erc-query-buffer-p)
-      (setq ad-return-value (intern "erc-current-nick-face"))
+      (setf ad-return-value (intern "erc-current-nick-face"))
     ad-do-it))
 
 ; Bury new IRC buffers
 
-(setq erc-join-buffer 'bury)
+(setf erc-join-buffer 'bury)
 
 ; Reuse existing buffers on reconnect
-(setq erc-reuse-buffers t)
+(setf erc-reuse-buffers t)
 
 ; Allow cycling through unvisited channels
 
@@ -193,7 +193,7 @@
   "Switch to the next unvisited channel. See erc-channels-to-visit"
   (interactive)
   (when (null erc-channels-to-visit)
-    (setq erc-channels-to-visit
+    (setf erc-channels-to-visit
 	  (remove (current-buffer) (erc-channel-list nil))))
   (let ((target (pop erc-channels-to-visit)))
     (if target
@@ -203,7 +203,7 @@
 ; TODO: this doesn't catch "strugee's"
 
 (add-hook 'erc-text-matched-hook 'erc-beep-on-match)
-(setq erc-beep-match-types '(current-nick keyword))
+(setf erc-beep-match-types '(current-nick keyword))
 
 ; TODO: Beep when a private message is received
 
@@ -219,7 +219,7 @@
 	   :nick "strugee" :full-name "AJ Jordan")
   (erc-tls :server "irc.gnome.org" :port 6697
        :nick "strugee" :full-name "AJ Jordan")
-  (setq erc-autojoin-channels-alist '(("oftc.net" "#emacs" "#debian" "#debian-devel" "#debian-mozilla" "#debian-gnome" "#debian-next" "#debian-offtopic")
+  (setf erc-autojoin-channels-alist '(("oftc.net" "#emacs" "#debian" "#debian-devel" "#debian-mozilla" "#debian-gnome" "#debian-next" "#debian-offtopic")
 				      ("freenode.net" "#libreplanet-wa" "#archlinux" "#archlinux-offtopic" "#archlinux-newbies" "#steevie" "#plan9" "#gnome" "#whatwg" "#pump.io" "#conservancy" "#stratic")
 				      ("mozilla.org" "#introduction" "#seattle" "#qa" "#developers" "#firefox" "#bugzilla" "#mozwebqa" "#js" "#webcompat" "#planning" "#fx-team" "#contributors" "#ux" "#labs" "#identity" "#webdev" "#www" "#devtools" "#build")
 				      ("gnome.org" "#gnome" "#gnome-hackers" "#gnome-shell" "#gnome-design" "#gnome-love" "#webhackers" "#sysadmin"  "#gtk"))))
@@ -228,7 +228,7 @@
 (require 'znc)
 
 (if (not (string-equal system-name "steevie.strugee.net"))
-    (setq znc-password (let ((secret (plist-get (nth 0 (auth-source-search :max 1
+    (setf znc-password (let ((secret (plist-get (nth 0 (auth-source-search :max 1
 									   :host 'znc.strugee.net
 									   :require '(:secret)
 									   :create t))
@@ -237,7 +237,7 @@
 			     (funcall secret)
 			   secret)))
 
-  (setq znc-servers
+  (setf znc-servers
 	`(("znc.strugee.net" 7000 t
 	   ((freenode "alex" ,znc-password)
 	    (moznet "alex" ,znc-password)
@@ -266,7 +266,7 @@
 
 ; PKGBUILD mode
 (autoload 'pkgbuild-mode "pkgbuild-mode.el" "PKGBUILD mode." t)
-(setq auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode)) auto-mode-alist))
+(setf auto-mode-alist (append '(("/PKGBUILD$" . pkgbuild-mode)) auto-mode-alist))
 
 ; Python mode
 (add-hook 'python-mode-hook 'guess-style-guess-tabs-mode)
@@ -277,8 +277,8 @@
 ; HTML mode
 (add-hook 'html-mode-hook
 	  (lambda()
-            (setq sgml-basic-offset 8)
-            (setq indent-tabs-mode t)))
+            (setf sgml-basic-offset 8)
+            (setf indent-tabs-mode t)))
 
 ; todotxt mode
 (autoload 'todotxt "todotxt.el" "A major mode for editing todo.txt files" t)
@@ -291,16 +291,16 @@
 ; TODO: reorganize so that this isn't so out of place
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
-(setq js2-include-node-externs t)
+(setf js2-include-node-externs t)
 (smart-tabs-advice js2-indent-line js2-basic-offset)
 
 ; org-mode
-(setq org-log-done t)
+(setf org-log-done t)
 
 ; git-commit-mode
 (global-git-commit-mode)
 
-(setq auto-mode-alist
+(setf auto-mode-alist
       (append  '(("\\.st\\'" . smalltalk-mode))
 	       auto-mode-alist))
 
@@ -327,8 +327,8 @@
 ; (add-hook 'package-menu-mode-hook (lambda () (list-packages-ext-mode 1))
 (add-hook 'find-file-hook 'bug-reference-github-set-url-format)
 
-;(setq too-hardcore-backspace t)
-;(setq too-hardcore-return t)
+;(setf too-hardcore-backspace t)
+;(setf too-hardcore-return t)
 ;(require 'hardcore-mode)
 ;(global-hardcore-mode)
 
