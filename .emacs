@@ -236,7 +236,7 @@
 			     (auth-source-creation-prompts
 			      '((password . "Enter ZNC password for %h:%p: "))))
 			 (auth-source-search :max 1
-					     :host 'znc.strugee.net
+					     :host "znc.strugee.net"
 					     :port 7000
 					     :type 'netrc
 					     :require '(:secret)
