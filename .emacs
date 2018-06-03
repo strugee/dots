@@ -228,14 +228,15 @@
 (require 'znc)
 
 (if (not (string-equal system-name "steevie.strugee.net"))
-    (setf znc-password (let ((secret (plist-get (nth 0 (auth-source-search :max 1
-									   :host 'znc.strugee.net
-									   :require '(:secret)
-									   :create t))
-						:secret)))
-			 (if (functionp secret)
-			     (funcall secret)
-			   secret)))
+    (setf znc-password
+	  (let ((secret (plist-get (nth 0 (auth-source-search :max 1
+							      :host 'znc.strugee.net
+							      :require '(:secret)
+							      :create t))
+				   :secret)))
+	    (if (functionp secret)
+		(funcall secret)
+	      secret)))
 
   (setf znc-servers
 	`(("znc.strugee.net" 7000 t
