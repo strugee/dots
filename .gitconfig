@@ -18,3 +18,5 @@
 	autoCorrect = -1
 [commit]
 	gpgSign = true
+[gpg]
+	program = qubes-gpg
