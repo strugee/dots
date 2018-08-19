@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Select either Qubes Split GPG or regular GnuPG, depending on what's available
+
+if type qubes-gpg-client > /dev/null; then
+	echo qubes-gpg-client $@ > out
+	exec qubes-gpg-client $@
+else
+	exec gpg $@
+fi
