@@ -108,6 +108,8 @@ if type qsub &> /dev/null; then
 	umask 007
 fi
 
+test -d "$HOME/.cargo/bin" && export PATH="$HOME/.cargo/bin:$PATH"
+
 # Unconditional because configctl ensures that this is available
 PATH=$PATH:~/.bin/bin
 
