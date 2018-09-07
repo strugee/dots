@@ -90,10 +90,6 @@ if [ $(uname -s) = "Darwin" ]; then
 	export BROWSER=/Applications/Firefox\ Nightly.app/Contents/MacOS/firefox
 fi
 
-# Expand aliases for sudo
-# https://unix.stackexchange.com/a/148548/29146
-alias sudo='sudo '
-
 test -d /opt/android-sdk/platform-tools && export PATH="$PATH:/opt/android-sdk/platform-tools"
 
 # Hyak
@@ -118,6 +114,10 @@ PATH=$PATH:~/.bin/bin
 PATH=$PATH:~/.bin/moz-git-tools
 
 PATH=$PATH:~/.bin/filter-other-days/bin
+
+# Expand aliases for sudo
+# https://unix.stackexchange.com/a/148548/29146
+alias sudo='sudo '
 
 # Colorize Pacman output; assume Pacmatic is available everywhere because I'd rather fail than get plain Pacman
 alias pacman="pacmatic --color auto"
