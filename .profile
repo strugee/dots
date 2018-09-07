@@ -14,7 +14,7 @@
 #  exists.
 
 # load PAM environment if the system doesn't do it for us
-if ! [ -z ${PAM_ENVIRONMENT_SET+x} ]; then
+if [ -z ${PAM_ENVIRONMENT_SET+x} ]; then
 	if [ $(uname) != Darwin ]; then
 		echo 'Warning: expected .pam_environment to be respected on a PAM system but didn'\''t find PAM_ENVIRONMENT_SET in the environment!' 2>&1
 		echo 'Running `source .pam_environment` to correct this problem.' 2>&1
