@@ -94,9 +94,7 @@ fi
 # https://unix.stackexchange.com/a/148548/29146
 alias sudo='sudo '
 
-if [ -d /opt/android-sdk/platform-tools ]; then
-	export PATH="$PATH:/opt/android-sdk/platform-tools"
-fi
+test -d /opt/android-sdk/platform-tools && export PATH="$PATH:/opt/android-sdk/platform-tools"
 
 # Hyak
 if type qsub &> /dev/null; then
