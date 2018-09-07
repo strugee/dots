@@ -3,11 +3,11 @@
 # configctl - control config setup and installation
 
 # Licensed GPLv3+
- 
+
 # Usage: ./configctl [ACTION]
 # Control configuration file installation.
 # ACTION is one of: install uninstall prepare migrate link misc preload precompile check.
-# 
+#
 # The 'install' action is equivalent to the 'prepare', 'migrate', 'link', 'misc', 'preload', and 'precompile' actions, in that order.
 # The 'uninstall' action is unimplemented.
 # The 'prepare' action creates directories.
@@ -17,7 +17,7 @@
 # The 'preload' action downloads resources from the network, and is dependent on 'link'. It is the only action requiring network access.
 # The 'precompile' action precompiles zsh scripts, and is dependent on 'link' and 'preload'.
 # The 'check' action searches for common binaries and reports if they are missing.
-# 
+#
 # Exit status is 0 upon success; 1 upon a sanity check error; 2 upon unimplemented functionality; 3 upon failed migration.
 
 # Targets POSIX-compliant systems - no less, and no more.
