@@ -138,6 +138,12 @@ if [ -e .editorconfig ]; then
 	echo tabify-tree: warning: found .editorconfig file but not adjusting >&2
 fi
 
+# Freaking BSD sed is the worst and is *almost* the same as GNU sed but not quite
+SEDTEST=$(mktemp)
+if sed -i '' '' $SEDTEST >/dev/null 2>&1; then
+	SED_I_ARG="''"
+fi
+
 # After all that, invoke this anticlimactic oneliner
 # We're already using bash, so let's just say 'fuck it' to portability and assume we've got GNU -print0, too
-find . $EXCLUSION_ARGS -type f -print0 | xargs -0 -n 1 $XARGS_OPTS -- sed -i '' "s/$(printf ' %.0s' $(seq 1 $WIDTH))/	/g"
+find . $EXCLUSION_ARGS -type f -print0 | xargs -0 -n 1 $XARGS_OPTS -- sed -i $SED_I_ARG "s/$(printf ' %.0s' $(seq 1 $WIDTH))/	/g"
