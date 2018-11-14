@@ -54,7 +54,7 @@ fi
 #	export $(echo $_GNOME_KEYRING_INFO | grep GPG_AGENT_INFO)
 #fi
 
-if ! [ $(uname) = Darwin ] && type ruby &> /dev/null && type gem &> /dev/null; then
+if ! [ $(uname) = Darwin ] && type ruby >/dev/null && type gem >/dev/null; then
 	# Fix Bundler behavior on Arch
 	export GEM_HOME="$(ruby -e 'print Gem.user_dir')"
 	# Add local Gems to PATH
@@ -93,7 +93,7 @@ fi
 test -d /opt/android-sdk/platform-tools && export PATH="$PATH:/opt/android-sdk/platform-tools"
 
 # Hyak
-if type qsub &> /dev/null; then
+if type qsub >/dev/null; then
 	PATH="/com/local/bin:$PATH"
 	alias big_machine='qsub -W group_list=hyak-mako -l walltime=500:00:00,mem=200gb -I'
 	alias any_machine='qsub -W group_list=hyak-mako -l walltime=500:00:00,mem=100gb -I'
