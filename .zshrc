@@ -117,6 +117,9 @@ function git() {
 
 # nvm
 # When in .profile this script throws parse errors because of emulate sh -c
+export NVM_DIR="$HOME/.nvm"
 if [[ -f /usr/share/nvm/init-nvm.sh ]]; then
 	source /usr/share/nvm/init-nvm.sh
 fi
+[[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"
+[[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"
