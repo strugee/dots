@@ -530,6 +530,7 @@ action_check() {
 	checkavailable_warn killall
 	checkavailable_warn tree
 	checkavailable_warn traceroute
+	checkavailable_warn dig
 	if ! [ $(echo "$CONFIG_DATA" | grep headless) ]; then
 		checkavailable_warn parcimonie
 		checkavailable_warn offlineimap
