@@ -5,6 +5,6 @@ EMAIL=alex@strugee.net
 NAME="AJ Jordan"
 DEBEMAIL=alex@strugee.net
 DEBFULLNAME="AJ Jordan"
-LESS="--quit-if-one-screen --RAW-CONTROL-CHARS"
+LESS="--RAW-CONTROL-CHARS"
 PAM_ENVIRONMENT_SET=
 QUBES_GPG_DOMAIN=vault
