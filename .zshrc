@@ -109,7 +109,7 @@ source ~/.zprofile
 function git() {
 	if [[ $1 == 'log' ]]; then
 		shift
-		command git log --graph $@
+		command git log --graph --decorate $@
 	else
 		command git $@
 	fi
