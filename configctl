@@ -461,6 +461,12 @@ action_misc() {
 		printf " done.\n"
 	done
 	loginfo "Done touching files."
+
+	loginfo "Setting permissions..."
+	printf "Removing group write permission for .ssh/config..."
+	chmod g-w $TARGET_DIR/.ssh/config
+	printf " done.\n"
+	loginfo "Done setting permissions."
 }
 
 action_preload() {
