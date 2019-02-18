@@ -203,6 +203,9 @@ If pid is nil, return nil."
 ; Reuse existing buffers on reconnect
 (setf erc-reuse-buffers t)
 
+; Load old logs from disk
+(setf erc-log-insert-log-on-open t)
+
 ; Allow cycling through unvisited channels
 
 (defvar erc-channels-to-visit nil
