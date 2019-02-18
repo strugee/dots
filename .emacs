@@ -100,6 +100,24 @@
 (add-to-list 'window-system-default-frame-alist
 	     '(ns (fullscreen . fullscreen)))
 
+;; Handle stale desktop lockfiles... because Emacs is too dumb to do this itself :/
+;; *sigh*
+
+(defun process-p (pid)
+  "If pid is the process ID of a running process, return t, else nil.
+If pid is nil, return nil."
+  (when pid
+    (= (call-process "ps" nil nil nil "-p"
+		     (number-to-string pid)) 0)))
+
+;; Emacs doesn't set this itself half the time and I can't figure out why or when
+(setf desktop-dirname "~/.emacs.d/")
+
+(require 'desktop)
+(let (pid (desktop-owner))
+  (unless (process-p (desktop-owner))
+		     (desktop-release-lock)))
+
 ; Session restore
 (desktop-save-mode 1)
 (setf desktop-auto-save-timeout 30)
