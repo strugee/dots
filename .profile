@@ -125,5 +125,10 @@ alias now="date +%s | tr -d '\n'"
 
 #_byobu_sourced=1 . /usr/bin/byobu-launch
 
+proc_inotify=/proc/sys/fs/inotify/max_user_instances
+if grep set-inotify ~/configs/local-config >/dev/null 2>&1 && test -f $proc_inotify && [ $(cat $proc_inotify) != 50000 ]; then
+	echo 50000 | sudo tee $proc_inotify > /dev/null
+fi
+
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
