@@ -124,3 +124,6 @@ alias upload-weekly-report="scp ~/ownCloud/gap-year-time-tracking.html steevie:p
 alias now="date +%s | tr -d '\n'"
 
 #_byobu_sourced=1 . /usr/bin/byobu-launch
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
