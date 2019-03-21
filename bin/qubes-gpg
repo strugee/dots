@@ -2,8 +2,8 @@
 
 # Select either Qubes Split GPG or regular GnuPG, depending on what's available
 
-if type qubes-gpg-client > /dev/null; then
-	exec qubes-gpg-client $@
+if type qubes-gpg-client-wrapper > /dev/null; then
+	exec qubes-gpg-client-wrapper $@
 else
 	exec gpg $@
 fi
