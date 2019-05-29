@@ -102,7 +102,7 @@ fi
 test -d "$HOME/.cargo/bin" && export PATH="$HOME/.cargo/bin:$PATH"
 
 # Unconditional because configctl ensures that this is available
-PATH=$PATH:~/.bin/bin
+PATH=~/.bin/bin:$PATH
 
 # moz-git-tools isn't in ~/.bin/bin because it has so many binaries,
 # it's just more convenient to do it this way
@@ -132,3 +132,4 @@ fi
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+
