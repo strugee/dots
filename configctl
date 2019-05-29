@@ -176,6 +176,7 @@ download_from_tarball() {
 		cd "$TARGET_DIR"/.bin/$NAME
 		curl -L $URL | gunzip | tar -x
 		# TODO: this doesn't handle already-existing links
+		# TODO do we need this chmod? Originally it was for todo.txt but 2.11 contains my patch fixing the bug
 		chmod +x "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/$SCRIPT_FILE
 		ln -s "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/$SCRIPT_FILE "$TARGET_DIR"/.bin/bin/$SCRIPT_FILE
 		ln -s "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY/$COMPLETION_FILE "$TARGET_DIR"/.bin/bash_completion
