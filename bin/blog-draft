@@ -1,0 +1,13 @@
+
+#!/bin/sh
+
+# The evil backreferences stuff is left to the end. Note that `sed` does not support non-capturing groups, unfortunately. Only PCRE do those.
+echo '<!DOCTYPE html>'
+echo
+echo '<meta charset="utf8" />'
+echo
+markdown $1 \
+| sed '/^<hr \/>$/{N;d}' \
+| sed -e 's/h1/h2/g' -e 's/h2/h3/g' -e 's/h3/h4/g' -e 's/h4/h5/g' -e 's/h5/h6/g' \
+| sed -Ee '1,10{ /^(time|edited|categories):(:?<\/p>)?$/d }' -e '1,10{ /^author:/d }' -e '1,10{ /^[[:space:]]+(epoch|utcoffset):/d }' -e '1,10{ /^(:?<h.>)?[[:space:]]+- (blaggregator|personal|explanations|politics|sysadmin|pump.io|stratic|recommendations)(:?<\/h.>)?$/d }' \
+| sed -E '1,5s/(<p>)?title: "(.*)"/<h1>\2<\/h1>/'
