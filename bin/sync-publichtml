@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ $(hostname) = steeviea ]; then
+	echo "steevie is authoritative but we're on host $(hostname); refusing" 1>&2
+	exit 1
+fi
+
+rsync -vrt ~/public_html/* smtp.fallback.strugee.net:public_html
