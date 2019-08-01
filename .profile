@@ -116,6 +116,8 @@ PATH=$PATH:~/.bin/moz-git-tools
 
 PATH=$PATH:~/.bin/filter-other-days/bin
 
+test -d /snap/bin && PATH=$PATH:/snap/bin
+
 # Expand aliases for sudo
 # https://unix.stackexchange.com/a/148548/29146
 alias sudo='sudo '
