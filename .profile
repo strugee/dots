@@ -131,6 +131,8 @@ alias upload-weekly-report="scp ~/ownCloud/gap-year-time-tracking.html steevie:p
 
 alias now="date +%s | tr -d '\n'"
 
+alias borgfd='ls -l /proc/$(pidof -x borg)/fd'
+
 #_byobu_sourced=1 . /usr/bin/byobu-launch
 
 proc_inotify=/proc/sys/fs/inotify/max_user_instances
@@ -140,4 +142,3 @@ fi
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-
