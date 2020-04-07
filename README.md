@@ -24,13 +24,14 @@ To put it another way, `configctl` knows how to bootstrap most of the environmen
 
 `configctl` has the capability to read in a local configuration file, `local-config`. With this file you can override the behavior of certain routines of `configctl`. `local-config` is written with one keyword per line. Here are the options:
 
-| Option        | Type               | Description                                                                                                                                   |
-| ------------- | -------------------| --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `no-ssh`      | Configuration time | Specifies that `configctl check` should not warn if it cannot find a general-purpose SSH key.                                                 |
-| `headless`    | Configuration time | Specifies that `configctl check` should not warn if it cannot find programs that would only make sense to have under a graphical environment. |
-| `no-nodejs`   | Configuration time | Specifies that `configctl check` should assume that Node.js is not available.                                                                 |
-| `darwin`      | Configuration time | Specifies that `configctl check` is running on a Darwin (macOS) system. Linux is assumed otherwise.                                           |
-| `set-inotify` | Runtime            | Specifies that `.profile` should set the maximum user inotify instances to 50,000 using `sudo`.                                               |
+| Option        | Type               | Description                                                                                                                                                          |
+| ------------- | -------------------| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `no-ssh`      | Configuration time | Specifies that `configctl check` should not warn if it cannot find a general-purpose SSH key.                                                                        |
+| `headless`    | Configuration time | Specifies that `configctl check` should not warn if it cannot find programs that would only make sense to have under a graphical environment.                        |
+| `no-nodejs`   | Configuration time | Specifies that `configctl check` should assume that Node.js is not available.                                                                                        |
+| `darwin`      | Configuration time | Specifies that `configctl check` is running on a Darwin (macOS) system. Linux is assumed otherwise.                                                                  |
+| `secure`      | Configuration time | Specifies that `configctl` is running in a high-security environment and should not attempt to download or warn (in `configctl check`) about unverified software.    |
+| `set-inotify` | Runtime            | Specifies that `.profile` should set the maximum user inotify instances to 50,000 using `sudo`.                                                                      |
 
 ## License
 

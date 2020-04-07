@@ -138,6 +138,11 @@ handle_submodules() {
 }
 
 clone_from_git() {
+	if config_includes secure; then
+		loginfo "Skipping unpinned git clone operation for $1 because we are running in a secure environment."
+		return 0
+	fi
+
 	if [ -d "$TARGET_DIR/$3" ]; then
 		loginfo "$1 already cloned; pulling with rebase..."
 		cd "$TARGET_DIR/$3"
@@ -171,6 +176,13 @@ download_from_tarball() {
 	EXTRACTED_DIRECTORY=$3
 	SCRIPT_FILE=$4
 	COMPLETION_FILE=$5
+
+	# TODO add in a SHA512 attestation and remove this check
+	if config_includes secure; then
+		loginfo "Skipping unverified tarball download for $NAME because we are running in a secure environment."
+		return 0
+	fi
+
 	if ! [ -d "$TARGET_DIR"/.bin/$NAME/$EXTRACTED_DIRECTORY ]; then
 		logdbgr "Downloading $1."
 		cd "$TARGET_DIR"/.bin/$NAME
@@ -489,29 +501,33 @@ action_preload() {
 	download_from_tarball todo.txt-cli https://github.com/ginatrapani/todo.txt-cli/releases/download/v2.10.0/todo.txt_cli-2.10.tar.gz todo.txt_cli-2.10 todo.sh todo_completion
 	loginfo "Done downloading static tarballs."
 
-	loginfo "Ensuring that package.el is available..."
-	if ! check_emacs_package package && [ ! -e "$TARGET_DIR"/.emacs.d/lisp/package.el ]; then
-		logdbgr "\`(require 'package)\` failed, probably Emacs is too old to have package.el."
-		logdbgr "Downloading package.el."
-		curl 'https://git.savannah.gnu.org/gitweb/?p=emacs.git;a=blob_plain;hb=ba08b24186711eaeb3748f3d1f23e2c2d9ed0d09;f=lisp/emacs-lisp/package.el' > "$TARGET_DIR"/.emacs.d/lisp/package.el
+	if ! config_includes secure; then
+		loginfo "Ensuring that package.el is available..."
+		if ! check_emacs_package package && [ ! -e "$TARGET_DIR"/.emacs.d/lisp/package.el ]; then
+			logdbgr "\`(require 'package)\` failed, probably Emacs is too old to have package.el."
+			logdbgr "Downloading package.el."
+			curl 'https://git.savannah.gnu.org/gitweb/?p=emacs.git;a=blob_plain;hb=ba08b24186711eaeb3748f3d1f23e2c2d9ed0d09;f=lisp/emacs-lisp/package.el' > "$TARGET_DIR"/.emacs.d/lisp/package.el
+		else
+			logdbgr "\`(require 'package)\` succeeded."
+		fi
+		loginfo "Done ensuring that package.el is available."
+
+		loginfo "Downloading Emacs packages..."
+		# TODO handle errors
+		emacs --script .emacs
+		loginfo "Done downloading Emacs packages."
+
+		loginfo "Patching ZNC.el..."
+		cd "$TARGET_DIR"/.emacs.d/elpa/znc-*
+		# patch -N is specified all the way back in POSIX.1
+		curl https://github.com/rschuetzler/ZNC.el/commit/e58db9afef82957ffcea6a72977f5f2b4fb53d05.patch | patch -N
+		rm *.elc
+		emacs --batch --eval "(byte-recompile-directory \"/home/alex/.emacs.d/elpa/znc-20160627.1332\" 0)"
+		cd $CONFIG_DIR
+		loginfo "Done patching ZNC.el."
 	else
-		logdbgr "\`(require 'package)\` succeeded."
+		loginfo "Skipping Emacs package downloads because we are running in a secure environment."
 	fi
-	loginfo "Done ensuring that package.el is available."
-
-	loginfo "Downloading Emacs packages..."
-	# TODO handle errors
-	emacs --script .emacs
-	loginfo "Done downloading Emacs packages."
-
-	loginfo "Patching ZNC.el..."
-	cd "$TARGET_DIR"/.emacs.d/elpa/znc-*
-	# patch -N is specified all the way back in POSIX.1
-	curl https://github.com/rschuetzler/ZNC.el/commit/e58db9afef82957ffcea6a72977f5f2b4fb53d05.patch | patch -N
-	rm *.elc
-	emacs --batch --eval "(byte-recompile-directory \"/home/alex/.emacs.d/elpa/znc-20160627.1332\" 0)"
-	cd $CONFIG_DIR
-	loginfo "Done patching ZNC.el."
 
 	handle_submodules
 }
@@ -562,7 +578,9 @@ action_check() {
 			# TODO: check for the presence of Profanity keyring secrets
 			checkavailable_warn xclip
 			checkavailable_warn secret-tool
-			checkavailable_warn firefox-nightly
+			if ! config_includes secure; then
+				checkavailable_warn firefox-nightly
+			fi
 			checkavailable_warn terminator
 		fi
 	fi
