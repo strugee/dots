@@ -45,12 +45,6 @@ DEFAULT_ACTION=install
 NUM_WARNINGS=0
 NUM_MIGRATIONS=0
 
-if [ -f $CONFIG_DIR/local-config ]; then
-	CONFIG_DATA="$(cat $CONFIG_DIR/local-config)"
-else
-	CONFIG_DATA=''
-fi
-
 # UTILITY FUNCTIONS
 
 # TODO fix colors when running under (some versions of?) bash, not dash
@@ -73,6 +67,12 @@ logfail() {
 	printf "[\033[31mfail\033[0m] $1\n"
 	echo "Finished unsuccessfully, with 1 failure, $NUM_WARNINGS warning(s), and 0 migrations."
 	exit $2
+}
+
+config_includes() {
+	# We could just let grep error on this and do 2>/dev/null, but that would swallow other things too
+	test -f $CONFIG_DIR/local-config || return 1
+	grep -q $1 $CONFIG_DIR/local-config
 }
 
 checkavailable() {
@@ -545,7 +545,7 @@ action_check() {
 	checkavailable_warn tree
 	checkavailable_warn traceroute
 	checkavailable_warn dig
-	if ! [ $(echo "$CONFIG_DATA" | grep headless) ]; then
+	if ! config_includes headless; then
 		checkavailable_warn parcimonie
 		checkavailable_warn offlineimap
 		checkavailable_warn profanity
@@ -558,7 +558,7 @@ action_check() {
 		checkavailable_warn adb
 		checkavailable_warn caff
 		checkavailable_warn gpg-key2ps
-		if ! [ $(echo "$CONFIG_DATA" | grep darwin) ]; then
+		if ! config_includes darwin; then
 			# TODO: check for the presence of Profanity keyring secrets
 			checkavailable_warn xclip
 			checkavailable_warn secret-tool
@@ -566,7 +566,7 @@ action_check() {
 			checkavailable_warn terminator
 		fi
 	fi
-	if ! [ $(echo "$CONFIG_DATA" | grep no-nodejs) ]; then
+	if ! config_includes no-nodejs; then
 		checkavailable_warn node
 		checkavailable_warn npm
 		checkavailable_warn grunt
@@ -580,7 +580,7 @@ action_check() {
 	fi
 	logdbgr 'Done checking for standard utilities.'
 	logdbgr 'Checking for SSH keys...'
-	if ! [ $(echo "$CONFIG_DATA" | grep no-ssh) ]; then
+	if ! config_includes no-ssh; then
 		checkssh general-use
 	fi
 	checkssh GitHub github
