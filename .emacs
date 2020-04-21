@@ -270,7 +270,6 @@ If pid is nil, return nil."
     (setf znc-servers
 	  `(("znc.strugee.net" 7000 t
 	     ((freenode "alex" ,znc-password)
-	      (moznet "alex" ,znc-password)
 	      (oftc "alex" ,znc-password)
 	      (gimpnet "alex" ,znc-password)
 	      (W3C "alex" ,znc-password)))))
