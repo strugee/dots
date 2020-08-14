@@ -125,3 +125,7 @@ fi
 [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"
 
 type pyenv >/dev/null && eval "$(pyenv init -)"
+
+# Misc
+autoload -Uz tetris
+autoload -Uz tetriscurses
