@@ -126,6 +126,15 @@ fi
 
 type pyenv >/dev/null && eval "$(pyenv init -)"
 
+# See /usr/share/zsh/functions/Misc/run-help; this seems like it's supposed to work out of the box but doesn't?
+# TODO report this bug to Debian
+[[ -d /usr/share/zsh/help ]] && local HELPDIR=${HELPDIR:-/usr/share/zsh/help}
+
+# Install run-help helpers
+for i in /usr/share/zsh/functions/Misc/run-help-*(:t); do
+	autoload -Uz $i
+done
+
 # Misc
 autoload -Uz tetris
 autoload -Uz tetriscurses
