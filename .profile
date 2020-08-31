@@ -101,12 +101,6 @@ fi
 
 test -d "$HOME/.cargo/bin" && export PATH="$HOME/.cargo/bin:$PATH"
 
-# Qubes
-# If we don't have a regular SSH key, and we're running under Qubes, assume we need Split SSH
-if type qubes-gui >/dev/null && ! test -f ~/.ssh/id_rsa; then
-	export SSH_AUTH_SOCK=~/.SSH_AGENT_$SSH_VAULT_VM
-fi
-
 # Unconditional because configctl ensures that this is available
 PATH=~/.bin/bin:$PATH
 
