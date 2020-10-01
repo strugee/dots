@@ -123,6 +123,8 @@ If pid is nil, return nil."
 (setf desktop-auto-save-timeout 30)
 (savehist-mode)
 
+(setq epg-gpg-program "qubes-gpg")
+
 ;;;;;;;;;;;;;
 ;
 ; MODELINE
