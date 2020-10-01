@@ -21,6 +21,7 @@ cert_fingerprint = 474bddb9b33da123deb431e0aa9644d3a74df79b90b86a2a11f8dc7bc9e39
 remotehost = imap.strugee.net
 remoteuser = alex@strugee.net
 idlefolders = ['INBOX', 'GitHub', 'GNU.Libreplanet-us-wa']
+folderfilter = lambda folder: not re.search('^virtual/', folder)
 
 [mbnames]
 enabled = yes
