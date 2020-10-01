@@ -17,7 +17,7 @@ localfolders = ~/Maildir
 [Repository Remote]
 type = IMAP
 ssl = yes
-cert_fingerprint = 1abd0df5e26d9a7dd2d75fcff9d23fa5c7f410bf
+cert_fingerprint = 474bddb9b33da123deb431e0aa9644d3a74df79b90b86a2a11f8dc7bc9e39616
 remotehost = imap.strugee.net
 remoteuser = alex@strugee.net
 idlefolders = ['INBOX', 'GitHub', 'GNU.Libreplanet-us-wa']
