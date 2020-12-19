@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+
+# IMPORTANT: this assumes you have never been in a group chat with the other person
+
+import argparse
+import json
+import sys
+from datetime import datetime
+
+parser = argparse.ArgumentParser(description='Format Instagram archives\' direct message JSON.')
+parser.add_argument('filename', help='JSON file to load messages from')
+parser.add_argument('self', help='your username')
+parser.add_argument('username', help='their username')
+
+args = parser.parse_args()
+
+# TODO make this an argument
+self = args.self
+file = args.filename
+account = args.username
+
+print_buf = []
+
+with open(file) as f:
+	j = json.load(f)
+	for i in j:
+		if not account in i['participants']: continue
+		for msg in i['conversation']:
+			sender = 'me' if msg['sender'] is self else msg['sender']
+			# TODO this assumes that the other person liked the message
+			liked = '(❤️)' if 'likes' in msg and len(msg['likes']) > 0 else ''
+			# TODO catch media shares, etc.
+			text = msg['text'] if 'text' in msg and msg['text'] else '(unsupported message type)'
+			# TODO figure out if Instagram *ever* provides non-UTC timezones and offer to show originals
+			# astimezone() converts the parsed date into the system timezone
+			date = datetime.fromisoformat(msg['created_at']).astimezone()
+			print_buf.append('[{d}] {s}{l}: {m}'.format(
+				d=date.isoformat(timespec='seconds', sep=' ')[:-6], # Last 6 chars are UTC offsets
+				s=sender,
+				l=liked,
+				m=text
+			))
+		break
+
+
+
+for i in reversed(print_buf): print(i)
