@@ -125,7 +125,7 @@ alias upload-weekly-report="scp ~/ownCloud/gap-year-time-tracking.html steevie:p
 
 alias now="date +%s | tr -d '\n'"
 
-alias borgfd='ls -l /proc/$(pidof -x borg)/fd'
+alias borgfd='ls -l /proc/$(pgrep borg$)/fd'
 
 #_byobu_sourced=1 . /usr/bin/byobu-launch
 
