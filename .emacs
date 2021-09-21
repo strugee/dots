@@ -25,6 +25,18 @@
 ; May cause problems with deftheme in the future. Works currently.
 ; On Debian, emacs-23 throws error "package emacs-24 is not available". Needs further debugging.
 
+;;;;;;;;;;;;;;;;;;;;;;;;
+;
+; UTILITY FUNCITONS
+;
+;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun local-config-val-p (val)
+  "See if VAL is present in the local-config file."
+  (member (concat "emacs-" val) (with-temp-buffer
+				  (insert-file-contents (expand-file-name "~/configs/local-config"))
+				  (split-string (buffer-string) "\n" t))))
+
 ;;;;;;;;;;;;;;;
 ;
 ; PACKAGES
@@ -250,7 +262,7 @@ If pid is nil, return nil."
 ; ZNC-based ERC
 (require 'znc)
 
-(unless (string-equal system-name "steevie.strugee.net")
+(unless (or (string-equal system-name "steevie.strugee.net") (local-config-val-p "no-znc"))
     (setf znc-password
 	  (let ((secret
 		 (plist-get
