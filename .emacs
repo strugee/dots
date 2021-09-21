@@ -428,16 +428,14 @@ If pid is nil, return nil."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (solarized-dark)))
+ '(custom-enabled-themes '(solarized-dark))
  '(custom-safe-themes
-   (quote
-    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
- '(epg-gpg-program "qubes-gpg")
- '(magit-repository-directories (quote ("~/Development")))
+   '("fee7287586b17efbfda432f05539b58e86e059e78006ce9237b8732fde991b4c" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default))
+ '(epg-gpg-program "qubes-gpg" t)
+ '(magit-repository-directories '("~/Development"))
  '(magit-use-overlays nil)
  '(package-selected-packages
-   (quote
-    (forth-mode erlang achievements livescript-mode sed-mode znc xkcd window-numbering todotxt telepathy sudo-ext stupid-indent-mode smart-tabs-mode powershell pkgbuild-mode org-magit nyan-prompt nyan-mode muttrc-mode melpa-upstream-visit maxframe markdown-mode+ magit-tramp magit-gh-pulls magit-filenotify lua-mode lorem-ipsum list-processes+ list-packages-ext less-css-mode know-your-http-well json-mode js2-mode jade-mode hardcore-mode ham-mode hackernews grunt gitignore-mode github-clone github-browse-file gitconfig-mode gitconfig gitattributes-mode git-messenger git-link gist frame-cmds eide editorconfig-core editorconfig display-theme coffee-mode bug-reference-github bbcode-mode apache-mode annoying-arrows-mode 2048-game))))
+   '(forth-mode erlang achievements livescript-mode sed-mode znc xkcd window-numbering todotxt telepathy sudo-ext stupid-indent-mode smart-tabs-mode powershell pkgbuild-mode org-magit nyan-prompt nyan-mode muttrc-mode melpa-upstream-visit maxframe markdown-mode+ magit-tramp magit-gh-pulls magit-filenotify lua-mode lorem-ipsum list-processes+ list-packages-ext less-css-mode know-your-http-well json-mode js2-mode jade-mode hardcore-mode ham-mode hackernews grunt gitignore-mode github-clone github-browse-file gitconfig-mode gitconfig gitattributes-mode git-messenger git-link gist frame-cmds eide editorconfig-core editorconfig display-theme coffee-mode bug-reference-github bbcode-mode apache-mode annoying-arrows-mode 2048-game)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
