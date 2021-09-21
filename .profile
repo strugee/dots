@@ -80,7 +80,8 @@ if [ $(uname -s) = "Darwin" ]; then
 	export PATH
 
 	export NVM_DIR="$HOME/.nvm"
-	. $(brew --prefix nvm)/nvm.sh
+	NVM_SH=$(brew --prefix nvm)/nvm.sh
+	test -f $NVM_SH && . $NVM_SH
 
 	export BROWSER=/Applications/Firefox\ Nightly.app/Contents/MacOS/firefox
 fi
