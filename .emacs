@@ -407,6 +407,7 @@ If pid is nil, return nil."
 ; powershell
 (autoload 'editorconfig "editorconfig" "EditorConfig Emacs extension" t)
 ; magit-*
+(load "magit-autoloads")
 (autoload 'xkcd "xkcd" "Major mode for viewing xkcd (http://xkcd.com/) comics." t)
 ; TODO: do something with this
 ;(require telepathy-autoloads)
