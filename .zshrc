@@ -130,8 +130,11 @@ type pyenv >/dev/null && eval "$(pyenv init -)"
 # TODO report this bug to Debian
 [[ -d /usr/share/zsh/help ]] && local HELPDIR=${HELPDIR:-/usr/share/zsh/help}
 
+set -o EXTENDED_GLOB
+set -o KSH_GLOB
 # Install run-help helpers
-for i in /usr/share/zsh/functions/Misc/run-help-*(:t); do
+# The pattern that looks like voodoo matches ZSH version numbers, equivalent to [[:digit:].]+ in regex
+for i in /usr/share/zsh/(+([[:digit:].])/)#functions/(Misc/)#run-help-*(:t); do
 	autoload -Uz $i
 done
 
