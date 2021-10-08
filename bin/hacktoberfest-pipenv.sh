@@ -28,7 +28,6 @@ for j in $(
 		  curl -sLA $UA https://pypi.org/pypi/$i/json | jq -r '.info.home_page, .info.project_urls[]?, (.info.description | [ scan("https?://github.com/[^\\s>)]+]") ][]?)'
 		  done | egrep 'github.(com|io)/.+' | sort | uniq | sed -Ee 's;https?://([^.]+).github.(:?com|io)/([^/]+);https://github.com/\1/\3;i' -e 's;^https?://github.com/;;i' | cut -d/ -f1,2 | grep -v '^sponsors' | sed 's/\.git$//g' | uniq | grep -v MacHu-GWU/
 	  ); do
-	#set -x
 	if curl -u $GH_ACCESS_PAIR -H 'Accept: application/vnd.github.mercy-preview+json' -sLA $UA https://api.github.com/repos/$j/topics | jq '.names[]' | grep -q '"hacktoberfest"'; then
 	echo https://github.com/$j
 	fi
