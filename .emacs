@@ -126,9 +126,8 @@ If pid is nil, return nil."
 (setf desktop-dirname "~/.emacs.d/")
 
 (require 'desktop)
-(let (pid (desktop-owner))
-  (unless (process-p (desktop-owner))
-		     (desktop-release-lock)))
+(unless (process-p (desktop-owner))
+  (desktop-release-lock))
 
 ; Session restore
 (desktop-save-mode 1)
