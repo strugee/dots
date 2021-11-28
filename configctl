@@ -561,6 +561,7 @@ action_check() {
 	checkavailable_warn tree
 	checkavailable_warn traceroute
 	checkavailable_warn dig
+	checkavailable_warn jq
 	if ! config_includes headless; then
 		checkavailable_warn parcimonie
 		checkavailable_warn offlineimap
