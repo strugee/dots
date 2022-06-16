@@ -33,9 +33,12 @@
 
 (defun local-config-val-p (val)
   "See if VAL is present in the local-config file."
-  (member (concat "emacs-" val) (with-temp-buffer
-				  (insert-file-contents (expand-file-name "~/configs/local-config"))
-				  (split-string (buffer-string) "\n" t))))
+  (member (concat "emacs-" val)
+	  (let ((filename (expand-file-name "~/configs/local-config")))
+	    (if (file-exists-p filename)
+		(with-temp-buffer (insert-file-contents filename)
+				  (split-string (buffer-string) "\n" t))
+	      (list)))))
 
 ;;;;;;;;;;;;;;;
 ;
