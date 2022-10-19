@@ -12,7 +12,7 @@ if ! test -f Pipfile; then
 fi
 
 if [ -z "$GH_ACCESS_PAIR" ]; then
-	echo GH_ACCESS_PAIR not present in the environment (should be \"USER:ACCESS_TOKEN\") 2>&1
+	echo GH_ACCESS_PAIR not present in the environment \(should be \"USER:ACCESS_TOKEN\"\) 2>&1
 	exit 2
 fi
 
