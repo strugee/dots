@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+
+# Diff a Firefox Lockwise CSV file with a Bitwarden CSV,
+# intelligently-ish
+
+# Super unoptimized and buffers everything in memory. Assumes that
+# Firefox Lockwise does not have any entries that Bitwarden doesn't
+# (just that these might be out of sync)
+
+import csv
+import sys
+
+assert len(sys.argv) >= 2, 'no Firefox CSV filename provided'
+assert len(sys.argv) >= 3, 'no Bitwarden CSV filename provided'
+
+def grab_csv(argv_num, type_):
+
+    with open(sys.argv[argv_num], newline='') as f:
+        if type_ == 'ff':
+            kwargs = {}
+        elif type_ == 'bw':
+            kwargs = { 'quotechar': '"', 'quoting': csv.QUOTE_MINIMAL }
+        else:
+            raise ValueError('unknown type_')
+        f.seek(0)
+        reader = csv.reader(f, strict=True, **kwargs)
+        return list(reader)[1:]
+
+# url,username,password,httpRealm,formActionOrigin,guid,timeCreated,timeLastUsed,timePasswordChanged
+ff_csv = grab_csv(1, 'ff')
+assert len(ff_csv[0]) == 9
+# folder,favorite,type,name,notes,fields,reprompt,login_uri,login_username,login_password,login_totp
+bw_csv = grab_csv(2, 'bw')
+assert len(bw_csv[0]) == 11
+
+for i in ff_csv:
+    url, username, password, *_ = i
+
+    for j in bw_csv:
+        _, _, _, _, _, _, _, login_uri, login_username, login_password, *_ = j
+        if url not in login_uri: continue
+        if username != login_username: continue
+        if password != login_password:
+            print(url, f'({username})')
