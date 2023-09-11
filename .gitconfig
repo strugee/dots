@@ -17,7 +17,5 @@
 	editor = emacsclient -nw --alternate-editor nano
 [help]
 	autoCorrect = -1
-[commit]
-	gpgSign = true
 [gpg]
 	program = qubes-gpg
