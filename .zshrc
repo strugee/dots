@@ -54,7 +54,7 @@ fi
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-base_plugins=(git cp rails mercurial colorize battery colored-man-pages history-substring-search)
+base_plugins=(git cp rails mercurial colorize battery colored-man-pages history-substring-search toolbox)
 
 # Generic base plugins
 plugins=($base_plugins)
