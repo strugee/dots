@@ -1,0 +1,10 @@
+#!/bin/sh
+
+BINARY=$(basename $0)
+
+CMDPREFIX=
+test -f /run/.toolboxenv && CMDPREFIX='flatpak-spawn --host'
+
+# Can't use `command` because this is a script, not a function/alias.
+# This is evil because it breaks with paths including newlines, but those paths are evil anyway.
+exec $CMDPREFIX $(which -a $BINARY | grep -Fve '~/bin/' -e ~/bin/ | head -1) "$@"
