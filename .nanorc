@@ -1,0 +1,5 @@
+# Restore pre-nano  8.0 keybindings
+bind ^F forward main
+bind ^B back main
+bind M-F formatter main
+bind M-B linter main
