@@ -137,3 +137,6 @@ fi
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+
+# If this is not the last PATH change, rvm whines about it
+export PATH="$PATH:$HOME/.rvm/bin"
