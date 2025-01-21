@@ -1,5 +1,6 @@
 EDITOR=nano
 VISUAL='emacsclient -nw'
+ALTERNATIVE_EDITOR=nano
 PAGER=less
 EMAIL=alex@strugee.net
 NAME="AJ Jordan"
