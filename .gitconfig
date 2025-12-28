@@ -19,3 +19,5 @@
 	autoCorrect = -1
 [gpg]
 	program = qubes-gpg
+[init]
+	defaultBranch = main
