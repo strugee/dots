@@ -14,7 +14,7 @@
 [github]
 	user = strugee
 [core]
-	editor = emacsclient -nw --alternate-editor nano
+	editor = vim
 [help]
 	autoCorrect = -1
 [gpg]
