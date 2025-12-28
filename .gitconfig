@@ -10,7 +10,7 @@
 	autosetuprebase = always
 [alias]
 	hate = blame
-	up = !git fetch --all && git rebase origin/HEAD
+	up = !git fetch --all && git rebase --autostash origin/HEAD
 [github]
 	user = strugee
 [core]
