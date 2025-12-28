@@ -575,6 +575,7 @@ action_check() {
 		checkavailable_warn adb
 		checkavailable_warn caff
 		checkavailable_warn gpg-key2ps
+		checkavailable_warn git-absorb
 		if ! config_includes darwin; then
 			# TODO: check for the presence of Profanity keyring secrets
 			checkavailable_warn xclip
